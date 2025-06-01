@@ -5,8 +5,32 @@ from logica_cuestionario import obtener_servicios_relevantes
 from fpdf import FPDF
 import base64
 
-st.set_page_config(page_title="Cuestionario Cloud", layout="centered")
-st.title("Cuestionario para Selección de Proveedor Cloud")
+st.set_page_config(page_title="Cuestionario Proveedores de Nube", layout="centered")
+#---------- PANTALLA DE INICIO -----------##
+if "cuestionario_iniciado" not in st.session_state:
+    st.session_state["cuestionario_iniciado"] = False
+
+if not st.session_state["cuestionario_iniciado"]:
+    st.title("🧠 Guía de Selección de Proveedor de Nube")
+    st.markdown("""
+    Esta herramienta sirve como guía para elegir el proveedor que mejor se adapte a las necesidades del proyecto.
+    Se considerarán aspectos como:
+    - Máquinas virtuales (MV)
+    - Almacenamiento
+    - Bases de datos
+    - Inteligencia Artificial / Machine Learning
+    - Confidencialidad, disponibilidad y costos
+
+    ---
+    """)
+
+    if st.button("🚀 Iniciar cuestionario"):
+        st.session_state["cuestionario_iniciado"] = True
+    st.stop()
+
+
+####--------PÁGINA CUESTIONARIO -------------###
+st.title("Cuestionario para Selección de Proveedor de Nube")
 st.markdown("Enfoque en confidencialidad.")
 
 res = {}
