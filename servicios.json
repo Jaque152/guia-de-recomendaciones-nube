@@ -1,0 +1,405 @@
+{
+  "AWS": {
+    "almacenamiento": {
+      "objetos": [
+        {
+          "nombre": "Amazon S3",
+          "caracteristicas_confidencialidad": [
+            "Cifrado en reposo con SSE-S3, SSE-KMS o SSE-C",
+            "Control de acceso mediante políticas de IAM y ACLs",
+            "Cumplimiento con estándares como PCI-DSS, HIPAA, FedRAMP"
+          ],
+          "regiones_disponibles": [
+            "US East (N. Virginia)",
+            "EU (Frankfurt)",
+            "Asia Pacific (Sydney)"
+          ],
+          "costo_aproximado": "$0.023 por GB/mes en clase Standard"
+        }
+      ],
+      "bloques": [
+        {
+          "nombre": "Amazon EBS",
+          "caracteristicas_confidencialidad": [
+            "Cifrado en reposo con claves gestionadas por el cliente",
+            "Integración con AWS IAM para control de acceso"
+          ],
+          "regiones_disponibles": [
+            "US East (N. Virginia)",
+            "EU (Frankfurt)",
+            "Asia Pacific (Sydney)"
+          ],
+          "costo_aproximado": "$0.10 por GB/mes para volúmenes estándar"
+        }
+      ],
+      "archivos": [
+        {
+          "nombre": "Amazon EFS",
+          "caracteristicas_confidencialidad": [
+            "Cifrado en tránsito y en reposo",
+            "Control de acceso mediante políticas de IAM"
+          ],
+          "regiones_disponibles": [
+            "US East (N. Virginia)",
+            "EU (Frankfurt)",
+            "Asia Pacific (Sydney)"
+          ],
+          "costo_aproximado": "$0.30 por GB/mes"
+        }
+      ]
+    },
+    "mv": [
+      {
+        "nombre": "EC2 t2.micro",
+        "caracteristicas_confidencialidad": [
+          "Acceso mediante clave SSH",
+          "Cifrado de disco con EBS y KMS"
+        ],
+        "regiones_disponibles": [
+          "US East",
+          "Europe Central",
+          "Asia Pacific"
+        ],
+        "costo_aproximado": "$0.0116 por hora"
+      },
+      {
+        "nombre": "EC2 C6i",
+        "caracteristicas_confidencialidad": [
+          "Cifrado de datos en reposo y en tránsito"
+        ],
+        "regiones_disponibles": [
+          "Global"
+        ],
+        "costo_aproximado": "$0.085 por hora"
+      }
+    ],
+    "bd": {
+      "relacional": [
+        {
+          "nombre": "Amazon RDS",
+          "caracteristicas_confidencialidad": [
+            "Cifrado con KMS",
+            "IAM para control de acceso",
+            "Red privada VPC"
+          ],
+          "regiones_disponibles": [
+            "Global"
+          ],
+          "costo_aproximado": "$0.018 por hora (db.t3.micro)"
+        }
+      ],
+      "no_relacional": [
+        {
+          "nombre": "DynamoDB",
+          "caracteristicas_confidencialidad": [
+            "Cifrado AES-256",
+            "VPC y WAF integrados"
+          ],
+          "regiones_disponibles": [
+            "Global"
+          ],
+          "costo_aproximado": "$1.25 por millón de escrituras"
+        }
+      ]
+    },
+    "ia": {
+      "general": [
+        {
+          "nombre": "Amazon SageMaker",
+          "caracteristicas_confidencialidad": [
+            "Cifrado con KMS",
+            "IAM, VPC y cifrado de modelos"
+          ],
+          "regiones_disponibles": [
+            "Global"
+          ],
+          "costo_aproximado": "$0.10 por hora (ml.t3.medium)"
+        }
+      ],
+      "voz": [
+        "Amazon Transcribe",
+        "Amazon Lex"
+      ],
+      "texto_a_voz": [
+        "Amazon Polly"
+      ],
+      "vision": [
+        "Amazon Rekognition"
+      ],
+      "pln": [
+        "Amazon Comprehend"
+      ],
+      "traduccion": [
+        "Amazon Translate"
+      ]
+    }
+  },
+  "Azure": {
+    "almacenamiento": {
+      "objetos": [
+        {
+          "nombre": "Blob Storage",
+          "caracteristicas_confidencialidad": [
+            "Cifrado en reposo con claves gestionadas por el cliente",
+            "Integración con Azure Active Directory para control de acceso"
+          ],
+          "regiones_disponibles": [
+            "East US",
+            "West Europe",
+            "Southeast Asia"
+          ],
+          "costo_aproximado": "$0.0184 por GB/mes en tier Hot"
+        }
+      ],
+      "bloques": [
+        {
+          "nombre": "Page Blobs",
+          "caracteristicas_confidencialidad": [
+            "Cifrado en reposo",
+            "Soporte para discos administrados con control de acceso basado en roles"
+          ],
+          "regiones_disponibles": [
+            "East US",
+            "West Europe",
+            "Southeast Asia"
+          ],
+          "costo_aproximado": "$0.05 por GB/mes"
+        }
+      ],
+      "archivos": [
+        {
+          "nombre": "Azure Files",
+          "caracteristicas_confidencialidad": [
+            "Cifrado en tránsito y en reposo",
+            "Integración con Active Directory para autenticación"
+          ],
+          "regiones_disponibles": [
+            "East US",
+            "West Europe",
+            "Southeast Asia"
+          ],
+          "costo_aproximado": "$0.06 por GB/mes"
+        }
+      ]
+    },
+    "mv": [
+      {
+        "nombre": "Serie Dv5",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo con ADE",
+          "Cifrado de red en tránsito"
+        ],
+        "regiones_disponibles": [
+          "East US",
+          "West Europe"
+        ],
+        "costo_aproximado": "$0.096 por hora"
+      },
+      {
+        "nombre": "Serie Fsv2",
+        "caracteristicas_confidencialidad": [
+          "Integración con Key Vault para claves"
+        ],
+        "regiones_disponibles": [
+          "East US",
+          "UK South"
+        ],
+        "costo_aproximado": "$0.085 por hora"
+      }
+    ],
+    "bd": {
+      "relacional": [
+        {
+          "nombre": "Azure SQL Database",
+          "caracteristicas_confidencialidad": [
+            "TDE habilitado por defecto",
+            "Always Encrypted y BYOK"
+          ],
+          "regiones_disponibles": [
+            "Global"
+          ],
+          "costo_aproximado": "$0.008/hr (DTU-based)"
+        }
+      ],
+      "no_relacional": [
+        {
+          "nombre": "Cosmos DB",
+          "caracteristicas_confidencialidad": [
+            "Cifrado en reposo con Key Vault",
+            "Modelos de consistencia y replicación global"
+          ],
+          "regiones_disponibles": [
+            "Global"
+          ],
+          "costo_aproximado": "$0.008 por RU/s por hora"
+        }
+      ]
+    },
+    "ia": {
+      "general": [
+        {
+          "nombre": "Azure Machine Learning",
+          "caracteristicas_confidencialidad": [
+            "Cifrado en reposo y tránsito",
+            "Red privada"
+          ],
+          "regiones_disponibles": [
+            "Global"
+          ],
+          "costo_aproximado": "$0.096/hr (VM básica)"
+        }
+      ],
+      "voz": [
+        "Azure Speech"
+      ],
+      "texto_a_voz": [
+        "Azure Speech"
+      ],
+      "vision": [
+        "Custom Vision",
+        "Azure Vision"
+      ],
+      "pln": [
+        "Text Analytics"
+      ],
+      "traduccion": [
+        "Azure Translator"
+      ]
+    }
+  },
+  "GCP": {
+    "almacenamiento": {
+      "objetos": [
+        {
+          "nombre": "Cloud Storage",
+          "caracteristicas_confidencialidad": [
+            "Cifrado en reposo con claves gestionadas por el cliente",
+            "Control de acceso mediante IAM y listas de control de acceso"
+          ],
+          "regiones_disponibles": [
+            "us-central1",
+            "europe-west1",
+            "asia-east1"
+          ],
+          "costo_aproximado": "$0.020 por GB/mes en clase Standard"
+        }
+      ],
+      "bloques": [
+        {
+          "nombre": "Persistent Disk",
+          "caracteristicas_confidencialidad": [
+            "Cifrado en reposo por defecto",
+            "Integración con Cloud IAM para control de acceso"
+          ],
+          "regiones_disponibles": [
+            "us-central1",
+            "europe-west1",
+            "asia-east1"
+          ],
+          "costo_aproximado": "$0.04 por GB/mes para discos estándar"
+        }
+      ],
+      "archivos": [
+        {
+          "nombre": "Filestore",
+          "caracteristicas_confidencialidad": [
+            "Cifrado en reposo",
+            "Control de acceso mediante políticas de IAM"
+          ],
+          "regiones_disponibles": [
+            "us-central1",
+            "europe-west1",
+            "asia-east1"
+          ],
+          "costo_aproximado": "$0.30 por GB/mes"
+        }
+      ]
+    },
+    "mv": [
+      {
+        "nombre": "e2-standard-2",
+        "caracteristicas_confidencialidad": [
+          "Cifrado por defecto con CMEK"
+        ],
+        "regiones_disponibles": [
+          "us-central1",
+          "europe-west1"
+        ],
+        "costo_aproximado": "$0.067 por hora"
+      },
+      {
+        "nombre": "C2-standard-4",
+        "caracteristicas_confidencialidad": [
+          "Cifrado con claves gestionadas y VPC"
+        ],
+        "regiones_disponibles": [
+          "us-central1",
+          "asia-east1"
+        ],
+        "costo_aproximado": "$0.188 por hora"
+      }
+    ],
+    "bd": {
+      "relacional": [
+        {
+          "nombre": "Cloud SQL",
+          "caracteristicas_confidencialidad": [
+            "Cifrado con KMS",
+            "Acceso restringido por IP y SSL"
+          ],
+          "regiones_disponibles": [
+            "us-central1",
+            "europe-west1"
+          ],
+          "costo_aproximado": "$0.015/hr db-f1-micro"
+        }
+      ],
+      "no_relacional": [
+        {
+          "nombre": "Firestore",
+          "caracteristicas_confidencialidad": [
+            "Cifrado por defecto con CMEK",
+            "IAM granular y VPC Service Controls"
+          ],
+          "regiones_disponibles": [
+            "us-central",
+            "europe-west"
+          ],
+          "costo_aproximado": "$0.18 por GB almacenado"
+        }
+      ]
+    },
+    "ia": {
+      "general": [
+        {
+          "nombre": "Vertex AI",
+          "caracteristicas_confidencialidad": [
+            "Cifrado por defecto",
+            "CMEK, IAM y VPC"
+          ],
+          "regiones_disponibles": [
+            "us-central1",
+            "europe-west1"
+          ],
+          "costo_aproximado": "$0.12/hr (n1-standard-4)"
+        }
+      ],
+      "voz": [
+        "Dialogflow",
+        "Speech-to-Text"
+      ],
+      "texto_a_voz": [
+        "Text-to-Speech"
+      ],
+      "vision": [
+        "Cloud Vision"
+      ],
+      "pln": [
+        "Natural Language AI"
+      ],
+      "traduccion": [
+        "Cloud Translation"
+      ]
+    }
+  }
+}
