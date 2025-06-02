@@ -1,4 +1,15 @@
 ##--- Lógica del cuestionario ---##
+
+##---------------REGLAS COMBINADAS------------------------------------------------------------------------------###
+from reglas_combinacionales import reglas_combinacionales, cumple_condicion_struct
+def aplicar_reglas_combinacionales(res, scores, razones):
+    for regla in reglas_combinacionales:
+        if cumple_condicion_struct(res, regla["condiciones"]):
+            proveedores = [regla["proveedor"]] if isinstance(regla["proveedor"], str) else regla["proveedor"]
+            for prov in proveedores:
+                scores[prov] += regla["puntos"]
+                razones[prov].append(regla["descripcion"])
+##------------------------------------------------------------------------------------------------------###
 PROVEEDORES = ["AWS", "GCP", "Azure"]
 
 def evaluar_respuestas(res):
