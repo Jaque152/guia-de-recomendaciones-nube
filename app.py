@@ -100,6 +100,7 @@ with st.expander("Inteligencia Artificial y Machine Learning"):
                 res["pln_analisis"] = st.radio("¿Requiere análisis avanzado de texto?", ["Sí", "No"])
             if "Traducción" in res["ia_servicios_especializados"]:
                 res["traduccion_personalizada"] = st.radio("¿Requiere modelos personalizados?", ["Sí", "No"])
+        
 
 # Sección: Prioridades del proyecto
 with st.expander(" Prioridades del Proyecto"):

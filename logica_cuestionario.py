@@ -1,7 +1,11 @@
 ##--- Lógica del cuestionario ---##
 
-##---------------REGLAS COMBINADAS------------------------------------------------------------------------------###
 from reglas_combinacionales import reglas_combinacionales, cumple_condicion_struct
+import json
+import os
+
+PROVEEDORES = ["AWS", "GCP", "Azure"]
+
 def aplicar_reglas_combinacionales(res, scores, razones):
     for regla in reglas_combinacionales:
         if cumple_condicion_struct(res, regla["condiciones"]):
@@ -9,12 +13,22 @@ def aplicar_reglas_combinacionales(res, scores, razones):
             for prov in proveedores:
                 scores[prov] += regla["puntos"]
                 razones[prov].append(regla["descripcion"])
-##------------------------------------------------------------------------------------------------------###
-PROVEEDORES = ["AWS", "GCP", "Azure"]
 
 def evaluar_respuestas(res):
     scores = {p: 0 for p in PROVEEDORES}
     razones = {p: [] for p in PROVEEDORES}
+
+    # --- Normalización previa para reglas combinacionales ---
+   # Convertir sliders (1-5) a texto SOLO para reglas combinadas
+    nivel_textual = lambda x: "Bajo" if x <= 2 else "Medio" if x == 3 else "Alta"
+    res["costo_texto"] = nivel_textual(res.get("presupuesto", 3))
+    res["disponibilidad_texto"] = nivel_textual(res.get("disponibilidad", 3))
+    res["confidencialidad_texto"] = nivel_textual(res.get("confidencialidad", 3))
+
+    if res.get("bd_tipo") == "Relacional":
+        res["bd_motor_relacional"] = res.get("bd_motor")
+    elif res.get("bd_tipo") == "No relacional":
+        res["bd_motor_norelacional"] = res.get("bd_motor")
 
     # --- MÁQUINAS VIRTUALES ---
     if res.get("mv_requiere") == "Sí":
@@ -64,7 +78,6 @@ def evaluar_respuestas(res):
         scores["GCP"] += 1
         razones["GCP"].append("Contenedores/Kubernetes (+1)")
 
-    # --- ALMACENAMIENTO ---
     # --- ALMACENAMIENTO ---
     tipo = res.get("almacenamiento")
     if tipo and tipo != "Ninguno":
@@ -131,7 +144,6 @@ def evaluar_respuestas(res):
                     for p in PROVEEDORES:
                         scores[p] += 1
                         razones[p].append("Reconocimiento de voz inglés (+1)")
-
             elif esp == "Convertir Texto a Voz":
                 if res.get("voz_clonacion") == "Sí":
                     for p in ["Azure", "GCP"]:
@@ -146,7 +158,6 @@ def evaluar_respuestas(res):
                     elif res.get("voz_naturalidad") == "Poco natural":
                         scores["AWS"] += 1
                         razones["AWS"].append("Voz poco natural (+1)")
-
             elif esp == "Visión":
                 if res.get("vision_lugares") == "Sí":
                     scores["GCP"] += 1
@@ -154,12 +165,10 @@ def evaluar_respuestas(res):
                 if res.get("vision_celebridades") == "Sí":
                     scores["AWS"] += 1
                     razones["AWS"].append("Reconocimiento de celebridades (+1)")
-
             elif esp == "Procesamiento de lenguaje natural":
                 if res.get("pln_analisis") == "Sí":
                     scores["GCP"] += 1
                     razones["GCP"].append("Análisis avanzado de texto (+1)")
-
             elif esp == "Traducción":
                 if res.get("traduccion_personalizada") == "Sí":
                     for p in ["Azure", "GCP"]:
@@ -187,24 +196,42 @@ def evaluar_respuestas(res):
         scores["GCP"] += 1
         razones["GCP"].append("Alta confidencialidad: GCP (+1)")
 
+    # Aplicar reglas combinadas
+    res_for_reglas = res.copy()
+    res_for_reglas["costo"] = res.get("costo_texto")
+    res_for_reglas["disponibilidad"] = res.get("disponibilidad_texto")
+    res_for_reglas["confidencialidad"] = res.get("confidencialidad_texto")
+    aplicar_reglas_combinacionales(res, scores, razones)
+
     return scores, razones
-
-import json
-import os
-
-# Cargar los servicios desde el JSON completo
+# Función para obtener servicios detallados
 ruta_servicios = os.path.join(os.path.dirname(__file__), "servicios.json")
 with open(ruta_servicios, "r", encoding="utf-8") as f:
     SERVICIOS = json.load(f)
 
+def construir_servicio_detallado(nombre, proveedor):
+    for categoria in SERVICIOS[proveedor]:
+        subcat = SERVICIOS[proveedor][categoria]
+        if isinstance(subcat, dict):
+            for tipo in subcat:
+                for s in subcat[tipo]:
+                    if s.get("nombre") == nombre:
+                        return s
+        elif isinstance(subcat, list):
+            for s in subcat:
+                if isinstance(s, dict) and s.get("nombre") == nombre:
+                    return s
+    return {"nombre": nombre}
+
 def obtener_servicios_relevantes(respuestas, proveedor):
     relevantes = []
-
-    # Máquinas virtuales
     if respuestas.get("mv_requiere") == "Sí":
         relevantes.extend(SERVICIOS[proveedor].get("mv", []))
 
-    # Bases de datos
+    tipo_alm = respuestas.get("almacenamiento", "").lower()
+    if tipo_alm in SERVICIOS[proveedor].get("almacenamiento", {}):
+        relevantes.extend(SERVICIOS[proveedor]["almacenamiento"][tipo_alm])
+
     if respuestas.get("bd_requiere") == "Sí":
         tipo_bd = respuestas.get("bd_tipo")
         if tipo_bd == "Relacional":
@@ -212,8 +239,23 @@ def obtener_servicios_relevantes(respuestas, proveedor):
         elif tipo_bd == "No relacional":
             relevantes.extend(SERVICIOS[proveedor]["bd"].get("no_relacional", []))
 
-    # IA
     if respuestas.get("ia_requiere") == "Sí":
-        relevantes.extend(SERVICIOS[proveedor].get("ia", {}).get("general", []))
-
+        ia_data = SERVICIOS[proveedor].get("ia", {})
+        if respuestas.get("ia_tipo") == "Uso general":
+            relevantes.extend(ia_data.get("general", []))
+        elif respuestas.get("ia_tipo") == "Especializado":
+            mapa_claves = {
+                "Reconocimiento de voz": "voz",
+                "Convertir Texto a Voz": "texto_a_voz",
+                "Visión": "vision",
+                "Procesamiento de lenguaje natural": "pln",
+                "Traducción": "traduccion"
+            }
+            seleccion = respuestas.get("ia_servicios_especializados", "")
+            clave = mapa_claves.get(seleccion)
+            if clave:
+                lista = ia_data.get(clave)
+                if isinstance(lista, list):
+                    for nombre in lista:
+                        relevantes.append(construir_servicio_detallado(nombre, proveedor))
     return relevantes

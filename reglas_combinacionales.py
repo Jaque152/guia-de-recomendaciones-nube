@@ -99,7 +99,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "confidencialidad": "Alta",
-            "ia_general": "Sí"
+            "ia_tipo": "Uso general"
         },
         "proveedor": "GCP",
         "descripcion": "Vertex AI soporta CMEK para proteger datos y modelos ML",
@@ -116,8 +116,8 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "disponibilidad":"Alta"
-            "ia_general": "Sí"
+            "disponibilidad":"Alta",
+            "ia_tipo": "Uso general"
         },
         "proveedor": "Azure",
         "descripcion": "Azure Machine Learning incluye AutoML y modelos híbridos replicables",
@@ -125,7 +125,7 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "ia_general": "Sí"
+            "ia_tipo": "Uso general"
         },
         "proveedor": "AWS",
         "descripcion": "SageMaker se integra con EC2, S3, IAM, y permite control completo de seguridad",
@@ -176,5 +176,4 @@ reglas_combinacionales = [
 ]
 
 def cumple_condicion_struct(res, condiciones):
-    """Evalúa si todas las condiciones se cumplen en las respuestas del usuario."""
     return all(res.get(k) == v for k, v in condiciones.items())
