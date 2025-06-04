@@ -52,7 +52,7 @@ def evaluar_respuestas(res):
         so = res.get("mv_sistemas") or []
         if "MacOs" in so:
             scores["AWS"] += 1
-            razones["AWS"].append("Soporte para MacOS (+1)")
+            razones["AWS"].append("Solo AWS ofrece soporte para MacOS (+1)")
         if any(s in so for s in ["Linux", "Windows"]):
             for p in PROVEEDORES:
                 scores[p] += 1
@@ -80,17 +80,13 @@ def evaluar_respuestas(res):
 
     # --- ALMACENAMIENTO ---
     tipo = res.get("almacenamiento")
-    if tipo and tipo != "Ninguno":
-        for p in PROVEEDORES:
-            scores[p] += 1
-            razones[p].append(f"Almacenamiento de {tipo.lower()} (+1)")
+    if tipo == "Ninguno":
+        scores[p] += 0
+        #razones[p].append(f"Almacenamiento de {tipo.lower()} (+1)")
 
     # --- BASES DE DATOS ---
     if res.get("bd_requiere") == "Sí":
         if res.get("bd_tipo") == "Relacional":
-            for p in PROVEEDORES:
-                scores[p] += 1
-                razones[p].append("BD relacional (+1)")
             motor = res.get("bd_motor")
             if motor == "MySQL":
                 scores["AWS"] += 1
@@ -107,9 +103,6 @@ def evaluar_respuestas(res):
                     razones[p].append("Escalabilidad BD relacional (+1)")
 
         elif res.get("bd_tipo") == "No relacional":
-            for p in PROVEEDORES:
-                scores[p] += 1
-                razones[p].append("BD no relacional (+1)")
             tipo_esc = res.get("bd_escalabilidad_no_rel")
             if tipo_esc == "Escalabilidad automática con ajuste de capacidad":
                 for p in PROVEEDORES:
@@ -201,7 +194,7 @@ def evaluar_respuestas(res):
     res_for_reglas["costo"] = res.get("costo_texto")
     res_for_reglas["disponibilidad"] = res.get("disponibilidad_texto")
     res_for_reglas["confidencialidad"] = res.get("confidencialidad_texto")
-    aplicar_reglas_combinacionales(res, scores, razones)
+    aplicar_reglas_combinacionales(res_for_reglas, scores, razones)
 
     return scores, razones
 # Función para obtener servicios detallados
@@ -215,7 +208,7 @@ def construir_servicio_detallado(nombre, proveedor):
         if isinstance(subcat, dict):
             for tipo in subcat:
                 for s in subcat[tipo]:
-                    if s.get("nombre") == nombre:
+                    if isinstance(s, dict) and s.get("nombre") == nombre:
                         return s
         elif isinstance(subcat, list):
             for s in subcat:

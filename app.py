@@ -1,4 +1,4 @@
-##---FRONT-Streamlit---##
+    ##---FRONT-Streamlit---##
 import streamlit as st
 from logica_cuestionario import evaluar_respuestas
 from logica_cuestionario import obtener_servicios_relevantes
@@ -178,9 +178,9 @@ if st.button("Ver recomendaciones"):
                 costo = s.get('costo_aproximado', 'N/A')
                 pdf.multi_cell(0, 6, f"- {s['nombre']} | Región: {regiones} | Costo: {costo}")
 
-    pdf_output = "recomendaciones_cloud.pdf"
+    pdf_output = "recomendaciones_proveedor.pdf"
     pdf.output(pdf_output)
     with open(pdf_output, "rb") as f:
         b64 = base64.b64encode(f.read()).decode()
-        href = f'<a href="data:application/octet-stream;base64,{b64}" download="recomendaciones_cloud.pdf">📄 Descargar PDF con observaciones</a>'
+        href = f'<a href="data:application/octet-stream;base64,{b64}" download="recomendaciones_proveedor.pdf">📄 Descargar PDF con observaciones</a>'
         st.markdown(href, unsafe_allow_html=True)
