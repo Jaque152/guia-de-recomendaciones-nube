@@ -79,10 +79,7 @@ def evaluar_respuestas(res):
         razones["GCP"].append("Contenedores/Kubernetes (+1)")
 
     # --- ALMACENAMIENTO ---
-    tipo = res.get("almacenamiento")
-    if tipo == "Ninguno":
-        scores[p] += 0
-        #razones[p].append(f"Almacenamiento de {tipo.lower()} (+1)")
+    #razones[p].append(f"Almacenamiento de {tipo.lower()} (+1)")
 
     # --- BASES DE DATOS ---
     if res.get("bd_requiere") == "Sí":
