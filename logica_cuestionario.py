@@ -172,7 +172,7 @@ def evaluar_respuestas(res):
     costo = res.get("presupuesto", 3)
     if costo <= 2:
         scores["GCP"] += 1
-        razones["GCP"].append("Costo bajo: GCP destacado (+1)")
+        razones["GCP"].append("Costo bajo: GCP destacado. Ofrece créditos gratuitos de $300 USD.(+1)")
     elif costo >= 4:
         scores["AWS"] += 1
         razones["AWS"].append("Costo alto: AWS (+1)")

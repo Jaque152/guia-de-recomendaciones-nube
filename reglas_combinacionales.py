@@ -26,7 +26,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "costo": "Bajo",
-            "mv_tipo":"Uso General"
+            "mv_tipo":"Propósito General"
         },
         "proveedor": "GCP",
         "descripcion": "GCP ofrece instancias preemtibles (Spot VMs) con precios bajos y créditos iniciales de $300 USD duarante 90días ",
@@ -158,7 +158,8 @@ reglas_combinacionales = [
         ],
         "descripcion": "GCP ofrece Confidential VMs y Azure permite Always Encrypted en VMs optimizadas, ideales para cargas sensibles en memoria",
         "puntos": 1
-    }
+    },
+    
 ]
 
 def cumple_condicion_struct(res, condiciones):
