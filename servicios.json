@@ -93,7 +93,7 @@
           "nombre": "DynamoDB",
           "caracteristicas_confidencialidad": [
             "Cifrado AES-256",
-            "VPC y WAF integrados"
+            "Nube Privada Virtual integrada"
           ],
           "regiones_disponibles": [
             "Global"
@@ -198,7 +198,7 @@
       {
         "nombre": "Serie Fsv2",
         "caracteristicas_confidencialidad": [
-          "Integración con Key Vault para claves"
+          "Integración con Key Vault para administración de claves"
         ],
         "regiones_disponibles": [
           "East US",
@@ -212,8 +212,8 @@
         {
           "nombre": "Azure SQL Database",
           "caracteristicas_confidencialidad": [
-            "TDE habilitado por defecto",
-            "Always Encrypted y BYOK"
+            "Cifrado Transparente de Datos (TDE) habilitado por defecto; es decir, las bases de datos comienzan a cifrar automáticamente los datos almacenados en disco desde el momento de su creación",
+            "Protección de datos sensibles no solo en reposo y en tránsito con Always Encrypted"
           ],
           "regiones_disponibles": [
             "Global"
@@ -226,7 +226,7 @@
           "nombre": "Cosmos DB",
           "caracteristicas_confidencialidad": [
             "Cifrado en reposo con Key Vault",
-            "Modelos de consistencia y replicación global"
+            "Replicación global"
           ],
           "regiones_disponibles": [
             "Global"
@@ -319,7 +319,7 @@
       {
         "nombre": "e2-standard-2",
         "caracteristicas_confidencialidad": [
-          "Cifrado por defecto con CMEK"
+          "Cifrado por defecto con claves de cifrado gestionadas por el cliente"
         ],
         "regiones_disponibles": [
           "us-central1",
@@ -330,7 +330,7 @@
       {
         "nombre": "C2-standard-4",
         "caracteristicas_confidencialidad": [
-          "Cifrado con claves gestionadas y VPC"
+          "Cifrado con claves gestionadas y Nube Privada Virtual (VPC)"
         ],
         "regiones_disponibles": [
           "us-central1",
@@ -344,8 +344,8 @@
         {
           "nombre": "Cloud SQL",
           "caracteristicas_confidencialidad": [
-            "Cifrado con KMS",
-            "Acceso restringido por IP y SSL"
+            "Cifrado con KMS"
+            
           ],
           "regiones_disponibles": [
             "us-central1",
@@ -358,7 +358,7 @@
         {
           "nombre": "Firestore",
           "caracteristicas_confidencialidad": [
-            "Cifrado por defecto con CMEK",
+            "Cifrado por defecto con con claves de cifrado gestionadas por el cliente",
             "IAM granular y VPC Service Controls"
           ],
           "regiones_disponibles": [
@@ -375,7 +375,7 @@
           "nombre": "Vertex AI",
           "caracteristicas_confidencialidad": [
             "Cifrado por defecto",
-            "CMEK, IAM y VPC"
+            "Claves de cifrado gestionadas por el cliente, IAM y VPC"
           ],
           "regiones_disponibles": [
             "us-central1",

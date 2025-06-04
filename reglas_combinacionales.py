@@ -17,6 +17,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "disponibilidad":"Alta"
+            "costo":"Alto"
         },
         "proveedor": "AWS",
         "descripcion": "AWS ofrece mayor disponibilidad al contar con más Zonas y Regiones",
@@ -25,9 +26,10 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "costo": "Bajo"
+            "mv_tipo":"Uso General"
         },
         "proveedor": "GCP",
-        "descripcion": "GCP ofrece instancias preemtibles con precios bajos y créditos iniciales de $300",
+        "descripcion": "GCP ofrece instancias preemtibles (Spot VMs) con precios bajos y créditos iniciales de $300 USD duarante 90días ",
         "puntos": 1
     },
     {
@@ -37,14 +39,6 @@ reglas_combinacionales = [
         },
         "proveedor": "AWS",
         "descripcion": "AWS permite doble capa de cifrado (DSSE-KMS) con claves personalizadas",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "costo": "Bajo"
-        },
-        "proveedor": "GCP",
-        "descripcion": "GCP ofrece almacenamiento regional con 30 GB gratis y tarifas bajas por GB",
         "puntos": 1
     },
     {
@@ -84,7 +78,7 @@ reglas_combinacionales = [
             "confidencialidad":"Alta"
         },
         "proveedor": "AWS",
-        "descripcion": "AWS Keyspaces y DynamoDB ofrecen cifrado, IAM, WAF y replicación global",
+        "descripcion": "AWS Keyspaces y DynamoDB ofrecen cifrado, IAM y replicación global",
         "puntos": 1
     },
     {
@@ -125,14 +119,6 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "ia_tipo": "Uso general"
-        },
-        "proveedor": "AWS",
-        "descripcion": "SageMaker se integra con EC2, S3, IAM, y permite control completo de seguridad",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
             "costo": "Alto",
             "confidencialidad": "Alta",
             "disponibilidad": "Alta"
@@ -148,7 +134,7 @@ reglas_combinacionales = [
             "disponibilidad": "Media"
         },
         "proveedor": "Azure",
-        "descripcion": "Azure permite CMK, geo-replicación y modelos de precios flexibles",
+        "descripcion": "Azure permite claves gestionadas por el cliente, geo-replicación y modelos de precios flexibles",
         "puntos": 1
     },
     {
@@ -158,7 +144,7 @@ reglas_combinacionales = [
             "disponibilidad": "Baja"
         },
         "proveedor": "AWS y GCP",
-        "descripcion": "Ambos ofrecen niveles gratuitos adecuados para entornos no críticos",
+        "descripcion": "Ambos ofrecen niveles gratuitos adecuados para entornos variados",
         "puntos": 1
     },
     {
