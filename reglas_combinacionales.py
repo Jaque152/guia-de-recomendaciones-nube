@@ -14,9 +14,9 @@ reglas_combinacionales = [
         "descripcion": "Azure tiene mejores precios en MV CPU-Optimized con núcleos físicos",
         "puntos": 1
     },
-    {
-        "condiciones": {
-            "disponibilidad":"Alta"
+    
+    { "condiciones": {
+            "disponibilidad":"Alta",
             "costo":"Alto"
         },
         "proveedor": "AWS",
@@ -25,7 +25,7 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "costo": "Bajo"
+            "costo": "Bajo",
             "mv_tipo":"Uso General"
         },
         "proveedor": "GCP",
