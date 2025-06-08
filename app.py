@@ -1,4 +1,4 @@
-    ##---FRONT-Streamlit---##
+    #    ##---FRONT-Streamlit---##
 import streamlit as st
 from logica_cuestionario import evaluar_respuestas
 from logica_cuestionario import obtener_servicios_relevantes
@@ -56,73 +56,77 @@ res = {}
 
 # Sección: Máquinas Virtuales
 with st.expander("Máquinas Virtuales"):
-    res["mv_requiere"] = st.radio("¿Requiere el uso de Máquinas Virtuales (MV)?", ["Sí", "No"])
+    res["mv_requiere"] = st.radio("¿Requiere el uso de Máquinas Virtuales (MV)?", ["Seleccionar...", "Sí", "No"])
+    
     if res["mv_requiere"] == "Sí":
         res["mv_tipo"] = st.selectbox("¿Qué tipo de MV necesita?", [
-            "Propósito general", "Optimización de memoria", "Optimización de CPU",
+            "Seleccionar...", "Propósito general", "Optimización de memoria", "Optimización de CPU",
             "Aceleradas por GPU", "Optimización de almacenamiento"])
 
-        so_multi = st.radio("¿Requiere soporte para múltiples Sistemas Operativos?", ["Sí", "No"])
-        if so_multi == "Sí":
-            res["mv_sistemas"] = st.multiselect("Seleccione los Sistemas Operativos", ["Linux", "Windows", "MacOs"])
-        else:
-            res["mv_sistemas"] = [st.radio("Seleccione el Sistema Operativo", ["Linux", "Windows", "MacOs"])]
+        res["mv_so_multiple"] = st.radio("¿Requiere soporte para múltiples Sistemas Operativos?", ["Seleccionar...", "Sí", "No"])
 
-        res["mv_escalamiento_predictivo"] = st.radio("¿Requiere escalamiento predictivo?", ["Sí", "No"])
-        res["mv_autoescalamiento"] = st.radio("¿Requiere auto-escalamiento?", ["Sí", "No"])
-        res["mv_hibernacion"] = st.radio("¿Requiere hibernación o suspensión de MV?", ["Sí", "No"])
+        if res["mv_so_multiple"] == "Sí":
+            res["mv_sistemas"] = st.multiselect("Elegir Sistema Operativo", ["Linux", "Windows", "MacOs"])
+        elif res["mv_so_multiple"] == "No":
+            so_unico = st.selectbox("Elegir Sistema Operativo", ["Seleccionar...", "Linux", "Windows", "MacOs"])
+            res["mv_sistemas"] = [so_unico] if so_unico != "Seleccionar..." else []
+
+        if res.get("mv_sistemas"):
+            res["mv_escalamiento_predictivo"] = st.radio("¿Requiere escalamiento predictivo?", ["Seleccionar...", "Sí", "No"])
+            res["mv_autoescalamiento"] = st.radio("¿Requiere auto-escalamiento?", ["Seleccionar...", "Sí", "No"])
+            res["mv_hibernacion"] = st.radio("¿Requiere hibernación o suspensión de MV?", ["Seleccionar...", "Sí", "No"])
 
 # Sección: Contenedores
 with st.expander("Contenedores"):
-    res["contenedores"] = st.radio("¿Su proyecto requiere el uso de Kubernetes o contenedores?", ["Sí", "No"])
+    res["contenedores"] = st.radio("¿Su proyecto requiere el uso de Kubernetes o contenedores?", ["Seleccionar...","Sí", "No"])
 
 # Sección: Almacenamiento
 with st.expander("Almacenamiento"):
     res["almacenamiento"] = st.selectbox("¿Qué tipo de almacenamiento necesita?", [
-            "Objetos", "Bloques", "Archivos", "Ninguno"])
+           "Seleccionar...", "Objetos", "Bloques", "Archivos", "Ninguno"])
     
 
 # Sección: Bases de Datos
 with st.expander("Bases de Datos"):
-    res["bd_requiere"] = st.radio("¿Requiere Bases de Datos (BD)?", ["Sí", "No"])
+    res["bd_requiere"] = st.radio("¿Requiere Bases de Datos (BD)?", ["Seleccionar...","Sí", "No"])
     if res["bd_requiere"] == "Sí":
-        res["bd_tipo"] = st.radio("¿Qué tipo de BD necesita?", ["Relacional", "No relacional"])
+        res["bd_tipo"] = st.radio("¿Qué tipo de BD necesita?", ["Seleccionar...","Relacional", "No relacional"])
         if res["bd_tipo"] == "Relacional":
-            res["bd_motor"] = st.selectbox("¿Qué motor de BD relacional prefiere?", ["MySQL", "PostgreSQL", "MariaDB", "SQL Server", "Oracle"])
-            res["bd_escalabilidad_rel"] = st.radio("¿Qué tipo de escalabilidad prefiere?", ["Vertical", "Horizontal", "Ninguna"])
+            res["bd_motor"] = st.selectbox("¿Qué motor de BD relacional prefiere?", ["Seleccionar...","MySQL", "PostgreSQL", "MariaDB", "SQL Server", "Oracle"])
+            res["bd_escalabilidad_rel"] = st.radio("¿Qué tipo de escalabilidad prefiere?", ["Seleccionar...","Vertical", "Horizontal", "Ninguna"])
         else:
             res["bd_escalabilidad_no_rel"] = st.radio("¿Qué tipo de escalabilidad necesita?", [
-                "Escalabilidad automática con ajuste de capacidad",
+                "Seleccionar...","Escalabilidad automática con ajuste de capacidad",
                 "Escalabilidad automática con réplicas de lectura",
                 "Escalabilidad horizontal con fragmentación automática",
                 "Ninguna"])
 
 # Sección: IA 
 with st.expander("Inteligencia Artificial"):
-    res["ia_requiere"] = st.radio("¿Requiere servicios de Inteligencia Artificial ?", ["Sí", "No"])
+    res["ia_requiere"] = st.radio("¿Requiere servicios de Inteligencia Artificial ?", ["Seleccionar...","Sí", "No"])
     if res["ia_requiere"] == "Sí":
-        res["ia_tipo"] = st.radio("¿Qué tipo de servicio IA necesita?", ["Uso general", "Especializado"])
+        res["ia_tipo"] = st.radio("¿Qué tipo de servicio IA necesita?", ["Seleccionar...","Uso general", "Especializado"])
         if res["ia_tipo"] == "Especializado":
             res["ia_servicios_especializados"] = st.selectbox("Seleccione los servicios especializados", [
-                "Reconocimiento de voz", "Convertir Texto a Voz", "Visión",
+                "Seleccionar...","Reconocimiento de voz", "Convertir Texto a Voz", "Visión",
                 "Procesamiento de lenguaje natural", "Traducción"])
             if "Reconocimiento de voz" in res["ia_servicios_especializados"]:
-                res["voz_idiomas"] = st.radio("¿Requiere soporte para más idiomas además del inglés?", ["Sí", "No"])
+                res["voz_idiomas"] = st.radio("¿Requiere soporte para más idiomas además del inglés?", ["Seleccionar...","Sí", "No"])
             if "Convertir Texto a Voz" in res["ia_servicios_especializados"]:
-                res["voz_clonacion"] = st.radio("¿Requiere clonación de voz?", ["Sí", "No"])
+                res["voz_clonacion"] = st.radio("¿Requiere clonación de voz?", ["Seleccionar...","Sí", "No"])
                 if res["voz_clonacion"] == "Sí":
-                    res["voz_naturalidad"] = st.radio("¿Qué tipo de voz prefiere?", ["Muy natural", "Medianamente natural", "Poco natural"])
+                    res["voz_naturalidad"] = st.radio("¿Qué tipo de voz prefiere?", ["Seleccionar...","Muy natural", "Medianamente natural", "Poco natural"])
             if "Visión" in res["ia_servicios_especializados"]:
-                res["vision_lugares"] = st.radio("¿Requiere reconocimiento de lugares emblemáticos?", ["Sí", "No"])
-                res["vision_celebridades"] = st.radio("¿Requiere reconocimiento de celebridades?", ["Sí", "No"])
+                res["vision_lugares"] = st.radio("¿Requiere reconocimiento de lugares emblemáticos?", ["Seleccionar...","Sí", "No"])
+                res["vision_celebridades"] = st.radio("¿Requiere reconocimiento de celebridades?", ["Seleccionar...","Sí", "No"])
             if "Procesamiento de lenguaje natural" in res["ia_servicios_especializados"]:
-                res["pln_analisis"] = st.radio("¿Requiere análisis avanzado de texto?", ["Sí", "No"])
+                res["pln_analisis"] = st.radio("¿Requiere análisis avanzado de texto?", ["Seleccionar...","Sí", "No"])
             if "Traducción" in res["ia_servicios_especializados"]:
-                res["traduccion_personalizada"] = st.radio("¿Requiere modelos personalizados?", ["Sí", "No"])
+                res["traduccion_personalizada"] = st.radio("¿Requiere modelos personalizados?", ["Seleccionar...","Sí", "No"])
         
 # Sección: Web Scraping
 with st.expander("Web Scraping"):
-    res["scraping"] = st.radio("¿Requiere scraping web?", ["Sí", "No"])
+    res["scraping"] = st.radio("¿Requiere scraping web?", ["Seleccionar...","Sí", "No"])
     
 # Sección: Prioridades del proyecto
 with st.expander(" Prioridades del Proyecto"):
@@ -135,6 +139,10 @@ with st.expander(" Prioridades del Proyecto"):
 st.markdown("---")
 st.subheader("Resultado del Cuestionario")
 if st.button("Ver recomendaciones"):
+    campos_incompletos = any(v in ["Seleccionar...", "", None, []] for v in res.values())
+    if campos_incompletos:
+        st.error("Debe responder todas las preguntas antes de continuar.")
+        st.stop()
     scores, razones = evaluar_respuestas(res)
     max_puntaje = max(scores.values())
     ganadores = [p for p, pts in scores.items() if pts == max_puntaje]
@@ -160,51 +168,84 @@ if st.button("Ver recomendaciones"):
 
     
     # PDF
-    # PDF
+    # PDF Mejorado
+    from fpdf import FPDF
+    from datetime import datetime
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", "B", 14)
-    pdf.cell(0, 10, "Recomendaciones del proveedor más adecuado", ln=True)
+    pdf.cell(0, 10, "Guía de recomendaciones para la selección de proveedor en la nube", ln=True)
 
-    for p in ganadores:
-        pdf.set_font("Arial", "B", 12)
-        pdf.cell(0, 10, f"{p}: {scores[p]} puntos", ln=True)
-        pdf.set_font("Arial", size=10)
-        for r in razones[p]:
-            pdf.multi_cell(0, 8, f"- {r}")
+    pdf.set_font("Arial", "B", 12)
+    pdf.cell(0, 10, "Resumen de elecciones del usuario", ln=True)
+    pdf.set_font("Arial", "", 10)
+    for k, v in res.items():
+        if isinstance(v, list):
+            v = ', '.join(v)
+        elif v is None:
+            v = "No especificado"
+        pdf.multi_cell(0, 6, f"- {k.replace('_', ' ').capitalize()}: {v}")
+    pdf.ln(5)
 
-        pdf.set_font("Arial", "B", 11)
-        pdf.cell(0, 8, "Resumen de sus requerimientos:", ln=True)
-        pdf.set_font("Arial", size=9)
-        for k, v in res.items():
-            if isinstance(v, list):
-                v = ', '.join(v)
-            elif v is None:
-                v = "No especificado"
-            pdf.multi_cell(0, 6, f"- {k.replace('_', ' ').capitalize()}: {v}")
-        # Servicios únicos sugeridos
-        servicios = obtener_servicios_relevantes(res, p)
-        nombres_vistos = set()
-        servicios_unicos = []
-        for s in servicios:
-            if s['nombre'] not in nombres_vistos:
-                nombres_vistos.add(s['nombre'])
-                servicios_unicos.append(s)
+    ordenados = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    ganador = ordenados[0][0]
 
-        if servicios_unicos:
-            pdf.ln(2)
+    for proveedor, puntaje in ordenados:
+        if proveedor == ganador:
+            pdf.set_font("Arial", "B", 12)
+            pdf.set_text_color(0, 102, 0)  # Verde para el ganador
+            pdf.cell(0, 10, f"Proveedor recomendado: {proveedor} ({puntaje} puntos)", ln=True)
+        else:
+            pdf.set_font("Arial", "B", 12)
+            pdf.set_text_color(0, 0, 128)  # Azul para alternativos
+            pdf.cell(0, 10, f"Alternativa: {proveedor} ({puntaje} puntos)", ln=True)
+
+        pdf.set_text_color(0, 0, 0)
+        pdf.set_font("Arial", "", 10)
+        for r in razones[proveedor]:
+            pdf.multi_cell(0, 6, f"- {r}")
+
+        servicios_obtenidos = obtener_servicios_relevantes(res, proveedor)
+        if proveedor == "AWS" and "MacOs" in res.get("mv_sistemas", []):
+            servicios_filtrados = [
+                s for s in servicios_obtenidos
+                if s.get("tipo") != "Propósito general" or "mac" in s.get("nombre", "").lower()
+            ]
+        else:
+            servicios_filtrados = servicios_obtenidos
+
+        if servicios_filtrados:
             pdf.set_font("Arial", "B", 11)
-            pdf.cell(0, 8, "Servicios sugeridos para cubrir sus necesidades:", ln=True)
-            pdf.set_font("Arial", size=9)
-            for s in servicios_unicos:
-                descripcion = generar_descripcion_servicio(s)
-                for linea in descripcion.split("\n"):
-                    pdf.multi_cell(0, 6, linea)
+            pdf.cell(0, 8, "Servicios sugeridos:", ln=True)
+            pdf.set_font("Arial", "", 9)
+            nombres_vistos = set()
+            for s in servicios_filtrados:
+                if s['nombre'] in nombres_vistos:
+                    continue
+                nombres_vistos.add(s['nombre'])
+                pdf.multi_cell(0, 6, f"Servicio: {s['nombre']}")
+                if "funcionalidades" in s:
+                    pdf.multi_cell(0, 6, f"Funcionalidades cubiertas: {s['funcionalidades']}")
+                if "regiones_disponibles" in s:
+                    regiones = ', '.join(s['regiones_disponibles'])
+                    pdf.multi_cell(0, 6, f"Región sugerida: {regiones}")
+                if "configuraciones" in s:
+                    pdf.multi_cell(0, 6, f"Configuraciones: {s['configuraciones']}")
+                if "confidencialidad" in s:
+                    pdf.multi_cell(0, 6, f"Cumple Confidencialidad/Integridad: {s['confidencialidad']}")
+                if "costo_aproximado" in s:
+                    pdf.multi_cell(0, 6, f"Costo mínimo estimado: {s['costo_aproximado']}")
+                pdf.ln(1)
+        pdf.ln(5)
 
-    # Guardar PDF
-    pdf_output = "recomendaciones_proveedor.pdf"
+    from datetime import datetime
+    fecha_actual = datetime.now().strftime("%Y-%m-%d")
+    pdf_output = f"Reporte_de_recomendaciones_{fecha_actual}.pdf"
+    #pdf_output = "reporte_final_recomendacion.pdf"
     pdf.output(pdf_output)
     with open(pdf_output, "rb") as f:
         b64 = base64.b64encode(f.read()).decode()
-        href = f'<a href="data:application/octet-stream;base64,{b64}" download="recomendaciones_proveedor.pdf">📄 Descargar PDF con observaciones</a>'
+        href = f'<a href="data:application/octet-stream;base64,{b64}" download="{pdf_output}">📄 Descargar PDF Final</a>'
         st.markdown(href, unsafe_allow_html=True)
+    
+
