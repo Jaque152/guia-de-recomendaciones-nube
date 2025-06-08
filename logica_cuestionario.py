@@ -33,17 +33,13 @@ def evaluar_respuestas(res):
     # --- MÁQUINAS VIRTUALES ---
     if res.get("mv_requiere") == "Sí":
         tipo = res.get("mv_tipo")
-        if tipo == "Propósito general":
-            for p in PROVEEDORES:
-                scores[p] += 1
-                razones[p].append("MV de propósito general (+1)")
         if tipo == "Optimización de CPU":
             scores["Azure"] += 1
-            razones["Azure"].append("MV optimizada en CPU (+1)")
+            razones["Azure"].append("Proporciona núcleos reales y no virtuales (+1)")
         if tipo in ["Optimización de memoria", "Aceleradas por GPU"]:
             for p in ["AWS", "Azure"]:
                 scores[p] += 1
-                razones[p].append(f"MV {tipo.lower()} (+1)")
+                razones[p].append(f"Mejor para cargas de trabajo especializadas (+1)")
         if tipo == "Optimización de almacenamiento":
             for p in ["AWS", "Azure"]:
                 scores[p] += 1
@@ -52,21 +48,16 @@ def evaluar_respuestas(res):
         so = res.get("mv_sistemas") or []
         if "MacOs" in so:
             scores["AWS"] += 1
-            razones["AWS"].append("Solo AWS ofrece soporte para MacOS (+1)")
-        if any(s in so for s in ["Linux", "Windows"]):
-            for p in PROVEEDORES:
-                scores[p] += 1
-                razones[p].append("Soporte para Linux o Windows (+1)")
-
+            razones["AWS"].append("Solo AWS ofrece soporte para MacOS de forma nativa (+1)")
+        
         if res.get("mv_escalamiento_predictivo") == "Sí":
             for p in ["AWS", "GCP"]:
                 scores[p] += 1
                 razones[p].append("Escalamiento predictivo (+1)")
 
         if res.get("mv_autoescalamiento") == "Sí":
-            for p in PROVEEDORES:
-                scores[p] += 1
-                razones[p].append("Autoescalamiento (+1)")
+            scores["GCP"] += 1
+            razones["GCP"].append("Ofrece el mejor soporte nativo para auto-escalamiento (+1)")
 
         if res.get("mv_hibernacion") == "Sí":
             for p in ["AWS", "GCP"]:
@@ -77,9 +68,6 @@ def evaluar_respuestas(res):
     if res.get("contenedores") == "Sí":
         scores["GCP"] += 1
         razones["GCP"].append("Contenedores/Kubernetes (+1)")
-
-    # --- ALMACENAMIENTO ---
-    #razones[p].append(f"Almacenamiento de {tipo.lower()} (+1)")
 
     # --- BASES DE DATOS ---
     if res.get("bd_requiere") == "Sí":
@@ -94,18 +82,11 @@ def evaluar_respuestas(res):
                 for p in ["AWS", "GCP", "Azure"]:
                     scores[p] += 1
                     razones[p].append(f"Motor {motor} (+1)")
-            if res.get("bd_escalabilidad_rel") in ["Horizontal", "Vertical"]:
-                for p in PROVEEDORES:
-                    scores[p] += 1
-                    razones[p].append("Escalabilidad BD relacional (+1)")
+            
 
         elif res.get("bd_tipo") == "No relacional":
             tipo_esc = res.get("bd_escalabilidad_no_rel")
-            if tipo_esc == "Escalabilidad automática con ajuste de capacidad":
-                for p in PROVEEDORES:
-                    scores[p] += 1
-                    razones[p].append("Escalabilidad automática con ajuste de capacidad (+1)")
-            elif tipo_esc == "Escalabilidad automática con réplicas de lectura":
+            if tipo_esc == "Escalabilidad automática con réplicas de lectura":
                 scores["AWS"] += 1
                 razones["AWS"].append("Réplicas de lectura en BD no relacional (+1)")
             elif tipo_esc == "Escalabilidad horizontal con fragmentación automática":
@@ -117,9 +98,6 @@ def evaluar_respuestas(res):
     if res.get("ia_requiere") == "Sí":
         tipo = res.get("ia_tipo")
         if tipo == "Uso general":
-            for p in PROVEEDORES:
-                scores[p] += 1
-                razones[p].append("IA/ML general (+1)")
             if res.get("presupuesto", 3) <= 2:
                 scores["GCP"] += 1
                 razones["GCP"].append("IA general + presupuesto bajo (+1)")
@@ -165,6 +143,19 @@ def evaluar_respuestas(res):
                         scores[p] += 1
                         razones[p].append("Modelos personalizados de traducción (+1)")
 
+    #------WEB SCRAPPING----------
+    # --- WEB SCRAPING ---
+    if res.get("scraping") == "Sí":
+        scores["AWS"] += 1
+        razones["AWS"].append("AWS Lambda + Scrapy permite scraping ligero con CloudWatch para automatización (+1)")
+        
+        scores["GCP"] += 1
+        razones["GCP"].append("GCP Cloud Functions + Puppeteer está optimizado para scraping dinámico con herramientas JavaScript (+1)")
+
+        scores["Azure"] += 1
+        razones["Azure"].append("Azure Functions + Playwright facilita scraping con soporte a navegadores y manejo estructurado (+1)")
+
+
     # --- PRIORIDADES ---
     costo = res.get("presupuesto", 3)
     if costo <= 2:
@@ -183,8 +174,7 @@ def evaluar_respuestas(res):
     if confidencialidad >= 4:
         scores["Azure"] += 1
         razones["Azure"].append("Alta confidencialidad: Azure (+1)")
-        scores["GCP"] += 1
-        razones["GCP"].append("Alta confidencialidad: GCP (+1)")
+        
 
     # Aplicar reglas combinadas
     res_for_reglas = res.copy()
@@ -216,7 +206,18 @@ def construir_servicio_detallado(nombre, proveedor):
 def obtener_servicios_relevantes(respuestas, proveedor):
     relevantes = []
     if respuestas.get("mv_requiere") == "Sí":
-        relevantes.extend(SERVICIOS[proveedor].get("mv", []))
+        tipo_deseado = respuestas.get("mv_tipo", "").strip()
+        servicios_mv = SERVICIOS[proveedor].get("mv", [])
+        for s in servicios_mv:
+            if s.get("tipo") == tipo_deseado:
+                relevantes.append(s)
+
+    # Filtrado especial: si es AWS y se eligió MacOS, mostrar solo MVs que incluyan "mac" en el nombre
+    if proveedor == "AWS" and "MacOs" in respuestas.get("mv_sistemas", []):
+        relevantes = [
+            s for s in relevantes
+            if s.get("tipo") != "mac" in s.get("nombre", "").lower()
+        ]
 
     tipo_alm = respuestas.get("almacenamiento", "").lower()
     if tipo_alm in SERVICIOS[proveedor].get("almacenamiento", {}):
@@ -248,4 +249,8 @@ def obtener_servicios_relevantes(respuestas, proveedor):
                 if isinstance(lista, list):
                     for nombre in lista:
                         relevantes.append(construir_servicio_detallado(nombre, proveedor))
+    
+    if respuestas.get("scraping") == "Sí":
+        relevantes.extend(SERVICIOS[proveedor].get("scraping", []))
+
     return relevantes

@@ -50,27 +50,1429 @@
     },
     "mv": [
       {
-        "nombre": "EC2 t2.micro",
+        "nombre": "a1",
+        "tipo": "Propósito general",
         "caracteristicas_confidencialidad": [
-          "Acceso mediante clave SSH",
-          "Cifrado de disco con EBS y KMS"
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
         ],
         "regiones_disponibles": [
-          "US East",
-          "Europe Central",
-          "Asia Pacific"
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
         ],
-        "costo_aproximado": "$0.0116 por hora"
+        "costo_aproximado": "$0.449 por hora (on-demand)"
       },
       {
-        "nombre": "EC2 C6i",
+        "nombre": "mac2",
+        "tipo": "Propósito general",
         "caracteristicas_confidencialidad": [
-          "Cifrado de datos en reposo y en tránsito"
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
         ],
         "regiones_disponibles": [
-          "Global"
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
         ],
-        "costo_aproximado": "$0.085 por hora"
+        "costo_aproximado": "$0.650 por hora (on-demand)"
+      },
+      {
+        "nombre": "mac2-m2",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$0.878 por hora (on-demand)"
+      },
+      {
+        "nombre": "mac1",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$1.083 por hora (on-demand)"
+      },
+      {
+        "nombre": "mac2-m2pro",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$1.560 por hora (on-demand)"
+      },
+      {
+        "nombre": "m4",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$2.420 por hora (on-demand)"
+      },
+      {
+        "nombre": "m6g",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$2.710 por hora (on-demand)"
+      },
+      {
+        "nombre": "m6gd",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$3.182 por hora (on-demand)"
+      },
+      {
+        "nombre": "m5zn",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$4.360 por hora (on-demand)"
+      },
+      {
+        "nombre": "m5",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$5.069 por hora (on-demand)"
+      },
+      {
+        "nombre": "m5d",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$5.966 por hora (on-demand)"
+      },
+      {
+        "nombre": "m5n",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$6.283 por hora (on-demand)"
+      },
+      {
+        "nombre": "m6i",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$6.758 por hora (on-demand)"
+      },
+      {
+        "nombre": "m5dn",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$7.181 por hora (on-demand)"
+      },
+      {
+        "nombre": "m6id",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$8.353 por hora (on-demand)"
+      },
+      {
+        "nombre": "m7g",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$8.617 por hora (on-demand)"
+      },
+      {
+        "nombre": "t3",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$8.786 por hora (on-demand)"
+      },
+      {
+        "nombre": "m6a",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$9.124 por hora (on-demand)"
+      },
+      {
+        "nombre": "m8g",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$9.479 por hora (on-demand)"
+      },
+      {
+        "nombre": "m6in",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$9.802 por hora (on-demand)"
+      },
+      {
+        "nombre": "m7i",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$10.644 por hora (on-demand)"
+      },
+      {
+        "nombre": "m6idn",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$11.202 por hora (on-demand)"
+      },
+      {
+        "nombre": "m7gd",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$11.276 por hora (on-demand)"
+      },
+      {
+        "nombre": "m8gd",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$12.178 por hora (on-demand)"
+      },
+      {
+        "nombre": "m7a",
+        "tipo": "Propósito general",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$12.241 por hora (on-demand)"
+      },
+      {
+        "nombre": "c4",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$1.750 por hora (on-demand)"
+      },
+      {
+        "nombre": "c6g",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$2.394 por hora (on-demand)"
+      },
+      {
+        "nombre": "c6gd",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$2.703 por hora (on-demand)"
+      },
+      {
+        "nombre": "c6gn",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$3.041 por hora (on-demand)"
+      },
+      {
+        "nombre": "c5",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$3.366 por hora (on-demand)"
+      },
+      {
+        "nombre": "c5d",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$3.802 por hora (on-demand)"
+      },
+      {
+        "nombre": "c5n",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$4.277 por hora (on-demand)"
+      },
+      {
+        "nombre": "c6i",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$5.984 por hora (on-demand)"
+      },
+      {
+        "nombre": "c6id",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$7.096 por hora (on-demand)"
+      },
+      {
+        "nombre": "c7g",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$7.631 por hora (on-demand)"
+      },
+      {
+        "nombre": "c6in",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$7.983 por hora (on-demand)"
+      },
+      {
+        "nombre": "c6a",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$8.078 por hora (on-demand)"
+      },
+      {
+        "nombre": "c8g",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$8.393 por hora (on-demand)"
+      },
+      {
+        "nombre": "c7i",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$9.425 por hora (on-demand)"
+      },
+      {
+        "nombre": "c7gd",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$9.580 por hora (on-demand)"
+      },
+      {
+        "nombre": "c8gd",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$10.347 por hora (on-demand)"
+      },
+      {
+        "nombre": "c7a",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$10.839 por hora (on-demand)"
+      },
+      {
+        "nombre": "c7gn",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$13.179 por hora (on-demand)"
+      },
+      {
+        "nombre": "Instancia de GPU",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "Precio no disponible"
+      },
+      {
+        "nombre": "g3",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$5.016 por hora (on-demand)"
+      },
+      {
+        "nombre": "g4dn",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$8.606 por hora (on-demand)"
+      },
+      {
+        "nombre": "g4ad",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$11.444 por hora (on-demand)"
+      },
+      {
+        "nombre": "g6",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$14.685 por hora (on-demand)"
+      },
+      {
+        "nombre": "p2",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$15.840 por hora (on-demand)"
+      },
+      {
+        "nombre": "g5",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$17.917 por hora (on-demand)"
+      },
+      {
+        "nombre": "p3",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$26.928 por hora (on-demand)"
+      },
+      {
+        "nombre": "g6e",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$33.144 por hora (on-demand)"
+      },
+      {
+        "nombre": "p4d",
+        "tipo": "Optimización de CPU",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$36.050 por hora (on-demand)"
+      },
+      {
+        "nombre": "r3",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$2.922 por hora (on-demand)"
+      },
+      {
+        "nombre": "r6g",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$3.548 por hora (on-demand)"
+      },
+      {
+        "nombre": "r6gd",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$4.055 por hora (on-demand)"
+      },
+      {
+        "nombre": "r4",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$4.682 por hora (on-demand)"
+      },
+      {
+        "nombre": "z1d",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$4.910 por hora (on-demand)"
+      },
+      {
+        "nombre": "x2gd",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$5.878 por hora (on-demand)"
+      },
+      {
+        "nombre": "r5",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$6.653 por hora (on-demand)"
+      },
+      {
+        "nombre": "r5d",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$7.603 por hora (on-demand)"
+      },
+      {
+        "nombre": "r5b",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$7.867 por hora (on-demand)"
+      },
+      {
+        "nombre": "r5n",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$7.867 por hora (on-demand)"
+      },
+      {
+        "nombre": "r5dn",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$8.818 por hora (on-demand)"
+      },
+      {
+        "nombre": "r6i",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$8.870 por hora (on-demand)"
+      },
+      {
+        "nombre": "r6id",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$10.644 por hora (on-demand)"
+      },
+      {
+        "nombre": "r7g",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$11.310 por hora (on-demand)"
+      },
+      {
+        "nombre": "r6a",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$11.975 por hora (on-demand)"
+      },
+      {
+        "nombre": "r6in",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$12.273 por hora (on-demand)"
+      },
+      {
+        "nombre": "r8g",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$12.442 por hora (on-demand)"
+      },
+      {
+        "nombre": "r7iz",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$13.094 por hora (on-demand)"
+      },
+      {
+        "nombre": "r6idn",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$13.755 por hora (on-demand)"
+      },
+      {
+        "nombre": "r7i",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$13.971 por hora (on-demand)"
+      },
+      {
+        "nombre": "r7gd",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$14.370 por hora (on-demand)"
+      },
+      {
+        "nombre": "x2idn",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$14.672 por hora (on-demand)"
+      },
+      {
+        "nombre": "x1",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$14.672 por hora (on-demand)"
+      },
+      {
+        "nombre": "r8gd",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$15.519 por hora (on-demand)"
+      },
+      {
+        "nombre": "r7a",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$16.067 por hora (on-demand)"
+      },
+      {
+        "nombre": "x2iedn",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$29.344 por hora (on-demand)"
+      },
+      {
+        "nombre": "x1e",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$29.357 por hora (on-demand)"
+      },
+      {
+        "nombre": "u-6tb1",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$33.652 por hora (on-demand)"
+      },
+      {
+        "nombre": "u-12tb1",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$67.294 por hora (on-demand)"
+      },
+      {
+        "nombre": "u-9tb1",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$81.900 por hora (on-demand)"
+      },
+      {
+        "nombre": "u-18tb1",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$163.800 por hora (on-demand)"
+      },
+      {
+        "nombre": "u-24tb1",
+        "tipo": "Optimización de memoria",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$218.400 por hora (on-demand)"
+      },
+      {
+        "nombre": "h1",
+        "tipo": "Optimización de almacenamiento",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$4.118 por hora (on-demand)"
+      },
+      {
+        "nombre": "i4g",
+        "tipo": "Optimización de almacenamiento",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$5.436 por hora (on-demand)"
+      },
+      {
+        "nombre": "i3",
+        "tipo": "Optimización de almacenamiento",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$5.491 por hora (on-demand)"
+      },
+      {
+        "nombre": "d2",
+        "tipo": "Optimización de almacenamiento",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$6.072 por hora (on-demand)"
+      },
+      {
+        "nombre": "im4gn",
+        "tipo": "Optimización de almacenamiento",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$6.403 por hora (on-demand)"
+      },
+      {
+        "nombre": "i2",
+        "tipo": "Optimización de almacenamiento",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$7.502 por hora (on-demand)"
+      },
+      {
+        "nombre": "i3en",
+        "tipo": "Optimización de almacenamiento",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$11.933 por hora (on-demand)"
+      },
+      {
+        "nombre": "i4i",
+        "tipo": "Optimización de almacenamiento",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$12.081 por hora (on-demand)"
+      },
+      {
+        "nombre": "i7i",
+        "tipo": "Optimización de almacenamiento",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$19.933 por hora (on-demand)"
+      },
+      {
+        "nombre": "I7ie",
+        "tipo": "Optimización de almacenamiento",
+        "caracteristicas_confidencialidad": [
+          "Cifrado en reposo mediante EBS con KMS",
+          "Acceso mediante políticas IAM y redes privadas (VPC)",
+          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
+        ],
+        "regiones_disponibles": [
+          "US East (N. Virginia)",
+          "EU (Frankfurt)",
+          "Asia Pacific (Singapore)"
+        ],
+        "costo_aproximado": "$27.445 por hora (on-demand)"
       }
     ],
     "bd": {
@@ -132,7 +1534,22 @@
       "traduccion": [
         "Amazon Translate"
       ]
-    }
+    },
+    "scraping": [
+      {
+        "nombre": "AWS Lambda + Scrapy",
+        "caracteristicas_confidencialidad": [
+          "Control de ejecución mediante IAM y CloudWatch Events",
+          "Despliegue en entornos aislados con políticas personalizadas"
+        ],
+        "regiones_disponibles": [
+          "us-east-1",
+          "eu-west-1",
+          "ap-southeast-1"
+        ],
+        "costo_aproximado": "$0.20 por millón de solicitudes (invocaciones) + duración"
+      }
+    ]
   },
   "Azure": {
     "almacenamiento": {
@@ -184,27 +1601,61 @@
     },
     "mv": [
       {
-        "nombre": "Serie Dv5",
-        "caracteristicas_confidencialidad": [
+        "Nombre": "D2as v5",
+        "Tipo": "Propósito general",
+        "Confidencialidad": [
           "Cifrado en reposo con ADE",
-          "Cifrado de red en tránsito"
+          "Control de acceso RBAC",
+          "Integración con Key Vault"
         ],
-        "regiones_disponibles": [
+        "Regiones": [
           "East US",
           "West Europe"
         ],
-        "costo_aproximado": "$0.096 por hora"
+        "Costo": "$0.096 por hora",
+        "proveedor": "Azure"
       },
       {
-        "nombre": "Serie Fsv2",
-        "caracteristicas_confidencialidad": [
-          "Integración con Key Vault para administración de claves"
+        "Nombre": "F2s v2",
+        "Tipo": "Optimización de CPU",
+        "Confidencialidad": [
+          "RBAC y soporte para Private Link",
+          "Monitoreo con Azure Monitor"
         ],
-        "regiones_disponibles": [
+        "Regiones": [
           "East US",
-          "UK South"
+          "North Europe"
         ],
-        "costo_aproximado": "$0.085 por hora"
+        "Costo": "$0.085 por hora",
+        "proveedor": "Azure"
+      },
+      {
+        "Nombre": "E8s v5",
+        "Tipo": "Optimización de memoria",
+        "Confidencialidad": [
+          "Always Encrypted",
+          "Red privada y Key Vault"
+        ],
+        "Regiones": [
+          "East US",
+          "Southeast Asia"
+        ],
+        "Costo": "$0.25 por hora",
+        "proveedor": "Azure"
+      },
+      {
+        "Nombre": "NC6 Promo",
+        "Tipo": "Aceleradas por GPU",
+        "Confidencialidad": [
+          "Instancias GPU dedicadas",
+          "Cifrado en tránsito y reposo"
+        ],
+        "Regiones": [
+          "West US",
+          "East Asia"
+        ],
+        "Costo": "$0.90 por hora",
+        "proveedor": "Azure"
       }
     ],
     "bd": {
@@ -265,7 +1716,22 @@
       "traduccion": [
         "Azure Translator"
       ]
-    }
+    },
+    "scraping": [
+      {
+        "nombre": "Azure Functions + Playwright",
+        "caracteristicas_confidencialidad": [
+          "Integración con Azure Key Vault para credenciales",
+          "Seguimiento detallado con Application Insights"
+        ],
+        "regiones_disponibles": [
+          "East US",
+          "West Europe",
+          "Southeast Asia"
+        ],
+        "costo_aproximado": "Basado en consumo: ~$0.20 por millón de ejecuciones (consumo + almacenamiento)"
+      }
+    ]
   },
   "GCP": {
     "almacenamiento": {
@@ -317,26 +1783,61 @@
     },
     "mv": [
       {
-        "nombre": "e2-standard-2",
-        "caracteristicas_confidencialidad": [
-          "Cifrado por defecto con claves de cifrado gestionadas por el cliente"
+        "Nombre": "E2-standard-2",
+        "Tipo": "Propósito general",
+        "Confidencialidad": [
+          "Cifrado en reposo por defecto con CMEK",
+          "IAM para acceso granular",
+          "Aislamiento en VPC"
         ],
-        "regiones_disponibles": [
+        "Regiones": [
           "us-central1",
           "europe-west1"
         ],
-        "costo_aproximado": "$0.067 por hora"
+        "Costo": "$0.067 por hora",
+        "proveedor": "GCP"
       },
       {
-        "nombre": "C2-standard-4",
-        "caracteristicas_confidencialidad": [
-          "Cifrado con claves gestionadas y Nube Privada Virtual (VPC)"
+        "Nombre": "C2-standard-4",
+        "Tipo": "Optimización de CPU",
+        "Confidencialidad": [
+          "Integración con VPC Service Controls",
+          "Soporte para CMEK y monitoreo con Cloud Logging"
         ],
-        "regiones_disponibles": [
+        "Regiones": [
           "us-central1",
           "asia-east1"
         ],
-        "costo_aproximado": "$0.188 por hora"
+        "Costo": "$0.188 por hora",
+        "proveedor": "GCP"
+      },
+      {
+        "Nombre": "M1-ultramem-160",
+        "Tipo": "Optimización de memoria",
+        "Confidencialidad": [
+          "Cifrado por defecto con claves gestionadas",
+          "Control de acceso IAM y auditoría"
+        ],
+        "Regiones": [
+          "us-central1",
+          "europe-west1"
+        ],
+        "Costo": "$5.09 por hora",
+        "proveedor": "GCP"
+      },
+      {
+        "Nombre": "A2-highgpu-1g",
+        "Tipo": "Aceleradas por GPU",
+        "Confidencialidad": [
+          "Soporte para GPUs NVIDIA con aislamiento",
+          "CMEK e IAM"
+        ],
+        "Regiones": [
+          "us-west4",
+          "asia-east1"
+        ],
+        "Costo": "$0.99 por hora",
+        "proveedor": "GCP"
       }
     ],
     "bd": {
@@ -345,7 +1846,6 @@
           "nombre": "Cloud SQL",
           "caracteristicas_confidencialidad": [
             "Cifrado con KMS"
-            
           ],
           "regiones_disponibles": [
             "us-central1",
@@ -400,6 +1900,22 @@
       "traduccion": [
         "Cloud Translation"
       ]
-    }
+    },
+    "scraping": [
+      {
+        "nombre": "Cloud Functions + Puppeteer",
+        "caracteristicas_confidencialidad": [
+          "Cloud Monitoring y Cloud Scheduler para seguimiento y automatización",
+          "Entorno aislado con control IAM por función"
+        ],
+        "regiones_disponibles": [
+          "us-central1",
+          "europe-west1",
+          "asia-east1"
+        ],
+        "costo_aproximado": "$0.40 por millón de invocaciones + recursos consumidos"
+      }
+    ]
   }
 }
+

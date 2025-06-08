@@ -11,24 +11,43 @@ if "cuestionario_iniciado" not in st.session_state:
     st.session_state["cuestionario_iniciado"] = False
 
 if not st.session_state["cuestionario_iniciado"]:
-    st.title("🧠 Guía de Selección de Proveedor de Nube")
+    st.title("Guía de Selección de Proveedor de Nube")
     st.markdown("""
     Esta herramienta sirve como guía para elegir el proveedor que mejor se adapte a las necesidades del proyecto.
     Se considerarán aspectos como:
-    - Máquinas virtuales (MV)
     - Almacenamiento
     - Bases de datos
-    - Inteligencia Artificial / Machine Learning
-    - Confidencialidad, disponibilidad y costos
-
+    - Inteligencia Artificial
+    - Scrapping 
     ---
+    Elija un enfoque de seguridad
     """)
 
-    if st.button("🚀 Iniciar cuestionario"):
+    if st.button("Enfoque confidencialidad "):
         st.session_state["cuestionario_iniciado"] = True
+    else:
+        st.markdown(
+            '<a href="https://www.ejemplo.com/integridad" target="_blank">'
+            '<button style="background-color:#f44336;color:white;border:none;padding:8px 16px;border-radius:4px;">Enfoque integridad</button>'
+            '</a>',
+            unsafe_allow_html=True
+        )
     st.stop()
 
 
+def generar_descripcion_servicio(servicio):
+    texto = f"{servicio['nombre']}\n"
+    if "caracteristicas_confidencialidad" in servicio:
+        texto += "Confidencialidad:\n"
+        for c in servicio["caracteristicas_confidencialidad"]:
+            texto += f"  - {c}\n"
+    if "regiones_disponibles" in servicio:
+        texto += "Regiones:\n"
+        for r in servicio["regiones_disponibles"]:
+            texto += f"  - {r}\n"
+    if "costo_aproximado" in servicio:
+        texto += f"Costo aproximado: {servicio['costo_aproximado']}\n"
+    return texto
 ####--------PÁGINA CUESTIONARIO -------------###
 st.title("Cuestionario para Selección de Proveedor de Nube")
 st.markdown("Enfoque en confidencialidad.")
@@ -78,11 +97,11 @@ with st.expander("Bases de Datos"):
                 "Escalabilidad horizontal con fragmentación automática",
                 "Ninguna"])
 
-# Sección: IA y ML
-with st.expander("Inteligencia Artificial y Machine Learning"):
-    res["ia_requiere"] = st.radio("¿Requiere servicios de Inteligencia Artificial o Machine Learning?", ["Sí", "No"])
+# Sección: IA 
+with st.expander("Inteligencia Artificial"):
+    res["ia_requiere"] = st.radio("¿Requiere servicios de Inteligencia Artificial ?", ["Sí", "No"])
     if res["ia_requiere"] == "Sí":
-        res["ia_tipo"] = st.radio("¿Qué tipo de servicio IA/ML necesita?", ["Uso general", "Especializado"])
+        res["ia_tipo"] = st.radio("¿Qué tipo de servicio IA necesita?", ["Uso general", "Especializado"])
         if res["ia_tipo"] == "Especializado":
             res["ia_servicios_especializados"] = st.selectbox("Seleccione los servicios especializados", [
                 "Reconocimiento de voz", "Convertir Texto a Voz", "Visión",
@@ -101,7 +120,10 @@ with st.expander("Inteligencia Artificial y Machine Learning"):
             if "Traducción" in res["ia_servicios_especializados"]:
                 res["traduccion_personalizada"] = st.radio("¿Requiere modelos personalizados?", ["Sí", "No"])
         
-
+# Sección: Web Scraping
+with st.expander("Web Scraping"):
+    res["scraping"] = st.radio("¿Requiere scraping web?", ["Sí", "No"])
+    
 # Sección: Prioridades del proyecto
 with st.expander(" Prioridades del Proyecto"):
     st.text("Considera 1= Bajo y 5 = Alto")
@@ -138,6 +160,7 @@ if st.button("Ver recomendaciones"):
 
     
     # PDF
+    # PDF
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", "B", 14)
@@ -150,15 +173,15 @@ if st.button("Ver recomendaciones"):
         for r in razones[p]:
             pdf.multi_cell(0, 8, f"- {r}")
 
-        # Mostrar resumen de respuestas solo una vez
         pdf.set_font("Arial", "B", 11)
         pdf.cell(0, 8, "Resumen de sus requerimientos:", ln=True)
         pdf.set_font("Arial", size=9)
         for k, v in res.items():
             if isinstance(v, list):
                 v = ', '.join(v)
+            elif v is None:
+                v = "No especificado"
             pdf.multi_cell(0, 6, f"- {k.replace('_', ' ').capitalize()}: {v}")
-
         # Servicios únicos sugeridos
         servicios = obtener_servicios_relevantes(res, p)
         nombres_vistos = set()
@@ -174,10 +197,11 @@ if st.button("Ver recomendaciones"):
             pdf.cell(0, 8, "Servicios sugeridos para cubrir sus necesidades:", ln=True)
             pdf.set_font("Arial", size=9)
             for s in servicios_unicos:
-                regiones = ', '.join(s.get('regiones_disponibles', []))
-                costo = s.get('costo_aproximado', 'N/A')
-                pdf.multi_cell(0, 6, f"- {s['nombre']} | Región: {regiones} | Costo: {costo}")
+                descripcion = generar_descripcion_servicio(s)
+                for linea in descripcion.split("\n"):
+                    pdf.multi_cell(0, 6, linea)
 
+    # Guardar PDF
     pdf_output = "recomendaciones_proveedor.pdf"
     pdf.output(pdf_output)
     with open(pdf_output, "rb") as f:
