@@ -15,7 +15,7 @@ if "cuestionario_iniciado" not in st.session_state:
 
 
 if not st.session_state.cuestionario_iniciado:
-    st.title("Guía de Selección de Proveedor de Nube")
+    st.title("Guía de recomendaciones para la selección de proveedor de servicios en la nube")
     st.markdown("""
     Esta herramienta sirve como guía para elegir el proveedor que mejor se adapte a las necesidades del proyecto.
     - Almacenamiento
@@ -53,10 +53,8 @@ if not st.session_state.cuestionario_iniciado:
     )
     st.stop()
 
-# --- Aquí continúa el cuestionario, porque ya iniciamos ---
-st.write(f"Has elegido **{st.session_state.enfoque_seguridad}** como enfoque de seguridad.")
-# ... resto de tu cuestionario ...
 
+#st.write(f"Ha elegido **{st.session_state.enfoque_seguridad}** como enfoque de seguridad.")
 ##----------------------------------------##
 
 def generar_descripcion_servicio(servicio):
