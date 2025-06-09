@@ -156,7 +156,7 @@ def evaluar_respuestas(res):
                         razones[p].append("Modelos personalizados de traducción (+1)")
 
     #------WEB SCRAPPING----------
-    # --- WEB SCRAPING ---
+   
     if res.get("scraping") == "Sí":
         scores["AWS"] += 1
         razones["AWS"].append("AWS Lambda + Scrapy permite scraping ligero con CloudWatch para automatización (+1)")
@@ -269,8 +269,13 @@ def obtener_servicios_relevantes(respuestas, proveedor):
                     if isinstance(lista_servicios_subtipo, list):
                         relevantes.extend(lista_servicios_subtipo)
 
-            
+    # --- SCRAPING ---       
     if respuestas.get("scraping") == "Sí":
         relevantes.extend(SERVICIOS[proveedor].get("scraping", []))
+    
+    # --- CONTENEDORES ---
+    if respuestas.get("contenedores") == "Sí":
+        relevantes.extend(SERVICIOS[proveedor].get("contenedores", []))
+
 
     return relevantes

@@ -138,7 +138,7 @@ reglas_combinacionales = [
             "contenedores": "Sí", 
             "confidencialidad_texto": "Media"},
         "proveedor": "GCP",
-        "descripcion": "Google Kubernetes Engine (GKE) cifra datos en tránsito y en reposo de forma predeterminada, con control de acceso mediante IAM.",
+        "descripcion": "Google Kubernetes Engine (GKE) cifra datos en reposo de forma predeterminada, con control de acceso mediante IAM.",
         "puntos": 1
     },
     {
@@ -181,23 +181,7 @@ reglas_combinacionales = [
         "descripcion": "Elastic Kubernetes Service (EKS) ofrece cifrado predeterminado sin necesidad de configurar KMS.",
         "puntos": 1
     },
-    {
-    "condiciones": {
-        "contenedores": "Sí", 
-        "costo_texto": "Bajo"},
-    "proveedor": "GCP",
-    "descripcion": "GKE Autopilot cobra solo por recursos utilizados y ofrece plan gratuito.",
-    "puntos": 1
-    },
-    {
-        "condiciones": {
-            "contenedores": "Sí", 
-            "costo_texto": "Bajo"},
-        "proveedor": "AWS",
-        "descripcion": "AWS Fargate permite ejecutar contenedores sin gestionar servidores, con facturación basada en uso exacto.",
-        "puntos": 1
-    },
-    {
+   {
         "condiciones": {
             "contenedores": "Sí", 
             "costo_texto": "Bajo"},

@@ -1,5 +1,10 @@
 {
   "AWS": {
+    "contenedores":{
+      "nombre": "Amazon EKS",
+      "regiones_disponibles": ["Alta disponibilidad en multiples regiones de AWS:" ],
+          "costo_aproximado": "Se cobra por los recursos de AWS que utilice"
+    },      
     "almacenamiento": {
       "objetos": [
         {
@@ -1534,6 +1539,11 @@
     ]
   },
   "Azure": {
+    "contenedores":{
+      "nombre": "Azure Kubernetes Service (AKS)",
+      "regiones_disponibles": ["Global" ],
+          "costo_aproximado": "Se cobra por los recursos de Azure que utilice"
+    }, 
     "almacenamiento": {
       "objetos": [
         {
@@ -1752,6 +1762,13 @@
     ]
   },
   "GCP": {
+    "contenedores":{
+      "nombre": "Google Kubernetes Engine (GKE)",
+      "regiones_disponibles": ["Alta disponibilidad en multiples zonas como:",
+        "us-central1", "europe-west1", "asia-east1"
+      ],
+      "costo_aproximado": "Desde 0.10 USD/cluster y por hora (modo estándar)"
+    },
     "almacenamiento": {
       "objetos": [
         {
