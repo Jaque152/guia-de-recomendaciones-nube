@@ -21,14 +21,17 @@ def evaluar_respuestas(res):
     # --- Normalización previa para reglas combinacionales ---
    # Convertir sliders (1-5) a texto SOLO para reglas combinadas
     nivel_textual = lambda x: "Bajo" if x <= 2 else "Medio" if x == 3 else "Alta"
-    res["costo_texto"] = nivel_textual(res.get("presupuesto", 3))
+    res["costo_texto"] = nivel_textual(res.get("costo", 3))
     res["disponibilidad_texto"] = nivel_textual(res.get("disponibilidad", 3))
-    res["confidencialidad_texto"] = nivel_textual(res.get("confidencialidad", 3))
+    if res.get("enfoque_seguridad") in ["Confidencialidad", "Ambos"]:
+        res["confidencialidad_texto"] = nivel_textual(res.get("confidencialidad", 3))
+    if res.get("enfoque_seguridad") in ["Integridad", "Ambos"]:
+        res["integridad_texto"] = nivel_textual(res.get("integridad", 3))
 
     if res.get("bd_tipo") == "Relacional":
         res["bd_motor_relacional"] = res.get("bd_motor")
-    elif res.get("bd_tipo") == "No relacional":
-        res["bd_motor_norelacional"] = res.get("bd_motor")
+    # elif res.get("bd_tipo") == "No relacional":
+    #     res["bd_motor_norelacional"] = res.get("bd_motor")
 
     # --- MÁQUINAS VIRTUALES ---
     if res.get("mv_requiere") == "Sí":
@@ -74,33 +77,42 @@ def evaluar_respuestas(res):
         if res.get("bd_tipo") == "Relacional":
             motor = res.get("bd_motor")
             if motor == "MySQL":
-                scores["AWS"] += 1
-                scores["Azure"] += 1
-                razones["AWS"].append("Motor MySQL (+1)")
-                razones["Azure"].append("Motor MySQL (+1)")
+                for p in ["AWS", "GCP", "Azure"]:
+                    scores[p] += 1
+                    razones[p].append("Soporte nativo para motor MySQL (+1)")
             elif motor in ["SQL Server", "PostgreSQL"]:
                 for p in ["AWS", "GCP", "Azure"]:
                     scores[p] += 1
                     razones[p].append(f"Motor {motor} (+1)")
+            elif motor == "Oracle":
+                scores["AWS"] += 1
+                razones["AWS"].append("AWS RDS ofrece soporte destacado para Oracle (+1)")
             
 
         elif res.get("bd_tipo") == "No relacional":
             tipo_esc = res.get("bd_escalabilidad_no_rel")
             if tipo_esc == "Escalabilidad automática con réplicas de lectura":
                 scores["AWS"] += 1
-                razones["AWS"].append("Réplicas de lectura en BD no relacional (+1)")
-            elif tipo_esc == "Escalabilidad horizontal con fragmentación automática":
-                for p in ["AWS", "GCP"]:
+                razones["AWS"].append("AWS ofrece capacidad de BD no relacional con réplicas de lectura automáticas (+1)")
+            elif tipo_esc == "Escalabilidad automática con ajuste de capacidad":
+                 # Azure y AWS destacan en esto con Cosmos DB y DynamoDB 
+                for p in ["AWS", "Azure"]:
                     scores[p] += 1
-                    razones[p].append("Fragmentación automática BD no relacional (+1)")
+                    razones[p].append("Capacidad de BD no relacional con ajuste automático de capacidad (+1)")
 
+            elif tipo_esc == "Escalabilidad horizontal con fragmentación automática":
+                # Los tres proveedores destacan en esto (sharding/partitioning automático).
+                for p in ["AWS", "GCP", "Azure"]:
+                    scores[p] += 1
+                    razones[p].append("Capacidad de BD no relacional con fragmentación automática (+1)")
+            
     # --- IA / ML ---
     if res.get("ia_requiere") == "Sí":
         tipo = res.get("ia_tipo")
         if tipo == "Uso general":
-            if res.get("presupuesto", 3) <= 2:
+            if res.get("costo", 3) <= 2:
                 scores["GCP"] += 1
-                razones["GCP"].append("IA general + presupuesto bajo (+1)")
+                razones["GCP"].append("IA general + costo bajo (+1)")
         elif tipo == "Especializado":
             esp = res.get("ia_servicios_especializados")
             if esp == "Reconocimiento de voz":
@@ -157,7 +169,7 @@ def evaluar_respuestas(res):
 
 
     # --- PRIORIDADES ---
-    costo = res.get("presupuesto", 3)
+    costo = res.get("costo", 3)
     if costo <= 2:
         scores["GCP"] += 1
         razones["GCP"].append("Costo bajo: GCP destacado. Ofrece créditos gratuitos de $300 USD.(+1)")
@@ -181,9 +193,11 @@ def evaluar_respuestas(res):
     res_for_reglas["costo"] = res.get("costo_texto")
     res_for_reglas["disponibilidad"] = res.get("disponibilidad_texto")
     res_for_reglas["confidencialidad"] = res.get("confidencialidad_texto")
+    if res.get("enfoque_seguridad") in ["Integridad", "Ambos"]:
+        res_for_reglas["integridad"] = res.get("integridad_texto")
     aplicar_reglas_combinacionales(res_for_reglas, scores, razones)
 
-    return scores, razones
+    return scores, razones, res
 # Función para obtener servicios detallados
 ruta_servicios = os.path.join(os.path.dirname(__file__), "servicios.json")
 with open(ruta_servicios, "r", encoding="utf-8") as f:
@@ -214,9 +228,10 @@ def obtener_servicios_relevantes(respuestas, proveedor):
 
     # Filtrado especial: si es AWS y se eligió MacOS, mostrar solo MVs que incluyan "mac" en el nombre
     if proveedor == "AWS" and "MacOs" in respuestas.get("mv_sistemas", []):
+        # Filtra la lista para mantener solo las instancias cuyo nombre contenga "mac"
         relevantes = [
             s for s in relevantes
-            if s.get("tipo") != "mac" in s.get("nombre", "").lower()
+            if "mac" in s.get("nombre", "").lower()
         ]
 
     tipo_alm = respuestas.get("almacenamiento", "").lower()
@@ -235,6 +250,7 @@ def obtener_servicios_relevantes(respuestas, proveedor):
         if respuestas.get("ia_tipo") == "Uso general":
             relevantes.extend(ia_data.get("general", []))
         elif respuestas.get("ia_tipo") == "Especializado":
+            ia_data = SERVICIOS[proveedor].get("ia", {})
             mapa_claves = {
                 "Reconocimiento de voz": "voz",
                 "Convertir Texto a Voz": "texto_a_voz",
@@ -242,14 +258,18 @@ def obtener_servicios_relevantes(respuestas, proveedor):
                 "Procesamiento de lenguaje natural": "pln",
                 "Traducción": "traduccion"
             }
-            seleccion = respuestas.get("ia_servicios_especializados", "")
-            clave = mapa_claves.get(seleccion)
-            if clave:
-                lista = ia_data.get(clave)
-                if isinstance(lista, list):
-                    for nombre in lista:
-                        relevantes.append(construir_servicio_detallado(nombre, proveedor))
-    
+            seleccion_ia_usuario = respuestas.get("ia_servicios_especializados", [])
+            if isinstance(seleccion_ia_usuario, str):
+                seleccion_ia_usuario = [seleccion_ia_usuario]  # Convertir a lista
+
+            for seleccion_usuario in seleccion_ia_usuario:
+                json_key = mapa_claves.get(seleccion_usuario)
+                if json_key:
+                    lista_servicios_subtipo = ia_data.get(json_key)
+                    if isinstance(lista_servicios_subtipo, list):
+                        relevantes.extend(lista_servicios_subtipo)
+
+            
     if respuestas.get("scraping") == "Sí":
         relevantes.extend(SERVICIOS[proveedor].get("scraping", []))
 

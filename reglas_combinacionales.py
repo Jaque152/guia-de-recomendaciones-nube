@@ -8,7 +8,7 @@ reglas_combinacionales = [
     ##------------MV---------------##
     {
         "condiciones": {
-            "costo": "Bajo",
+            "costo_texto": "Bajo",
             "mv_tipo": "Optimización de CPU"
         },
         "proveedor": "Azure",
@@ -17,7 +17,7 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "costo": "Bajo",
+            "costo_texto": "Bajo",
             "mv_tipo":"Propósito General"
         },
         "proveedor": "GCP",
@@ -63,16 +63,16 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "mv_tipo": "Optimización de almacenamiento",
-            "costo": "Alto",
-            "confidencialidad": "Alta"
+            "costo_texto": "Alto",
+            "confidencialidad_texto": "Alta"
         },
         "proveedor": "AWS",
-        "descripcion": "AWS ofrece instancias con discos cifrados por hardware y doble capa KMS-SSM, ideales cuando el presupuesto permite máxima protección.",
+        "descripcion": "AWS ofrece instancias con discos cifrados por hardware y doble capa KMS-SSM, ideales cuando el nivel de costos permite máxima protección.",
         "puntos": 1
     },
      {
         "condiciones": {
-            "confidencialidad": "Alta",
+            "confidencialidad_texto": "Alta",
             "mv_tipo": "Optimización de almacenamiento"
         },
         "proveedor": "AWS",
@@ -82,7 +82,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "mv_requiere": "Sí",
-            "confidencialidad": [
+            "confidencialidad_texto": [
                 "Media",
                 "Alta"
             ]
@@ -94,7 +94,7 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "confidencialidad": "Alta",
+            "confidencialidad_texto": "Alta",
             "mv_tipo": "Optimización de memoria"
         },
         "proveedor": [
@@ -109,7 +109,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "contenedores": "Sí", 
-            "confidencialidad": "Alta"
+            "confidencialidad_texto": ["Alta", "Media"]
         },
         "proveedor": "GCP",
         "descripcion": "Google Kubernetes Engine (GKE) admite claves de cifrado administradas por el usuario, VPC Service Controls e integración con IAM para garantizar confidencialidad elevada.",
@@ -118,7 +118,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "contenedores": "Sí", 
-            "confidencialidad": "Alta"
+            "confidencialidad_texto": ["Alta", "Media"]
         },
         "proveedor": "Azure",
         "descripcion": "Azure Kubernetes Service (AKS) permite proteger datos mediante Azure Key Vault, control de acceso basado en roles (RBAC) y Azure Active Directory para gestionar los usuarios y el acceso a recursos.",
@@ -127,7 +127,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "contenedores": "Sí", 
-            "confidencialidad": "Alta"
+            "confidencialidad_texto": ["Alta", "Media"]
         },
         "proveedor": "AWS",
         "descripcion": "Elastic Kubernetes Service (EKS) soporta cifrado con AWS KMS e IAM Roles for Service Accounts (IRSA) para control de accesos.",
@@ -136,7 +136,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "contenedores": "Sí", 
-            "confidencialidad": "Media"},
+            "confidencialidad_texto": "Media"},
         "proveedor": "GCP",
         "descripcion": "Google Kubernetes Engine (GKE) cifra datos en tránsito y en reposo de forma predeterminada, con control de acceso mediante IAM.",
         "puntos": 1
@@ -144,7 +144,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "contenedores": "Sí", 
-            "confidencialidad": "Media"},
+            "confidencialidad_texto": "Media"},
         "proveedor": "Azure",
         "descripcion": "Azure Kubernets Services (AKS) proporciona cifrado estándar y control de acceso basado en roles (RBAC).",
         "puntos": 1
@@ -152,7 +152,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "contenedores": "Sí", 
-            "confidencialidad": "Media"},
+            "confidencialidad_texto": "Media"},
         "proveedor": "AWS",
         "descripcion": "Elastic Kubernetes Service (EKS) cifra recursos básicos con KMS y configura IAM sin políticas avanzadas.",
         "puntos": 1
@@ -160,7 +160,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "contenedores": "Sí", 
-            "confidencialidad": "Baja"},
+            "confidencialidad_texto": "Baja"},
         "proveedor": "GCP",
         "descripcion": "Google Kubernetes Engine (GKE) en modo estándar usa claves gestionadas por Google sin configuración personalizada",
         "puntos": 1
@@ -168,7 +168,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "contenedores": "Sí", 
-            "confidencialidad": "Baja"},
+            "confidencialidad_texto": "Baja"},
         "proveedor": "Azure",
         "descripcion": "Azure Kubernets Services (AKS) permite cifrado básico con claves gestionadas por Microsoft.",
         "puntos": 1
@@ -176,7 +176,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "contenedores": "Sí", 
-            "confidencialidad": "Baja"},
+            "confidencialidad_texto": "Baja"},
         "proveedor": "AWS",
         "descripcion": "Elastic Kubernetes Service (EKS) ofrece cifrado predeterminado sin necesidad de configurar KMS.",
         "puntos": 1
@@ -184,7 +184,7 @@ reglas_combinacionales = [
     {
     "condiciones": {
         "contenedores": "Sí", 
-        "costo": "Bajo"},
+        "costo_texto": "Bajo"},
     "proveedor": "GCP",
     "descripcion": "GKE Autopilot cobra solo por recursos utilizados y ofrece plan gratuito.",
     "puntos": 1
@@ -192,7 +192,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "contenedores": "Sí", 
-            "costo": "Bajo"},
+            "costo_texto": "Bajo"},
         "proveedor": "AWS",
         "descripcion": "AWS Fargate permite ejecutar contenedores sin gestionar servidores, con facturación basada en uso exacto.",
         "puntos": 1
@@ -200,7 +200,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "contenedores": "Sí", 
-            "costo": "Bajo"},
+            "costo_texto": "Bajo"},
         "proveedor": "Azure",
         "descripcion": "AKS permite plan gratuito en el plano de control; es decir, no cobra la gestión central a diferencia de GKE y soporta nodos spot para reducir costos de ejecución.",
         "puntos": 1
@@ -210,7 +210,7 @@ reglas_combinacionales = [
     ##----------------ALMACENAMIENTO-----------------------------
     {
         "condiciones": {
-            "confidencialidad":"Alta",
+            "confidencialidad_texto":"Alta",
             "almacenamiento":"Objetos"
         },
         "proveedor": "AWS",
@@ -219,7 +219,7 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "disponibilidad":"Alta",
+            "disponibilidad_texto":"Alta",
             "almacenamiento":"Objetos"
         },
         "proveedor": "Azure",
@@ -228,17 +228,20 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "confidencialidad":[
-                "Alta",
-                "Media"
-            ],
-            "almacenamiento":[
-                "Objetos",
-                "Archivos"
-            ],
+            "confidencialidad_texto":"Alta",
+            "almacenamiento":"Archivos",
+        },
+        "proveedor": "GCP",
+        "descripcion": "Cifrado en reposo, permite integración con Cloud KMS para claves de cifrado gestionadas por el cliente",
+        "puntos": 1
+    },
+    {
+        "condiciones": {
+            "confidencialidad_texto":"Alta",
+            "almacenamiento":"Bloques"
         },
         "proveedor": "Azure",
-        "descripcion": "Admite claves RSA de 2048 bits administradas por el cliente en Azure Key Vault.",
+        "descripcion": "Cuenta con Azure Disk Encryption",
         "puntos": 1
     },
     ##------------------------------------------------------------------------------
@@ -247,7 +250,7 @@ reglas_combinacionales = [
         "condiciones": {
             "bd_tipo": "Relacional",
             "bd_motor_relacional": "Oracle",
-            "costo": "Medio"
+            "costo_texto": "Medio"
         },
         "proveedor": "AWS",
         "descripcion": "AWS RDS soporta más motores incluyendo Oracle ",
@@ -255,7 +258,7 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "confidencialidad": "Alta",
+            "confidencialidad_texto": "Alta",
             "bd_tipo": "Relacional"
         },
         "proveedor": "Azure",
@@ -264,8 +267,8 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "confidencialidad": "Media",
-            "disponibilidad":"Alta",
+            "confidencialidad_texto": "Media",
+            "disponibilidad_texto":"Alta",
             "bd_tipo": "Relacional"
         },
         "proveedor": "Azure",
@@ -274,7 +277,7 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "confidencialidad": "Alta",
+            "confidencialidad_texto": "Alta",
             "bd_tipo": "Relacional"
         },
         "proveedor": "AWS",
@@ -283,39 +286,38 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "confidencialidad": "Media",
+            "confidencialidad_texto": "Media",
             "bd_tipo": "Relacional",
-            "costo": "Bajo"
+            "costo_texto": "Bajo"
         },
         "proveedor": "GCP",
-        "descripcion": "GCP cifra automáticamente los datos almacenados en Cloud SQL con AES-256, ideal para proyectos con presupuesto limitado que buscan protección estándar.",
+        "descripcion": "GCP cifra automáticamente los datos almacenados en Cloud SQL con AES-256, ideal para proyectos con un costo bajo que buscan protección estándar.",
         "puntos": 1
     },
     {
         "condiciones": {
             "bd_tipo": "No relacional",
-            "bd_motor_norelacional": "DynamoDB",
-            "escalabilidad": "Horizontal",
-            "confidencialidad":"Alta"
+            "confidencialidad_texto":"Alta"
         },
-        "proveedor": "AWS",
-        "descripcion": "AWS Keyspaces y DynamoDB ofrecen cifrado, IAM y replicación global",
+        "proveedor": "Azure",
+        "descripcion": "Cifrado transparente de datos en reposo y en tránsito; además, cuenta con Azure Private Link y VNet service endpoints",
         "puntos": 1
     },
     {
         "condiciones": {
             "bd_tipo": "No relacional",
-            "costo": "Bajo"
+            "costo_texto": "Bajo"
         },
         "proveedor": "GCP",
         "descripcion": "Firestore de GCP ofrece autoajuste, modelo serverless y facturación por uso",
         "puntos": 1
     },
+    
     ##------------------------------------------------------------------
     ##-------------INTELIGENCIA ARTIFICIAL------------------------------
     {
         "condiciones": {
-            "confidencialidad": "Alta",
+            "confidencialidad_texto": "Alta",
             "ia_tipo": "Uso general"
         },
         "proveedor": "GCP",
@@ -324,7 +326,7 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "costo": "Bajo",
+            "costo_texto": "Bajo",
             "vision_lugares": "Sí"
         },
         "proveedor": "GCP",
@@ -333,11 +335,23 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "disponibilidad":"Alta",
+            "disponibilidad_texto":"Alta",
             "ia_tipo": "Uso general"
         },
         "proveedor": "Azure",
         "descripcion": "Azure Machine Learning incluye AutoML y modelos híbridos replicables",
+        "puntos": 1
+    },
+    {
+        "condiciones": {
+            "bd_requiere": "Sí",
+            "bd_tipo":["No relacional"],
+            "ia_requiere":"Sí",
+            "ia_tipo": ["Uso general", "Especializado"],
+            "integridad_texto":"Alta"
+        },
+        "proveedor": "GCP",
+        "descripcion": "GCP es fuerte en soluciones de Big Data y análisis con servicios como BigQuery, Cloud Firestore/Bigtable, y Vertex AI, que garantizan la integridad de datos para cargas analíticas",
         "puntos": 1
     },
     ##--------------------------------------------------------------------------------------------------
@@ -345,7 +359,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "scraping": "Sí",
-            "disponibilidad": "Alta"
+            "disponibilidad_texto": "Alta"
         },
         "proveedor": "GCP",
         "descripcion": "Cloud Functions + Puppeteer junto con Cloud Scheduler garantizan ejecución escalable y continua.",
@@ -354,7 +368,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "scraping": "Sí",
-            "costo": "Bajo"
+            "costo_texto": "Bajo"
         },
         "proveedor": "AWS",
         "descripcion": "AWS Lambda tiene costos bajos por ejecución, ideal para scraping ligero con Scrapy.",
@@ -364,8 +378,8 @@ reglas_combinacionales = [
     ##--------------------------------------------------------------------------------------------------
     ##------------------------------GENERALES-----------------------------------------------------------
     { "condiciones": {
-            "disponibilidad":"Alta",
-            "costo":"Alto"
+            "disponibilidad_texto":"Alta",
+            "costo_texto":"Alto"
         },
         "proveedor": "AWS",
         "descripcion": "AWS ofrece mayor disponibilidad al contar con más Zonas y Regiones",
@@ -373,8 +387,8 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "confidencialidad": "Media",
-            "costo": "Bajo"
+            "confidencialidad_texto": "Media",
+            "costo_texto": "Bajo"
         },
         "proveedor": "GCP",
         "descripcion": "GCP cifra automáticamente todos los datos en reposo mediante AES-256 y la biblioteca criptográfica Tink con validación FIPS 140-2, sin costo adicional ni configuración extra.",
@@ -382,9 +396,9 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "costo": "Alto",
-            "confidencialidad": "Alta",
-            "disponibilidad": "Alta"
+            "costo_texto": "Alto",
+            "confidencialidad_texto": "Alta",
+            "disponibilidad_texto": "Alta"
         },
         "proveedor": "GCP",
         "descripcion": "GCP combina Confidential VMs, escalado global y precios competitivos",
@@ -392,9 +406,9 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "costo": "Medio",
-            "confidencialidad": "Media",
-            "disponibilidad": "Media"
+            "costo_texto": "Medio",
+            "confidencialidad_texto": "Media",
+            "disponibilidad_texto": "Media"
         },
         "proveedor": "Azure",
         "descripcion": "Azure permite claves gestionadas por el cliente, geo-replicación y modelos de precios flexibles",
@@ -402,9 +416,9 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "costo": "Bajo",
-            "confidencialidad": "Baja",
-            "disponibilidad": "Baja"
+            "costo_texto": "Bajo",
+            "confidencialidad_texto": "Baja",
+            "disponibilidad_texto": "Baja"
         },
         "proveedor": [
             "AWS",
@@ -415,7 +429,7 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "disponibilidad": "Alta",
+            "disponibilidad_texto": "Alta",
             "contenedores":"Sí"
         },
         "proveedor": "GCP",
@@ -424,7 +438,7 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "disponibilidad": "Alta",
+            "disponibilidad_texto": "Alta",
             "mv_requiere":"Sí"
         },
         "proveedor": "AWS",
@@ -433,7 +447,7 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "disponibilidad": "Alta",
+            "disponibilidad_texto": "Alta",
             "bd_tipo":"Relacional"
         },
         "proveedor": "AWS",
@@ -442,7 +456,7 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "disponibilidad": "Alta",
+            "disponibilidad_texto": "Alta",
             "contenedores":"Sí"
         },
         "proveedor": "AWS",
@@ -450,9 +464,70 @@ reglas_combinacionales = [
         "puntos": 1
     },
     {
-        "condiciones": {"disponibilidad": "Alta"},
+        "condiciones": {
+            "disponibilidad_texto": "Alta"
+        },
         "proveedor": "Azure",
         "descripcion": "Azure asegura 99.95% de disponibilidad en servicios con respaldo zonal como AKS y SQL Database.",
+        "puntos": 1
+    },
+    ##---------------------------------------------------------------------------------------------
+    ##-------------------INTEGRIDAD-------------------------------------##
+    
+    {
+        "condiciones": {
+            "mv_requiere": "Sí",
+            "bd_requiere": "Sí",
+            "bd_tipo": "Relacional",
+            "integridad_texto": "Alta"
+        },
+        "proveedor": "Azure",
+        "descripcion": "Si se ejecuta SQL Server sobre una VM en Azure, puede configurarse Always Encrypted con integración a Key Vault.",
+        "puntos": 1
+    },
+    {
+        "condiciones": {
+            "mv_requiere": "Sí",
+            "integridad_texto": ["Media", "Alta"]
+        },
+        "proveedor": "Azure",
+        "descripcion": "Las máquinas virtuales en redes privadas pueden integrarse con Key Vault para gestionar claves y validar la integridad del acceso.",
+        "puntos": 1
+    },
+    {
+        "condiciones": {
+            "almacenamiento": "Archivos",
+            "integridad_texto": "Alta"
+        },
+        "proveedor": ["Azure", "AWS"],
+        "descripcion": "Azure Files y Amazon EFS soportan snapshots consistentes y validación POSIX para asegurar integridad de archivos.",
+        "puntos": 1
+    },
+    {
+        "condiciones": {
+            "bd_no_relacional": "Sí",
+            "integridad_texto": ["Media", "Alta"]
+        },
+        "proveedor": ["GCP", "AWS", "Azure"],
+        "descripcion": "Servicios como DynamoDB, Cosmos DB y Firestore ofrecen consistencia eventual o fuerte, backups consistentes y validación interna de integridad.",
+        "puntos": 1
+    }, 
+    {
+        "condiciones": {
+            "ia_tipo": "Uso general",
+            "integridad_texto": "Alta"
+        },
+        "proveedor": ["AWS", "Azure", "GCP"],
+        "descripcion": "SageMaker, Vertex AI y Azure ML permiten trazabilidad completa de modelos, validación de datasets y auditoría de procesos de entrenamiento.",
+        "puntos": 1
+    },
+    {
+        "condiciones": {
+            "almacenamiento": "Objetos",
+            "integridad_texto": "Alta"
+        },
+        "proveedor": "AWS",
+        "descripcion": "AWS S3 Object Lock proporciona un modelo WORM (Write-Once-Read-Many) para garantizar la inmutabilidad y la integridad de los datos.",
         "puntos": 1
     },
     ##---------------------------------------------------------------------------------------------
@@ -496,7 +571,7 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "mv": "Aceleradas por GPU",
+            "mv_tipo": "Aceleradas por GPU",
             "sistema_operativo": "MacOs"
         },
         "proveedor":[
@@ -561,16 +636,41 @@ reglas_combinacionales = [
     },
     {
         "condiciones": {
-            "confidencialidad": "Alta",
-            "costo": "Bajo"
+            "confidencialidad_texto": "Alta",
+            "costo_texto": "Bajo"
         },
-        "proveedor": [
-            "AWS",
-            "GCP",
-            "azure"],
-        "descripcion": "Los servicios con confidencialidad avanzada suelen requerir configuración de claves propias, módulos de hardware especializados, lo cual eleva el costo. Se recomienda aumentar presupuesto.",
+        "proveedor": ["AWS","GCP","Azure"],
+        "descripcion": "Los servicios con confidencialidad avanzada suelen requerir configuración de claves propias, módulos de hardware especializados, lo cual eleva el costo. Se recomienda aumentar el nivel de costos.",
         "puntos": 0
     },
+    {
+        "condiciones":{
+            "disponibilidad_texto": "Alta", 
+            "costo_texto": "Bajo"
+        },
+        "proveedor": ["AWS","GCP","Azure"],
+        "descripcion": "Lograr alta disponibilidad generalmente implica costos más altos por la redundancia de recursos. Es importante alinear el nivel de costos  con los requisitos de disponibilidad.",
+        "puntos": 0
+
+    },
+    {
+        "condiciones":{
+            "enfoque_seguridad": [
+                "Confidencialidad",
+                "Ambos"
+            ], 
+            "mv_requiere": "No",
+            "almacenamiento_requiere": "No",
+            "bd_requiere":"No",
+            "ia_requiere":"No",
+            "scraping_requiere":"No"
+        },
+        "proveedor": ["AWS","GCP","Azure"],
+        "descripcion": "Ha indicado un alto enfoque en confidencialidad, pero no ha seleccionado servicios clave donde esta característica es crítica.",
+        "puntos": 0
+
+    }
+    
 ]
 
 # def cumple_condicion_struct(res, condiciones):
@@ -578,13 +678,20 @@ reglas_combinacionales = [
 
 def cumple_condicion_struct(res, condiciones):
     for k, v in condiciones.items():
+        user_response = res.get(k)
+        
+        # Si la condición es una lista 
         if isinstance(v, list):
-            if not any(item in res.get(k, []) for item in v):
+            # Comprueba si la respuesta del usuario está en esa lista
+            if user_response not in v:
                 return False
-        elif isinstance(res.get(k), list):
-            if v not in res[k]:
+        # Si la respuesta del usuario es una lista 
+        elif isinstance(user_response, list):
+            # Comprueba si el valor requerido por la regla está en la lista de respuestas
+            if v not in user_response:
                 return False
+        # Comparación simple
         else:
-            if res.get(k) != v:
+            if user_response != v:
                 return False
     return True

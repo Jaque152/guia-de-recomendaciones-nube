@@ -4,36 +4,60 @@ from logica_cuestionario import evaluar_respuestas
 from logica_cuestionario import obtener_servicios_relevantes
 from fpdf import FPDF
 import base64
+from fpdf import FPDF
+from datetime import datetime
 
-st.set_page_config(page_title="Cuestionario Proveedores de Nube", layout="centered")
+st.set_page_config(page_title="Guía de recomendaciones para la selección de proveedor de servicios en la nube”", layout="centered")
 #---------- PANTALLA DE INICIO -----------##
 if "cuestionario_iniciado" not in st.session_state:
-    st.session_state["cuestionario_iniciado"] = False
+    st.session_state.cuestionario_iniciado = False
+    st.session_state.enfoque_seguridad = None
 
-if not st.session_state["cuestionario_iniciado"]:
+
+if not st.session_state.cuestionario_iniciado:
     st.title("Guía de Selección de Proveedor de Nube")
     st.markdown("""
     Esta herramienta sirve como guía para elegir el proveedor que mejor se adapte a las necesidades del proyecto.
-    Se considerarán aspectos como:
     - Almacenamiento
     - Bases de datos
     - Inteligencia Artificial
-    - Scrapping 
-    ---
-    Elija un enfoque de seguridad
+    - Scraping
+    
+    ### Elija un enfoque de seguridad:
     """)
 
-    if st.button("Enfoque confidencialidad "):
-        st.session_state["cuestionario_iniciado"] = True
-    else:
-        st.markdown(
-            '<a href="https://www.ejemplo.com/integridad" target="_blank">'
-            '<button style="background-color:#f44336;color:white;border:none;padding:8px 16px;border-radius:4px;">Enfoque integridad</button>'
-            '</a>',
-            unsafe_allow_html=True
-        )
+    col1, col2 = st.columns(2)
+    # Botón para Confidencialidad -> inicia cuestionario
+    if col1.button("Confidencialidad"):
+        st.session_state.enfoque_seguridad = "Confidencialidad"
+        st.session_state.cuestionario_iniciado = True
+
+    # Enlace HTML para Integridad -> abre nueva pestaña
+    youtube_url = "https://www.youtube.com/watch?v=TU_VIDEO_ID"
+    col2.markdown(
+        f'''
+        <a href="{youtube_url}" target="_blank">
+            <button style="
+                background-color: #f44336;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                cursor: pointer;
+            ">
+                Integridad
+            </button>
+        </a>
+        ''',
+        unsafe_allow_html=True
+    )
     st.stop()
 
+# --- Aquí continúa el cuestionario, porque ya iniciamos ---
+st.write(f"Has elegido **{st.session_state.enfoque_seguridad}** como enfoque de seguridad.")
+# ... resto de tu cuestionario ...
+
+##----------------------------------------##
 
 def generar_descripcion_servicio(servicio):
     texto = f"{servicio['nombre']}\n"
@@ -49,7 +73,7 @@ def generar_descripcion_servicio(servicio):
         texto += f"Costo aproximado: {servicio['costo_aproximado']}\n"
     return texto
 ####--------PÁGINA CUESTIONARIO -------------###
-st.title("Cuestionario para Selección de Proveedor de Nube")
+st.title("Guía de recomendaciones para la selección de proveedor de servicios en la nube")
 st.markdown("Enfoque en confidencialidad.")
 
 res = {}
@@ -72,9 +96,21 @@ with st.expander("Máquinas Virtuales"):
             res["mv_sistemas"] = [so_unico] if so_unico != "Seleccionar..." else []
 
         if res.get("mv_sistemas"):
-            res["mv_escalamiento_predictivo"] = st.radio("¿Requiere escalamiento predictivo?", ["Seleccionar...", "Sí", "No"])
-            res["mv_autoescalamiento"] = st.radio("¿Requiere auto-escalamiento?", ["Seleccionar...", "Sí", "No"])
-            res["mv_hibernacion"] = st.radio("¿Requiere hibernación o suspensión de MV?", ["Seleccionar...", "Sí", "No"])
+            res["mv_escalamiento_predictivo"] = st.radio(
+                "¿Requiere escalamiento predictivo?", 
+                ["Seleccionar...", "Sí", "No"],
+                help="El sistema anticipa patrones de uso mediante aprendizaje automático o análisis histórico y ajusta los recursos antes de que se necesiten, evitando latencia o caídas por picos de carga"
+            )
+            res["mv_autoescalamiento"] = st.radio(
+                "¿Requiere auto-escalamiento?", 
+                ["Seleccionar...", "Sí", "No"],
+                help="Permite que el sistema agregue o elimine recursos automáticamente según la carga real."
+            )
+            res["mv_hibernacion"] = st.radio(
+                "¿Requiere hibernación o suspensión de MV?", 
+                ["Seleccionar...", "Sí", "No"],
+                help="Permite pausar temporalmente una máquina virtual (MV) conservando su estado en disco (RAM, procesos), para poder reanudarla más tarde exactamente donde se detuvo."
+            )
 
 # Sección: Contenedores
 with st.expander("Contenedores"):
@@ -87,19 +123,44 @@ with st.expander("Almacenamiento"):
     
 
 # Sección: Bases de Datos
+# Sección: Bases de Datos
 with st.expander("Bases de Datos"):
-    res["bd_requiere"] = st.radio("¿Requiere Bases de Datos (BD)?", ["Seleccionar...","Sí", "No"])
+    res["bd_requiere"] = st.radio("¿Requiere Bases de Datos (BD)?", ["Seleccionar...", "Sí", "No"])
     if res["bd_requiere"] == "Sí":
-        res["bd_tipo"] = st.radio("¿Qué tipo de BD necesita?", ["Seleccionar...","Relacional", "No relacional"])
+        res["bd_tipo"] = st.radio("¿Qué tipo de BD necesita?", ["Seleccionar...", "Relacional", "No relacional"])
+        
         if res["bd_tipo"] == "Relacional":
-            res["bd_motor"] = st.selectbox("¿Qué motor de BD relacional prefiere?", ["Seleccionar...","MySQL", "PostgreSQL", "MariaDB", "SQL Server", "Oracle"])
-            res["bd_escalabilidad_rel"] = st.radio("¿Qué tipo de escalabilidad prefiere?", ["Seleccionar...","Vertical", "Horizontal", "Ninguna"])
-        else:
-            res["bd_escalabilidad_no_rel"] = st.radio("¿Qué tipo de escalabilidad necesita?", [
-                "Seleccionar...","Escalabilidad automática con ajuste de capacidad",
-                "Escalabilidad automática con réplicas de lectura",
-                "Escalabilidad horizontal con fragmentación automática",
-                "Ninguna"])
+            res["bd_motor"] = st.selectbox(
+                "¿Qué motor de BD relacional prefiere?",
+                ["Seleccionar...", "MySQL", "PostgreSQL", "MariaDB", "SQL Server", "Oracle"]
+            )
+            res["bd_escalabilidad_rel"] = st.radio(
+                "¿Qué tipo de escalabilidad prefiere?",
+                ["Seleccionar...", "Vertical", "Horizontal", "Ninguna"],
+                help="#Escalabilidad Vertical:capacidad de aumentar la potencia de un único servidor o nodo, añadiendo recursos como CPU, memoria RAM o almacenamiento para que esa misma máquina procese una carga mayor. #Escalabilidad Horizontal: consiste en añadir más servidores o instancias idénticas para repartir la carga de trabajo entre múltiples nodos"
+            )
+
+        elif res["bd_tipo"] == "No relacional":
+            res["bd_escalabilidad_no_rel"] = st.radio(
+                "¿Qué tipo de escalabilidad necesita?",
+                [
+                    "Seleccionar...",
+                    "Escalabilidad automática con ajuste de capacidad",
+                    "Escalabilidad automática con réplicas de lectura",
+                    "Escalabilidad horizontal con fragmentación automática",
+                    "Ninguna"
+                ],
+                help=(
+                    "#Escalabilidad automática con ajuste de capacidad: "
+                    "El sistema ajusta dinámicamente la capacidad según la carga, sin necesidad de reinicio.\n"
+                    "#Escalabilidad automática con réplicas de lectura: "
+                    "Se crean réplicas distribuidas que solo procesan lecturas, para mejorar el rendimiento en escenarios con muchas consultas.\n"
+                    "#Escalabilidad horizontal con fragmentación automática: "
+                    "El sistema divide los datos en fragmentos y los distribuye entre múltiples nodos. "
+                    "Esto permite escalar horizontalmente sin intervención."
+                )
+            )
+
 
 # Sección: IA 
 with st.expander("Inteligencia Artificial"):
@@ -127,13 +188,20 @@ with st.expander("Inteligencia Artificial"):
 # Sección: Web Scraping
 with st.expander("Web Scraping"):
     res["scraping"] = st.radio("¿Requiere scraping web?", ["Seleccionar...","Sí", "No"])
-    
+
+# Sección: Enfoque de Seguridad
+with st.expander("Seguridad"):
+    st.text("Considera 1= Bajo y 5 = Alto")
+    res["enfoque_seguridad"] = st.selectbox("¿Qué enfoque de seguridad prefiere?", ["Seleccionar...", "Confidencialidad", "Integridad", "Ambos"])
+    if res["enfoque_seguridad"] in ["Confidencialidad", "Ambos"]:
+        res["confidencialidad"] = st.slider("Nivel de confidencialidad deseado", 1, 5, 3, key="confidencialidad_slider")
+    if res["enfoque_seguridad"] in ["Integridad", "Ambos"]:
+        res["integridad"] = st.slider("Nivel de integridad deseado", 1, 5, 3,key="integridad_slider" )
 # Sección: Prioridades del proyecto
 with st.expander(" Prioridades del Proyecto"):
     st.text("Considera 1= Bajo y 5 = Alto")
-    res["presupuesto"] = st.slider("¿Cuál es el presupuesto del proyecto?", 1, 5, 3)
+    res["costo"] = st.slider("¿Cuál es el nivel de costo del proyecto?", 1, 5, 3)
     res["disponibilidad"] = st.slider("Nivel de disponibilidad deseado", 1, 5, 3)
-    res["confidencialidad"] = st.slider("Nivel de confidencialidad deseado", 1, 5, 3)
 
 # Evaluación
 st.markdown("---")
@@ -143,7 +211,7 @@ if st.button("Ver recomendaciones"):
     if campos_incompletos:
         st.error("Debe responder todas las preguntas antes de continuar.")
         st.stop()
-    scores, razones = evaluar_respuestas(res)
+    scores, razones, res_modificado = evaluar_respuestas(res)
     max_puntaje = max(scores.values())
     ganadores = [p for p, pts in scores.items() if pts == max_puntaje]
 
@@ -168,9 +236,7 @@ if st.button("Ver recomendaciones"):
 
     
     # PDF
-    # PDF Mejorado
-    from fpdf import FPDF
-    from datetime import datetime
+    # PDF
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", "B", 14)
@@ -179,51 +245,73 @@ if st.button("Ver recomendaciones"):
     pdf.set_font("Arial", "B", 12)
     pdf.cell(0, 10, "Resumen de elecciones del usuario", ln=True)
     pdf.set_font("Arial", "", 10)
-    for k, v in res.items():
-        if isinstance(v, list):
-            v = ', '.join(v)
-        elif v is None:
-            v = "No especificado"
-        pdf.multi_cell(0, 6, f"- {k.replace('_', ' ').capitalize()}: {v}")
+    
+    pdf.multi_cell(0, 6, f"- Enfoque de seguridad: {res_modificado.get('enfoque_seguridad', 'No especificado')}")
+    pdf.multi_cell(0, 6, f"- Nivel de Confidencialidad: {res_modificado.get('confidencialidad_texto', 'No especificado')}")
+    pdf.multi_cell(0, 6, f"- Nivel de Integridad: {res_modificado.get('integridad_texto', 'No especificado')}")
+    pdf.multi_cell(0, 6, f"- Máquinas Virtuales: {res_modificado.get('mv_requiere', 'No especificado')}")
+    if res_modificado.get("mv_requiere") == "Sí":
+        pdf.multi_cell(0, 6, f"    - Tipo: {res_modificado.get('mv_tipo', '-')}")
+        pdf.multi_cell(0, 6, f"    - SO: {', '.join(res_modificado.get('mv_sistemas', []))}")
+    pdf.multi_cell(0, 6, f"- Contenedores: {res_modificado.get('contenedores', 'No especificado')}")
+    pdf.multi_cell(0, 6, f"- Almacenamiento: {res_modificado.get('almacenamiento', 'No especificado')}")
+    pdf.multi_cell(0, 6, f"- Bases de Datos: {res_modificado.get('bd_requiere', 'No especificado')}")
+    if res_modificado.get("bd_requiere") == "Sí":
+        pdf.multi_cell(0, 6, f"    - Tipo: {res_modificado.get('bd_tipo', '-')}")
+        if res_modificado.get("bd_tipo") == "Relacional":
+            pdf.multi_cell(0, 6, f"    - Motor: {res_modificado.get('bd_motor', '-')}")
+    pdf.multi_cell(0, 6, f"- Servicios de IA requeridos: {res_modificado.get('ia_tipo', 'No especificado')}")
+    pdf.multi_cell(0, 6, f"- Web Scraping: {res_modificado.get('scraping', 'No especificado')}")
+    pdf.multi_cell(0, 6, f"- Presupuesto (Costo): {res_modificado.get('costo_texto', 'No especificado')}")
+    pdf.multi_cell(0, 6, f"- Nivel de disponibilidad deseado: {res_modificado.get('disponibilidad_texto', 'No especificado')}")
     pdf.ln(5)
 
     ordenados = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-    ganador = ordenados[0][0]
+    max_puntaje = ordenados[0][1]
+    ganadores = [p for p, v in scores.items() if v == max_puntaje]
 
     for proveedor, puntaje in ordenados:
-        if proveedor == ganador:
-            pdf.set_font("Arial", "B", 12)
-            pdf.set_text_color(0, 102, 0)  # Verde para el ganador
+        pdf.set_font("Arial", "B", 12)
+        if proveedor in ganadores and len(ganadores) == 1:
+            pdf.set_text_color(0, 102, 0)  # Verde para el único ganador
             pdf.cell(0, 10, f"Proveedor recomendado: {proveedor} ({puntaje} puntos)", ln=True)
+        elif proveedor in ganadores:
+            pdf.set_text_color(0, 102, 102)  # Color distinto para empate
+            pdf.cell(0, 10, f"Empate - Opción válida: {proveedor} ({puntaje} puntos)", ln=True)
         else:
-            pdf.set_font("Arial", "B", 12)
-            pdf.set_text_color(0, 0, 128)  # Azul para alternativos
+            pdf.set_text_color(0, 0, 128)
             pdf.cell(0, 10, f"Alternativa: {proveedor} ({puntaje} puntos)", ln=True)
-
+        
+        # Restablece el color y la fuente para las razones
         pdf.set_text_color(0, 0, 0)
         pdf.set_font("Arial", "", 10)
+        
         for r in razones[proveedor]:
             pdf.multi_cell(0, 6, f"- {r}")
 
-        servicios_obtenidos = obtener_servicios_relevantes(res, proveedor)
-        if proveedor == "AWS" and "MacOs" in res.get("mv_sistemas", []):
-            servicios_filtrados = [
-                s for s in servicios_obtenidos
-                if s.get("tipo") != "Propósito general" or "mac" in s.get("nombre", "").lower()
-            ]
-        else:
-            servicios_filtrados = servicios_obtenidos
-
-        if servicios_filtrados:
+        
+        servicios_obtenidos = obtener_servicios_relevantes(res_modificado, proveedor)
+        
+        if servicios_obtenidos:
             pdf.set_font("Arial", "B", 11)
             pdf.cell(0, 8, "Servicios sugeridos:", ln=True)
             pdf.set_font("Arial", "", 9)
             nombres_vistos = set()
-            for s in servicios_filtrados:
+            
+            # El bucle ahora usa la lista completa 'servicios_obtenidos'.
+            for s in servicios_obtenidos:
                 if s['nombre'] in nombres_vistos:
                     continue
+                # Usa res_modificado para las comprobaciones
+                if "mac" in s.get("nombre", "").lower() and "MacOs" not in res_modificado.get("mv_sistemas", []):
+                    continue
                 nombres_vistos.add(s['nombre'])
+                pdf.set_font("Arial", "B", 9)
                 pdf.multi_cell(0, 6, f"Servicio: {s['nombre']}")
+                
+                # Restablece la fuente para los detalles
+                pdf.set_font("Arial", "", 9)
+
                 if "funcionalidades" in s:
                     pdf.multi_cell(0, 6, f"Funcionalidades cubiertas: {s['funcionalidades']}")
                 if "regiones_disponibles" in s:
@@ -231,11 +319,35 @@ if st.button("Ver recomendaciones"):
                     pdf.multi_cell(0, 6, f"Región sugerida: {regiones}")
                 if "configuraciones" in s:
                     pdf.multi_cell(0, 6, f"Configuraciones: {s['configuraciones']}")
-                if "confidencialidad" in s:
-                    pdf.multi_cell(0, 6, f"Cumple Confidencialidad/Integridad: {s['confidencialidad']}")
+                
+                # Lógica correcta para mostrar características de seguridad
+                # Se comprueba para CADA servicio si debe mostrar la sección
+                if res_modificado.get("enfoque_seguridad") in ["Confidencialidad", "Ambos"]:
+                    if "caracteristicas_confidencialidad" in s:
+                        pdf.set_font("Arial", "B", 9)
+                        pdf.multi_cell(0, 6, "Características de Confidencialidad:")
+                        pdf.set_font("Arial", "", 9)
+                        for c in s["caracteristicas_confidencialidad"]:
+                            pdf.multi_cell(0, 6, f"  - {c}")
+
+                if res_modificado.get("enfoque_seguridad") in ["Integridad", "Ambos"]:
+                    if "caracteristicas_integridad" in s:
+                        pdf.set_font("Arial", "B", 9)
+                        pdf.multi_cell(0, 6, "Características de Integridad:")
+                        pdf.set_font("Arial", "", 9)
+                        for c in s["caracteristicas_integridad"]:
+                            pdf.multi_cell(0, 6, f"  - {c}")
+                
                 if "costo_aproximado" in s:
-                    pdf.multi_cell(0, 6, f"Costo mínimo estimado: {s['costo_aproximado']}")
-                pdf.ln(1)
+                    pdf.set_font("Arial", "B", 9)
+                    pdf.multi_cell(0, 6, "Costo mínimo estimado:")
+                    pdf.set_font("Arial", "", 9)
+                    costo = s["costo_aproximado"]
+                    if isinstance(costo, list):
+                        for c in costo:
+                            pdf.multi_cell(0, 6, f"  - {c}")
+                    else:
+                        pdf.multi_cell(0, 6, f"  {costo}")
         pdf.ln(5)
 
     from datetime import datetime
@@ -245,7 +357,7 @@ if st.button("Ver recomendaciones"):
     pdf.output(pdf_output)
     with open(pdf_output, "rb") as f:
         b64 = base64.b64encode(f.read()).decode()
-        href = f'<a href="data:application/octet-stream;base64,{b64}" download="{pdf_output}">📄 Descargar PDF Final</a>'
+        href = f'<a href="data:application/octet-stream;base64,{b64}" download="{pdf_output}">📄 Descargar PDF con recomendaciones</a>'
         st.markdown(href, unsafe_allow_html=True)
     
 
