@@ -179,8 +179,8 @@ def evaluar_respuestas(res):
 
     disponibilidad = res.get("disponibilidad", 3)
     if disponibilidad >= 3:
-        scores["AWS"] += 1
-        razones["AWS"].append("Alta disponibilidad: AWS (+1)")
+        # scores["AWS"] += 1
+        # razones["AWS"].append("Alta disponibilidad: AWS (+1)")
 
     confidencialidad = res.get("confidencialidad", 3)
     if confidencialidad >= 4:
