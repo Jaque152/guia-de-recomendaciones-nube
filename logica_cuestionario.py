@@ -276,9 +276,9 @@ def obtener_servicios_relevantes(respuestas, proveedor):
     # --- CONTENEDORES ---
     if respuestas.get("contenedores") == "Sí":
         contenedor = SERVICIOS[proveedor].get("contenedores")
-    if isinstance(contenedor, dict):
-        relevantes.append(contenedor)
-    elif isinstance(contenedor, list):
-        relevantes.extend(contenedor)
+        if isinstance(contenedor, dict):
+            relevantes.append(contenedor)
+        elif isinstance(contenedor, list):
+            relevantes.extend(contenedor)
 
     return relevantes
