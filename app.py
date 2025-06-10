@@ -358,4 +358,5 @@ if st.button("Ver recomendaciones"):
         href = f'<a href="data:application/octet-stream;base64,{b64}" download="{pdf_output}">📄 Descargar PDF con recomendaciones</a>'
         st.markdown(href, unsafe_allow_html=True)
     
+    
 
