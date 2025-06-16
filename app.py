@@ -33,7 +33,7 @@ if not st.session_state.cuestionario_iniciado:
         st.session_state.cuestionario_iniciado = True
 
     # Enlace HTML para Integridad -> abre nueva pestaña
-    integridad_url = "https://guia-cloud-herramienta.streamlit.app/"
+    integridad_url = "https://guia-cloud-herramientas.streamlit.app"
     col2.markdown(
         f'''
         <a href="{integridad_url}">
