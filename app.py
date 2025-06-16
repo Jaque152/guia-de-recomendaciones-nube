@@ -17,7 +17,7 @@ if "cuestionario_iniciado" not in st.session_state:
 if not st.session_state.cuestionario_iniciado:
     st.title("Guía de recomendaciones para la selección de proveedor de servicios en la nube")
     st.markdown("""
-    Esta herramienta sirve como guía para elegir el proveedor que mejor se adapte a las necesidades del proyecto.
+    Esta herramienta sirve como guía para elegir el proveedor que mejor se adapte a las necesidades del usuario de acuerdo con los servicios que ofrecen AWS, GCP y Azure enfocada en servicos de:.
     - Almacenamiento
     - Bases de datos
     - Inteligencia Artificial
