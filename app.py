@@ -33,10 +33,10 @@ if not st.session_state.cuestionario_iniciado:
         st.session_state.cuestionario_iniciado = True
 
     # Enlace HTML para Integridad -> abre nueva pestaña
-    youtube_url = "https://www.youtube.com/watch?v=TU_VIDEO_ID"
+    integridad_url = "https://guia-cloud-herramienta.streamlit.app/"
     col2.markdown(
         f'''
-        <a href="{youtube_url}" target="_blank">
+        <a href="{integridad_url}">
             <button style="
                 background-color: #f44336;
                 color: white;
