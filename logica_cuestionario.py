@@ -1,284 +1,508 @@
-##--- Lógica del cuestionario ---##
+# logica_cuestionario.py
 
-from reglas_combinacionales import reglas_combinacionales, cumple_condicion_struct
 import json
 import os
+from reglas_combinacionales import reglas_combinacionales, cumple_condicion_struct
 
+# --- Constantes y carga de datos ---
 PROVEEDORES = ["AWS", "GCP", "Azure"]
+AREAS = ["mv", "contenedores", "almacenamiento", "bd", "ia", "scraping"]
+FACTOR_PESO_FUNCIONAL = 1
 
-def aplicar_reglas_combinacionales(res, scores, razones):
-    for regla in reglas_combinacionales:
-        if cumple_condicion_struct(res, regla["condiciones"]):
-            proveedores = [regla["proveedor"]] if isinstance(regla["proveedor"], str) else regla["proveedor"]
-            for prov in proveedores:
-                scores[prov] += regla["puntos"]
-                razones[prov].append(regla["descripcion"])
+# Máximo nivel (0–5) que cada proveedor ofrece por criterio de adecuación
+NIVELES_MAXIMOS = {
+    "confidencialidad": {"AWS": 5, "GCP": 5, "Azure": 5},
+    "costos":           {"AWS": 3, "GCP": 5, "Azure": 3},
+    "disponibilidad":   {"AWS": 5, "GCP": 3, "Azure": 3},
+    "integridad":       {"AWS": 5, "GCP": 3, "Azure": 5},
+}
 
-def evaluar_respuestas(res):
-    scores = {p: 0 for p in PROVEEDORES}
-    razones = {p: [] for p in PROVEEDORES}
+# Cargar matriz de confidencialidad
+with open(os.path.join(os.path.dirname(__file__), "confidencialidad_niveles.json"), encoding="utf-8") as f:
+    MATRIZ_CONF = json.load(f)
 
-    # --- Normalización previa para reglas combinacionales ---
-   # Convertir sliders (1-5) a texto SOLO para reglas combinadas
-    nivel_textual = lambda x: "Bajo" if x <= 2 else "Medio" if x == 3 else "Alta"
-    res["costo_texto"] = nivel_textual(res.get("costo", 3))
-    res["disponibilidad_texto"] = nivel_textual(res.get("disponibilidad", 3))
-    if res.get("enfoque_seguridad") in ["Confidencialidad", "Ambos"]:
-        res["confidencialidad_texto"] = nivel_textual(res.get("confidencialidad", 3))
-    if res.get("enfoque_seguridad") in ["Integridad", "Ambos"]:
-        res["integridad_texto"] = nivel_textual(res.get("integridad", 3))
-
-    if res.get("bd_tipo") == "Relacional":
-        res["bd_motor_relacional"] = res.get("bd_motor")
-    # elif res.get("bd_tipo") == "No relacional":
-    #     res["bd_motor_norelacional"] = res.get("bd_motor")
-
-    # --- MÁQUINAS VIRTUALES ---
-    if res.get("mv_requiere") == "Sí":
-        tipo = res.get("mv_tipo")
-        if tipo == "Optimización de CPU":
-            scores["Azure"] += 1
-            razones["Azure"].append("Proporciona núcleos reales y no virtuales (+1)")
-        if tipo in ["Optimización de memoria", "Aceleradas por GPU"]:
-            for p in ["AWS", "Azure"]:
-                scores[p] += 1
-                razones[p].append(f"Mejor para cargas de trabajo especializadas (+1)")
-        if tipo == "Optimización de almacenamiento":
-            for p in ["AWS", "Azure"]:
-                scores[p] += 1
-                razones[p].append("MV optimizada para almacenamiento (+1)")
-
-        so = res.get("mv_sistemas") or []
-        if "MacOs" in so:
-            scores["AWS"] += 1
-            razones["AWS"].append("Solo AWS ofrece soporte para MacOS de forma nativa (+1)")
-        
-        if res.get("mv_escalamiento_predictivo") == "Sí":
-            for p in ["AWS", "GCP"]:
-                scores[p] += 1
-                razones[p].append("Escalamiento predictivo (+1)")
-
-        if res.get("mv_autoescalamiento") == "Sí":
-            scores["GCP"] += 1
-            razones["GCP"].append("Ofrece el mejor soporte nativo para auto-escalamiento (+1)")
-
-        if res.get("mv_hibernacion") == "Sí":
-            for p in ["AWS", "GCP"]:
-                scores[p] += 1
-                razones[p].append("Hibernación o suspensión (+1)")
-
-    # --- CONTENEDORES ---
-    if res.get("contenedores") == "Sí":
-        scores["GCP"] += 1
-        razones["GCP"].append("Contenedores/Kubernetes (+1)")
-
-    # --- BASES DE DATOS ---
-    if res.get("bd_requiere") == "Sí":
-        if res.get("bd_tipo") == "Relacional":
-            motor = res.get("bd_motor")
-            if motor == "MySQL":
-                for p in ["AWS", "GCP", "Azure"]:
-                    scores[p] += 1
-                    razones[p].append("Soporte nativo para motor MySQL (+1)")
-            elif motor in ["SQL Server", "PostgreSQL"]:
-                for p in ["AWS", "GCP", "Azure"]:
-                    scores[p] += 1
-                    razones[p].append(f"Motor {motor} (+1)")
-            elif motor == "Oracle":
-                scores["AWS"] += 1
-                razones["AWS"].append("AWS RDS ofrece soporte destacado para Oracle (+1)")
-            
-
-        elif res.get("bd_tipo") == "No relacional":
-            tipo_esc = res.get("bd_escalabilidad_no_rel")
-            if tipo_esc == "Escalabilidad automática con réplicas de lectura":
-                scores["AWS"] += 1
-                razones["AWS"].append("AWS ofrece capacidad de BD no relacional con réplicas de lectura automáticas (+1)")
-            elif tipo_esc == "Escalabilidad automática con ajuste de capacidad":
-                 # Azure y AWS destacan en esto con Cosmos DB y DynamoDB 
-                for p in ["AWS", "Azure"]:
-                    scores[p] += 1
-                    razones[p].append("Capacidad de BD no relacional con ajuste automático de capacidad (+1)")
-
-            elif tipo_esc == "Escalabilidad horizontal con fragmentación automática":
-                # Los tres proveedores destacan en esto (sharding/partitioning automático).
-                for p in ["AWS", "GCP", "Azure"]:
-                    scores[p] += 1
-                    razones[p].append("Capacidad de BD no relacional con fragmentación automática (+1)")
-            
-    # --- IA / ML ---
-    if res.get("ia_requiere") == "Sí":
-        tipo = res.get("ia_tipo")
-        if tipo == "Uso general":
-            if res.get("costo", 3) <= 2:
-                scores["GCP"] += 1
-                razones["GCP"].append("IA general + costo bajo (+1)")
-        elif tipo == "Especializado":
-            esp = res.get("ia_servicios_especializados")
-            if esp == "Reconocimiento de voz":
-                if res.get("voz_idiomas") == "Sí":
-                    for p in ["Azure", "GCP"]:
-                        scores[p] += 1
-                        razones[p].append("Reconocimiento de voz multilenguaje (+1)")
-                else:
-                    for p in PROVEEDORES:
-                        scores[p] += 1
-                        razones[p].append("Reconocimiento de voz inglés (+1)")
-            elif esp == "Convertir Texto a Voz":
-                if res.get("voz_clonacion") == "Sí":
-                    for p in ["Azure", "GCP"]:
-                        scores[p] += 1
-                        razones[p].append("Clonación de voz (+1)")
-                    if res.get("voz_naturalidad") == "Muy natural":
-                        scores["Azure"] += 1
-                        razones["Azure"].append("Voz muy natural (+1)")
-                    elif res.get("voz_naturalidad") == "Medianamente natural":
-                        scores["GCP"] += 1
-                        razones["GCP"].append("Voz medianamente natural (+1)")
-                    elif res.get("voz_naturalidad") == "Poco natural":
-                        scores["AWS"] += 1
-                        razones["AWS"].append("Voz poco natural (+1)")
-            elif esp == "Visión":
-                if res.get("vision_lugares") == "Sí":
-                    scores["GCP"] += 1
-                    razones["GCP"].append("Reconocimiento de lugares emblemáticos (+1)")
-                if res.get("vision_celebridades") == "Sí":
-                    scores["AWS"] += 1
-                    razones["AWS"].append("Reconocimiento de celebridades (+1)")
-            elif esp == "Procesamiento de lenguaje natural":
-                if res.get("pln_analisis") == "Sí":
-                    scores["GCP"] += 1
-                    razones["GCP"].append("Análisis avanzado de texto (+1)")
-            elif esp == "Traducción":
-                if res.get("traduccion_personalizada") == "Sí":
-                    for p in ["Azure", "GCP"]:
-                        scores[p] += 1
-                        razones[p].append("Modelos personalizados de traducción (+1)")
-
-    #------WEB SCRAPPING----------
-   
-    if res.get("scraping") == "Sí":
-        scores["AWS"] += 1
-        razones["AWS"].append("AWS Lambda + Scrapy permite scraping ligero con CloudWatch para automatización (+1)")
-        
-        scores["GCP"] += 1
-        razones["GCP"].append("GCP Cloud Functions + Puppeteer está optimizado para scraping dinámico con herramientas JavaScript (+1)")
-
-        scores["Azure"] += 1
-        razones["Azure"].append("Azure Functions + Playwright facilita scraping con soporte a navegadores y manejo estructurado (+1)")
-
-
-    # --- PRIORIDADES ---
-    costo = res.get("costo", 3)
-    if costo <= 2:
-        scores["GCP"] += 1
-        razones["GCP"].append("Costo bajo: GCP destacado. Ofrece créditos gratuitos de $300 USD.(+1)")
-    elif costo >= 4:
-        scores["AWS"] += 1
-        razones["AWS"].append("Costo alto: AWS (+1)")
-
-    disponibilidad = res.get("disponibilidad", 3)
-    if disponibilidad >= 4:
-        scores["AWS"] += 1
-        razones["AWS"].append("Alta disponibilidad: AWS (+1)")
-
-    confidencialidad = res.get("confidencialidad", 3)
-    # if confidencialidad >= 4:
-    #     scores["Azure"] += 1
-    #     razones["Azure"].append("Alta confidencialidad: Azure (+1)")
-        
-
-    # Aplicar reglas combinadas
-    res_for_reglas = res.copy()
-    res_for_reglas["costo"] = res.get("costo_texto")
-    res_for_reglas["disponibilidad"] = res.get("disponibilidad_texto")
-    res_for_reglas["confidencialidad"] = res.get("confidencialidad_texto")
-    if res.get("enfoque_seguridad") in ["Integridad", "Ambos"]:
-        res_for_reglas["integridad"] = res.get("integridad_texto")
-    aplicar_reglas_combinacionales(res_for_reglas, scores, razones)
-
-    return scores, razones, res
-# Función para obtener servicios detallados
-ruta_servicios = os.path.join(os.path.dirname(__file__), "servicios.json")
-with open(ruta_servicios, "r", encoding="utf-8") as f:
+# Cargar catálogo de servicios
+with open(os.path.join(os.path.dirname(__file__), "servicios.json"), encoding="utf-8") as f:
     SERVICIOS = json.load(f)
 
-def construir_servicio_detallado(nombre, proveedor):
-    for categoria in SERVICIOS[proveedor]:
-        subcat = SERVICIOS[proveedor][categoria]
-        if isinstance(subcat, dict):
-            for tipo in subcat:
-                for s in subcat[tipo]:
-                    if isinstance(s, dict) and s.get("nombre") == nombre:
-                        return s
-        elif isinstance(subcat, list):
-            for s in subcat:
-                if isinstance(s, dict) and s.get("nombre") == nombre:
-                    return s
-    return {"nombre": nombre}
+
+def obtener_nivel_confidencialidad(servicio_nombre, proveedor, nivel_deseado):
+    """
+    Devuelve listado de dicts con los detalles de cumplimiento de niveles de confidencialidad
+    hasta el nivel_deseado (o todos si nivel_deseado es muy alto),
+    y el máximo nivel encontrado para ese servicio y proveedor.
+    """
+    niveles_cumplidos = []
+    max_nivel_encontrado = 0
+
+    for entry in MATRIZ_CONF.get(proveedor, []):
+        # Asegurarse de que 'Servicio' es una lista para una verificación consistente
+        servicios_en_entrada = [entry["Servicio"]] if isinstance(entry["Servicio"], str) else entry["Servicio"]
+        
+        # Normalizar el nombre del servicio para la comparación
+        nombre_servicio_lower = servicio_nombre.lower()
+
+        # Si el servicio_nombre es un alias que debe mapearse a un servicio real
+        # Este es un punto crucial para las VMs
+        if nombre_servicio_lower == "maquinas virtuales":
+            # Si el servicio es "maquinas virtuales", buscamos los servicios específicos de VM
+            # en la matriz de confidencialidad (ej: "Amazon EC2", "Compute Engine", "Azure Virtual Machines")
+            # Este mapeo es un ejemplo, se debería basar en cómo están nombrados en confidencialidad_niveles.json
+            if proveedor == "AWS":
+                servicios_en_entrada = ["Amazon EC2"]
+            elif proveedor == "GCP":
+                servicios_en_entrada = ["Compute Engine"]
+            elif proveedor == "Azure":
+                servicios_en_entrada = ["Azure Virtual Machines"]
+            else:
+                servicios_en_entrada = [] # No hay mapeo específico, no se encontrarán niveles
+        elif nombre_servicio_lower == "almacenamiento de objetos":
+            if proveedor == "AWS":
+                servicios_en_entrada = ["Amazon S3"]
+            elif proveedor == "GCP":
+                servicios_en_entrada = ["Cloud Storage"]
+            elif proveedor == "Azure":
+                servicios_en_entrada = ["Azure Blob Storage"]
+        elif nombre_servicio_lower == "almacenamiento de bloques":
+            if proveedor == "AWS":
+                servicios_en_entrada = ["Amazon EBS"]
+            elif proveedor == "GCP":
+                servicios_en_entrada = ["Persistent Disk"]
+            elif proveedor == "Azure":
+                servicios_en_entrada = ["Azure Disk Storage"]
+        elif nombre_servicio_lower == "almacenamiento de archivos":
+            if proveedor == "AWS":
+                servicios_en_entrada = ["Amazon EFS"]
+            elif proveedor == "GCP":
+                servicios_en_entrada = ["Filestore"]
+            elif proveedor == "Azure":
+                servicios_en_entrada = ["Azure Files"]
+
+        # Verificar si el servicio solicitado está en la lista de servicios de la entrada de la matriz
+        if any(svc_in_entry.lower() == nombre_servicio_lower for svc_in_entry in servicios_en_entrada):
+            nivel_actual = entry["Nivel de confidencialidad"]
+            if nivel_actual <= nivel_deseado:
+                niveles_cumplidos.append({
+                    "Nivel de confidencialidad": nivel_actual,
+                    "Como se cumple para datos en reposo": entry.get("Como se cumple para datos en reposo", "No especificado"),
+                    "Como se cumple para datos en transito": entry.get("Como se cumple para datos en transito", "No especificado")
+                })
+            # Siempre actualizar el nivel máximo encontrado, independientemente del nivel deseado
+            if nivel_actual > max_nivel_encontrado:
+                max_nivel_encontrado = nivel_actual
+
+    # Ordenar los niveles cumplidos por "Nivel de confidencialidad"
+    niveles_cumplidos.sort(key=lambda x: x["Nivel de confidencialidad"])
+    return niveles_cumplidos, max_nivel_encontrado
+
 
 def obtener_servicios_relevantes(respuestas, proveedor):
-    relevantes = []
-    if respuestas.get("mv_requiere") == "Sí":
-        tipo_deseado = respuestas.get("mv_tipo", "").strip()
-        servicios_mv = SERVICIOS[proveedor].get("mv", [])
-        for s in servicios_mv:
-            if s.get("tipo") == tipo_deseado:
-                relevantes.append(s)
+    """
+    Retorna una lista de servicios del JSON que coinciden con las respuestas del usuario.
+    Normaliza las claves de entrada de 'respuestas' para que coincidan con la nueva estructura
+    esperada por esta función.
+    """
+    rel = []
 
-    # Filtrado especial: si es AWS y se eligió MacOS, mostrar solo MVs que incluyan "mac" en el nombre
-    if proveedor == "AWS" and "MacOs" in respuestas.get("mv_sistemas", []):
-        # Filtra la lista para mantener solo las instancias cuyo nombre contenga "mac"
-        relevantes = [
-            s for s in relevantes
-            if "mac" in s.get("nombre", "").lower()
-        ]
+    # Mapeo de las claves del cuestionario a las claves internas de logica_cuestionario.py
+    # y los servicios.json si es necesario.
+    # Estas claves ahora vienen de tu app.py actualizada.
+    mv_requiere = respuestas.get("mv_requiere")
+    mv_tipo = respuestas.get("mv_tipo")
+    mv_sistemas = respuestas.get("mv_sistemas", [])
+    mv_escalabilidad_automatica = respuestas.get("mv_escalabilidad_automatica")
+    mv_hibernacion = respuestas.get("mv_hibernacion")
 
-    tipo_alm = respuestas.get("almacenamiento", "").lower()
-    if tipo_alm in SERVICIOS[proveedor].get("almacenamiento", {}):
-        relevantes.extend(SERVICIOS[proveedor]["almacenamiento"][tipo_alm])
+    contenedores_requiere = respuestas.get("contenedores_requiere")
+    contenedores_orquestador = respuestas.get("contenedores_orquestador")
+    contenedores_servless = respuestas.get("contenedores_servless")
 
-    if respuestas.get("bd_requiere") == "Sí":
-        tipo_bd = respuestas.get("bd_tipo")
-        if tipo_bd == "Relacional":
-            relevantes.extend(SERVICIOS[proveedor]["bd"].get("relacional", []))
-        elif tipo_bd == "No relacional":
-            relevantes.extend(SERVICIOS[proveedor]["bd"].get("no_relacional", []))
+    almacenamiento_requiere = respuestas.get("almacenamiento_requiere")
+    almacenamiento_tipo = respuestas.get("almacenamiento_tipo")
+    almacenamiento_acceso_frecuente = respuestas.get("almacenamiento_acceso_frecuente")
+    almacenamiento_resiliencia = respuestas.get("almacenamiento_resiliencia")
 
-    if respuestas.get("ia_requiere") == "Sí":
-        ia_data = SERVICIOS[proveedor].get("ia", {})
-        if respuestas.get("ia_tipo") == "Uso general":
-            relevantes.extend(ia_data.get("general", []))
-        elif respuestas.get("ia_tipo") == "Especializado":
-            ia_data = SERVICIOS[proveedor].get("ia", {})
-            mapa_claves = {
-                "Reconocimiento de voz": "voz",
-                "Convertir Texto a Voz": "texto_a_voz",
-                "Visión": "vision",
-                "Procesamiento de lenguaje natural": "pln",
-                "Traducción": "traduccion"
-            }
-            seleccion_ia_usuario = respuestas.get("ia_servicios_especializados", [])
-            if isinstance(seleccion_ia_usuario, str):
-                seleccion_ia_usuario = [seleccion_ia_usuario]  # Convertir a lista
+    bd_requiere = respuestas.get("bd_requiere")
+    bd_tipo = respuestas.get("bd_tipo")
+    bd_escalabilidad_lectura = respuestas.get("bd_escalabilidad_lectura")
+    bd_analitica = respuestas.get("bd_analitica")
 
-            for seleccion_usuario in seleccion_ia_usuario:
-                json_key = mapa_claves.get(seleccion_usuario)
-                if json_key:
-                    lista_servicios_subtipo = ia_data.get(json_key)
-                    if isinstance(lista_servicios_subtipo, list):
-                        relevantes.extend(lista_servicios_subtipo)
+    ia_requiere = respuestas.get("ia_requiere")
+    ia_tipo = respuestas.get("ia_tipo", []) # Ahora es una lista desde el multiselect
+    ia_modelos_preentrenados = respuestas.get("ia_modelos_preentrenados")
 
-    # --- SCRAPING ---       
-    if respuestas.get("scraping") == "Sí":
-        relevantes.extend(SERVICIOS[proveedor].get("scraping", []))
+    scraping_requiere = respuestas.get("scraping_requiere")
+    scraping_volumen = respuestas.get("scraping_volumen")
+    scraping_anti_bloqueo = respuestas.get("scraping_anti_bloqueo")
+    scraping_headless = respuestas.get("scraping_headless")
+
+    # Máquinas virtuales
+    if mv_requiere == "Sí":
+        # Para MV, podemos agregar un servicio genérico "Maquinas Virtuales"
+        # y la lógica de confidencialidad en obtener_nivel_confidencialidad se encargará del mapeo interno
+        # a servicios específicos de cada proveedor (EC2, Compute Engine, Azure VM).
+        # Esto es para que haya un 'servicio' que pueda ser buscado en confidencialidad_niveles.json
+        rel.append({"nombre": "Maquinas Virtuales", "tipo": mv_tipo})
+
+    # Contenedores
+    if contenedores_requiere == "Sí":
+        cont = SERVICIOS[proveedor].get("contenedores")
+        if cont: # Si es un diccionario (servicio único) o una lista de servicios
+            if isinstance(cont, dict):
+                rel.append(cont)
+            elif isinstance(cont, list):
+                rel.extend(cont)
+
+    # Almacenamiento
+    if almacenamiento_requiere == "Sí" and almacenamiento_tipo:
+        # Mapear el tipo de almacenamiento a las claves en servicios.json
+        # y para confidencialidad_niveles.json
+        if almacenamiento_tipo == "Objetos":
+            serv_data = SERVICIOS[proveedor].get("almacenamiento", {}).get("objetos")
+            if serv_data:
+                rel.extend(serv_data)
+        elif almacenamiento_tipo == "Bloques":
+            serv_data = SERVICIOS[proveedor].get("almacenamiento", {}).get("bloques")
+            if serv_data:
+                rel.extend(serv_data)
+        elif almacenamiento_tipo == "Archivos":
+            serv_data = SERVICIOS[proveedor].get("almacenamiento", {}).get("archivos")
+            if serv_data:
+                rel.extend(serv_data)
+        # Si es "Mixto", quizás añadir todos los tipos de almacenamiento si existen
+        elif almacenamiento_tipo == "Mixto":
+             for tipo_key in ["objetos", "bloques", "archivos"]:
+                serv_data = SERVICIOS[proveedor].get("almacenamiento", {}).get(tipo_key)
+                if serv_data:
+                    rel.extend(serv_data)
+
+    # Bases de datos
+    if bd_requiere == "Sí":
+        bd_seccion = SERVICIOS[proveedor].get("bd", {})
+        if bd_tipo == "Relacional":
+            rel.extend(bd_seccion.get("relacional", []))
+        elif bd_tipo.startswith("NoSQL"): # Cubre todos los tipos NoSQL
+            rel.extend(bd_seccion.get("no_relacional", [])) # Asumiendo un único array para NoSQL
+
+    # IA
+    if ia_requiere == "Sí":
+        ia_sec = SERVICIOS[proveedor].get("ia", {})
+        # Si ia_tipo es una lista (multiselect en app.py)
+        if "Procesamiento de Lenguaje Natural (PLN)" in ia_tipo:
+            rel.extend(ia_sec.get("pln", []))
+        if "Visión por Computadora" in ia_tipo:
+            rel.extend(ia_sec.get("vision", []))
+        if "Voz (Síntesis/Reconocimiento)" in ia_tipo:
+            # Aquí podrías decidir si añadir "voz" o "texto_a_voz" o ambos
+            rel.extend(ia_sec.get("voz", []))
+            rel.extend(ia_sec.get("texto_a_voz", []))
+        if "Recomendación/Personalización" in ia_tipo:
+            rel.extend(ia_sec.get("recomendacion", []))
+        if "Análisis predictivo" in ia_tipo:
+            rel.extend(ia_sec.get("analisis_predictivo", []))
+        
+        # Si la respuesta es "Uso general" (que ahora es una opción del multiselect 'ia_tipo')
+        if "Uso general" in ia_tipo:
+            rel.extend(ia_sec.get("general", [])) # Asegúrate que existe una sección 'general' en servicios.json para IA
+
+    # Web scraping
+    if scraping_requiere == "Sí":
+        rel.extend(SERVICIOS[proveedor].get("scraping", []))
+
+    # Asegurarse de que los servicios devueltos son únicos
+    unique_services = {}
+    for service in rel:
+        name = service.get("nombre")
+        if name and name not in unique_services:
+            unique_services[name] = service
     
-    # --- CONTENEDORES ---
-    if respuestas.get("contenedores") == "Sí":
-        contenedor = SERVICIOS[proveedor].get("contenedores")
-        if isinstance(contenedor, dict):
-            relevantes.append(contenedor)
-        elif isinstance(contenedor, list):
-            relevantes.extend(contenedor)
+    return list(unique_services.values())
 
-    return relevantes
+def aplicar_reglas_combinacionales(respuestas, scores, razones):
+    """
+    Añade puntos extra según reglas_combinacionales.py.
+    Asegura que las razones son únicas usando un set temporal.
+    """
+    for regla in reglas_combinacionales:
+        if cumple_condicion_struct(respuestas, regla["condiciones"]):
+            proveedores = regla["proveedor"]
+            if isinstance(proveedores, str):
+                proveedores = [proveedores]
+            for p in proveedores:
+                if p in scores:
+                    scores[p] += regla["puntos"]
+                    # Añadir a un set para asegurar unicidad antes de añadir a la lista final
+                    if regla["descripcion"] not in razones[p]: # Solo añadir si no existe ya
+                        razones[p].add(regla["descripcion"]) # Usar .add para sets
+
+
+def evaluar_funcional(res):
+    """
+    Calcula la puntuación funcional: 1 punto por cada área satisfecha,
+    luego multiplica cada punto por FACTOR_PESO_FUNCIONAL.
+    Las razones se almacenan en un set para evitar duplicados.
+    """
+    cont = {p: {a: 0 for a in AREAS} for p in PROVEEDORES} # Corregido typo
+    razones = {p: set() for p in PROVEEDORES} # Usar set para razones
+
+    # MV
+    if res.get("mv_requiere") == "Sí":
+        area = "mv"
+        tipo = res.get("mv_tipo")
+        so = res.get("mv_sistemas", [])
+        
+        # Mapeo de tipos de MV a proveedores y razones
+        if tipo == "Optimización de CPU":
+            cont["Azure"][area] += 1
+            razones["Azure"].add("CPU-Optimized en Azure (+1).")
+        if tipo in ["Optimización de memoria", "Aceleradores de hardware (GPU/FPGA)"]:
+            for p in ("AWS", "Azure", "GCP"): # Añadimos GCP también si soporta estas cargas
+                cont[p][area] += 1
+                razones[p].add(f"Carga especializada ({tipo}) en {p} (+1).")
+        if tipo == "Cómputo de alto rendimiento": # Nuevo tipo de MV en tu app.py
+            for p in PROVEEDORES:
+                cont[p][area] += 1
+                razones[p].add(f"Cómputo de alto rendimiento en {p} (+1).")
+
+        if "MacOs" in so: # Revisa si el SO es macOS
+            cont["AWS"][area] += 1
+            razones["AWS"].add("Soporte macOS nativo en AWS (+1).")
+        elif "Linux" in so or "Windows" in so or "Ambos" in so: # Si se selecciona Linux/Windows/Ambos
+             for p in PROVEEDORES:
+                cont[p][area] += 1
+                razones[p].add(f"Soporte para {', '.join(so)} en {p} (+1).")
+
+        if res.get("mv_escalabilidad_automatica") == "Sí": # Renombrado
+            for p in ("AWS","GCP","Azure"): # Los tres ofrecen autoescalamiento
+                cont[p][area] += 1
+                razones[p].add(f"Escalabilidad automática para MV en {p} (+1).")
+        if res.get("mv_hibernacion") == "Sí":
+            for p in ("AWS","GCP"): # Azure también tiene opciones similares ahora
+                cont[p][area] += 1
+                razones[p].add(f"Hibernación de MV en {p} (+1).")
+
+
+    # Contenedores
+    if res.get("contenedores_requiere") == "Sí":
+        if res.get("contenedores_orquestador") == "Kubernetes":
+            for p in PROVEEDORES: # Los tres tienen Kubernetes
+                cont[p]["contenedores"] += 1
+                razones[p].add(f"Orquestación de contenedores con Kubernetes en {p} (+1).")
+        if res.get("contenedores_servless") == "Sí":
+            cont["AWS"]["contenedores"] += 1 # Ej: AWS Fargate
+            cont["GCP"]["contenedores"] += 1 # Ej: Cloud Run
+            cont["Azure"]["contenedores"] += 1 # Ej: Azure Container Instances / Azure Container Apps
+            razones["AWS"].add("Enfoque serverless para contenedores en AWS (+1).")
+            razones["GCP"].add("Enfoque serverless para contenedores en GCP (+1).")
+            razones["Azure"].add("Enfoque serverless para contenedores en Azure (+1).")
+
+    # Almacenamiento
+    if res.get("almacenamiento_requiere") == "Sí":
+        tipo_alm = res.get("almacenamiento_tipo")
+        if tipo_alm == "Objetos":
+            for p in PROVEEDORES:
+                cont[p]["almacenamiento"] += 1
+                razones[p].add(f"Almacenamiento de objetos en {p} (+1).")
+        elif tipo_alm == "Bloques":
+            for p in PROVEEDORES:
+                cont[p]["almacenamiento"] += 1
+                razones[p].add(f"Almacenamiento de bloques en {p} (+1).")
+        elif tipo_alm == "Archivos":
+            for p in PROVEEDORES:
+                cont[p]["almacenamiento"] += 1
+                razones[p].add(f"Almacenamiento de archivos en {p} (+1).")
+        elif tipo_alm == "Mixto": # Si el usuario eligió mixto, se valoran todos
+            for p in PROVEEDORES:
+                cont[p]["almacenamiento"] += 1
+                razones[p].add(f"Almacenamiento de objetos, bloques y archivos en {p} (+1).")
+        
+        if res.get("almacenamiento_acceso_frecuente") == "Sí":
+            for p in PROVEEDORES:
+                cont[p]["almacenamiento"] += 1
+                razones[p].add(f"Acceso frecuente a datos en {p} (+1).")
+        if res.get("almacenamiento_resiliencia") == "Sí":
+            for p in PROVEEDORES:
+                cont[p]["almacenamiento"] += 1
+                razones[p].add(f"Alta resiliencia y durabilidad de datos en {p} (+1).")
+
+    # Bases de datos
+    if res.get("bd_requiere") == "Sí":
+        tipo_bd = res.get("bd_tipo")
+        if tipo_bd == "Relacional":
+            for p in PROVEEDORES:
+                cont[p]["bd"] += 1
+                razones[p].add(f"Bases de datos relacionales en {p} (+1).")
+        elif tipo_bd.startswith("NoSQL"): # Cubre todos los tipos NoSQL
+            for p in PROVEEDORES:
+                cont[p]["bd"] += 1
+                razones[p].add(f"Bases de datos NoSQL ({tipo_bd.split('(')[1].replace(')', '')}) en {p} (+1).")
+        
+        if res.get("bd_escalabilidad_lectura") == "Sí":
+            for p in PROVEEDORES:
+                cont[p]["bd"] += 1
+                razones[p].add(f"Alta escalabilidad para lecturas de BD en {p} (+1).")
+        if res.get("bd_analitica") == "Sí":
+            for p in PROVEEDORES:
+                cont[p]["bd"] += 1
+                razones[p].add(f"Capacidades de analítica/BI en BD en {p} (+1).")
+
+    # IA / ML
+    if res.get("ia_requiere") == "Sí":
+        ia_tipos_seleccionados = res.get("ia_tipo", [])
+        
+        if "Procesamiento de Lenguaje Natural (PLN)" in ia_tipos_seleccionados:
+            for p in PROVEEDORES:
+                cont[p]["ia"] += 1
+                razones[p].add(f"Servicios de PLN en {p} (+1).")
+        if "Visión por Computadora" in ia_tipos_seleccionados:
+            for p in PROVEEDORES:
+                cont[p]["ia"] += 1
+                razones[p].add(f"Servicios de Visión por Computadora en {p} (+1).")
+        if "Voz (Síntesis/Reconocimiento)" in ia_tipos_seleccionados:
+            for p in PROVEEDORES:
+                cont[p]["ia"] += 1
+                razones[p].add(f"Servicios de Voz (TTS/STT) en {p} (+1).")
+        if "Recomendación/Personalización" in ia_tipos_seleccionados:
+            for p in PROVEEDORES:
+                cont[p]["ia"] += 1
+                razones[p].add(f"Servicios de Recomendación/Personalización en {p} (+1).")
+        if "Análisis predictivo" in ia_tipos_seleccionados:
+            for p in PROVEEDORES:
+                cont[p]["ia"] += 1
+                razones[p].add(f"Servicios de Análisis predictivo en {p} (+1).")
+        
+        if res.get("ia_modelos_preentrenados") in ["Pre-entrenados", "Ambos"]:
+            for p in PROVEEDORES:
+                cont[p]["ia"] += 1
+                razones[p].add(f"Soporte para modelos IA pre-entrenados en {p} (+1).")
+        if res.get("ia_modelos_preentrenados") in ["Construir propios", "Ambos"]:
+            for p in PROVEEDORES:
+                cont[p]["ia"] += 1
+                razones[p].add(f"Flexibilidad para construir modelos IA propios en {p} (+1).")
+
+
+    # Scraping
+    if res.get("scraping_requiere") == "Sí":
+        for p in PROVEEDORES:
+            cont[p]["scraping"] += 1
+            razones[p].add(f"Soporte para Web Scraping en {p} (+1).")
+        
+        if res.get("scraping_anti_bloqueo") == "Sí":
+            for p in PROVEEDORES:
+                cont[p]["scraping"] += 1
+                razones[p].add(f"Mecanismos anti-bloqueo para scraping en {p} (+1).")
+        if res.get("scraping_headless") == "Sí":
+            for p in PROVEEDORES:
+                cont[p]["scraping"] += 1
+                razones[p].add(f"Soporte para navegadores headless en {p} (+1).")
+
+    # Multiplicar por factor
+    scores = {p: sum(cont[p].values()) * FACTOR_PESO_FUNCIONAL for p in PROVEEDORES}
+    
+    # Convertir los sets de razones a listas para el retorno
+    # final_razones = {p: list(r) for p, r in razones.items()}
+    final_razones = razones
+    return scores, final_razones
+
+
+def evaluar_adecuacion(res):
+    """
+    Calcula la adecuación por criterio: peso_usuario × (nivel_ofrecido/5).
+    Usa los sliders 'confidencialidad', 'costo', 'disponibilidad', 'integridad'.
+    Las razones se almacenan en un set para evitar duplicados.
+    """
+    pesos = {
+        "confidencialidad": res.get("confidencialidad", 3),
+        "costos":           res.get("costo_texto", "Moderado"), # Ahora 'costo_texto'
+        "disponibilidad":   res.get("disponibilidad", 3),
+        "integridad":       res.get("integridad", 3)
+    }
+    scores = {p: 0.0 for p in PROVEEDORES}
+    razones = {p: set() for p in PROVEEDORES} # Usar set para razones
+
+    # Mapear costo_texto a un valor numérico para cálculo de adecuación
+    costo_map_num = {"Bajo": 5, "Moderado": 3, "Alto": 1} # Inverso para que "Bajo" sea mayor puntuación
+    
+    for crit, tabla in NIVELES_MAXIMOS.items():
+        for p in PROVEEDORES:
+            nivel_ofrecido = tabla.get(p, 0)
+            
+            # Calcular contribución basándose en el tipo de criterio
+            if crit == "costos":
+                # La "puntuación" para costos es inversa: menor costo_texto (Bajo) -> mayor puntuación
+                # Multiplicamos el nivel ofrecido por el mapeo numérico de la prioridad del usuario
+                # NIVELES_MAXIMOS["costos"] ya representa qué tan "barato" es el proveedor (5=muy barato)
+                # Si el usuario quiere costo "Bajo" (5 puntos), y el proveedor es "GCP" (5 puntos), 5*5 = 25
+                # Si el usuario quiere costo "Bajo" (5 puntos), y el proveedor es "AWS" (3 puntos), 5*3 = 15
+                # Dejamos la fórmula estándar para ser consistente. La "adecuación" para costos ya es el NIVELES_MAXIMOS.
+                # Lo importante es que NIVELES_MAXIMOS[costos] ya indica "buenos costos" (más alto = mejor)
+                # El peso del usuario debería enfatizar eso.
+                # Para el costo, si el usuario quiere "Bajo" (peso 5), y el proveedor es bueno en costos (nivel 5), se multiplica.
+                # Si el usuario quiere "Alto" (peso 1), y el proveedor es bueno en costos (nivel 5), se penaliza.
+                # Revertir el peso del usuario para el costo_texto para que "Bajo" sea 5 y "Alto" sea 1.
+                peso_costo_numerico = costo_map_num.get(pesos.get("costos"), 3)
+                contrib = peso_costo_numerico * (nivel_ofrecido / 5) # Multiplicar por el nivel ofrecido normalizado
+                
+            else: # Para confidencialidad, disponibilidad, integridad
+                # El peso del usuario es directo: 5 = muy importante
+                peso_usuario = pesos.get(crit, 0)
+                contrib = peso_usuario * (nivel_ofrecido / 5)
+
+            scores[p] += contrib
+            razones[p].add(
+                f"Adecuación {crit}: {nivel_ofrecido}/5 × peso {pesos.get(crit, 'N/A')} = {contrib:.1f} pts."
+            )
+
+    return scores, razones
+
+
+def evaluar_respuestas(res):
+    """
+    1) Funcional
+    2) Adecuación
+    3) Reglas combinacionales
+    4) Penalización/Advertencia por no alcanzar nivel de confidencialidad
+    Devuelve: final_scores, final_reasons
+    """
+    # 1) Funcional
+    f_scores, f_reasons = evaluar_funcional(res)
+    # 2) Adecuación
+    a_scores, a_reasons = evaluar_adecuacion(res)
+    
+    # 3) Sumar scores y combinar razones (los sets se combinan con union |)
+    final_scores = {p: f_scores.get(p, 0) + a_scores.get(p, 0) for p in PROVEEDORES}
+    final_reasons = {p: f_reasons.get(p, []) + list(a_reasons.get(p, set())) for p in PROVEEDORES}
+    # 4) Reglas combinacionales (modifica final_scores y final_reasons in-place)
+    aplicar_reglas_combinacionales(res, final_scores, final_reasons)
+    
+    # 5) Advertencia: confidencialidad (LÓGICA CORREGIDA para solo mensaje)
+    if res.get("enfoque_seguridad") in ["Confidencialidad", "Ambos"]:
+        nivel_req = res.get("confidencialidad", 3)
+        # peso_conf = res.get("confidencialidad", 3) # No se usa para penalización, solo para mensaje
+
+        for p in PROVEEDORES:
+            # Obtener los servicios relevantes para el proveedor y las respuestas del usuario
+            servicios_relevantes_proveedor = obtener_servicios_relevantes(res, p)
+            
+            if not servicios_relevantes_proveedor:
+                # Si no hay servicios relevantes, no hay nada que evaluar para confidencialidad
+                continue
+
+            for s in servicios_relevantes_proveedor:
+                nombre_servicio = s.get("nombre", "")
+                if not nombre_servicio:
+                    continue
+                
+                # Obtener el máximo nivel de confidencialidad que el servicio ofrece
+                _, max_nivel_ofrecido = obtener_nivel_confidencialidad(nombre_servicio, p, nivel_req)
+                
+                if max_nivel_ofrecido < nivel_req:
+                    # No restar puntos, solo añadir una advertencia
+                    final_reasons[p].add(
+                        f"¡Advertencia! El servicio '{nombre_servicio}' de {p} no alcanza el nivel de confidencialidad requerido de {nivel_req} (máx: {max_nivel_ofrecido})."
+                    )
+    
+    # Convertir los sets de razones a listas antes de devolver
+    final_reasons_list = {p: list(r) for p, r in final_reasons.items()}
+
+    return None, final_reasons_list, final_scores # Devuelve None para el primer valor no usado, y los otros dos

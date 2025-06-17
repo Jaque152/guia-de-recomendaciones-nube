@@ -1,0 +1,1028 @@
+{
+    "AWS": [
+        {
+            "Servicio": "Amazon S3",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Amazon S3",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante AWS Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con AWS Identity and Access Management"
+        },
+        {
+            "Servicio": "Amazon S3",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Amazon S3",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "AWS CloudHSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Amazon S3",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "Cifrado de doble capa (DSSE-KMS) ",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Amazon EBS",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Amazon EBS",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante AWS Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con AWS Identity and Access Management"
+        },
+        {
+            "Servicio": "Amazon EBS",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Amazon EBS",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Amazon EBS",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Amazon EFS",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Amazon EFS",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante AWS Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con AWS Identity and Access Management"
+        },
+        {
+            "Servicio": "Amazon EFS",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Amazon EFS",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "AWS CloudHSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Amazon EFS",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Amazon EKS",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Amazon EKS",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante AWS Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con AWS Identity and Access Management"
+        },
+        {
+            "Servicio": "Amazon EKS",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Amazon EKS",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "AWS CloudHSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Amazon EKS",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "AWS Nitro Enclaves",
+            "Como se cumple para datos en transito": "TLS + entorno aislado y cifrado en memoria"
+        },
+        {
+            "Servicio": "Amazon EC2",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Amazon EC2",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante AWS Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con AWS Identity and Access Management"
+        },
+        {
+            "Servicio": "Amazon EC2",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Amazon EC2",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No todas las instancias EC2 lo usan por defecto",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Amazon EC2",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "Solo ciertos tipos de instancias EC2 lo soportan",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Amazon RDS",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Amazon RDS",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante AWS Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con AWS Identity and Access Management"
+        },
+        {
+            "Servicio": "Amazon RDS",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Amazon RDS",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "AWS CloudHSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Amazon RDS",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "DynamoDB",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "DynamoDB",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante AWS Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con AWS Identity and Access Management"
+        },
+        {
+            "Servicio": "DynamoDB",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "DynamoDB",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "DynamoDB",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Amazon SageMaker",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Amazon SageMaker",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante AWS Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con AWS Identity and Access Management"
+        },
+        {
+            "Servicio": "Amazon SageMaker",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Amazon SageMaker",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "Requiere configuracion adicional de AWS CloudHSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Amazon SageMaker",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": ["Amazon Transcribe", "Amazon Lex"],
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": ["Amazon Transcribe", "Amazon Lex"],
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante AWS Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con AWS Identity and Access Management"
+        },
+        {
+            "Servicio": ["Amazon Transcribe", "Amazon Lex"],
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": ["Amazon Transcribe", "Amazon Lex"],
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": ["Amazon Transcribe", "Amazon Lex"],
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Amazon Polly",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Amazon Polly",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante AWS Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con AWS Identity and Access Management"
+        },
+        {
+            "Servicio": "Amazon Polly",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Amazon Polly",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Amazon Polly",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Amazon Rekognition",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Amazon Rekognition",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante AWS Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con AWS Identity and Access Management"
+        },
+        {
+            "Servicio": "Amazon Rekognition",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Amazon Rekognition",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Amazon Rekognition",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Amazon Comprehend",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Amazon Comprehend",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante AWS Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con AWS Identity and Access Management"
+        },
+        {
+            "Servicio": "Amazon Comprehend",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Amazon Comprehend",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Amazon Comprehend",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Amazon Translate",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Amazon Translate",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante AWS Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con AWS Identity and Access Management"
+        },
+        {
+            "Servicio": "Amazon Translate",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Amazon Translate",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Amazon Translate",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "AWS Lambda + Scrapy",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "AWS Lambda + Scrapy",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante AWS Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con AWS Identity and Access Management"
+        },
+        {
+            "Servicio": "AWS Lambda + Scrapy",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "AWS Lambda + Scrapy",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "AWS Lambda + Scrapy",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "AWS Nitro Enclaves",
+            "Como se cumple para datos en transito": "TLS + entorno aislado y cifrado en memoria"
+        }
+    ],
+    "GCP": [
+        {
+            "Servicio": "Cloud Storage",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Cloud Storage",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Cloud Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2y gestión de identidades con Google Identity and Access Management"
+        },
+        {
+            "Servicio": "Cloud Storage",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Cloud Storage",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "Cloud HSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Cloud Storage",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Persistent Disk",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Persistent Disk",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Cloud Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Google Identity and Access Management"
+        },
+        {
+            "Servicio": "Persistent Disk",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Persistent Disk",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "Cloud HSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Persistent Disk",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Filestore",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Filestore",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Cloud Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Google Identity and Access Management"
+        },
+        {
+            "Servicio": "Filestore",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Filestore",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Filestore",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Google Kubernetes Engine (GKE)",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Google Kubernetes Engine (GKE)",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Cloud Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Google Identity and Access Management"
+        },
+        {
+            "Servicio": "Google Kubernetes Engine (GKE)",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Google Kubernetes Engine (GKE)",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "Cloud HSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Google Kubernetes Engine (GKE)",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "Confidential VMs",
+            "Como se cumple para datos en transito": "TLS + entorno aislado y cifrado en memoria"
+        },
+        {
+            "Servicio": "Compute Engine",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cada disco tiene una clave de cifrado única generada por Google.",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Compute Engine",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Cloud Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Google Identity and Access Management"
+        },
+        {
+            "Servicio": "Compute Engine",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Compute Engine",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "Cloud HSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Compute Engine",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "Confidential VMs",
+            "Como se cumple para datos en transito": "TLS + entorno aislado y cifrado en memoria"
+        },
+        {
+            "Servicio": "Cloud SQL",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Cloud SQL",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Cloud Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Google Identity and Access Management"
+        },
+        {
+            "Servicio": "Cloud SQL",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Cloud SQL",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "Cloud HSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Cloud SQL",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Firestore",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Firestore",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Cloud Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Google Identity and Access Management"
+        },
+        {
+            "Servicio": "Firestore",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Firestore",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Firestore",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Vertex AI",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Vertex AI",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Cloud Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Google Identity and Access Management"
+        },
+        {
+            "Servicio": "Vertex AI",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Vertex AI",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Vertex AI",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "Configurando confidential VMs",
+            "Como se cumple para datos en transito": "TLS + entorno aislado y cifrado en memoria"
+        },
+        {
+            "Servicio":["Cloud Translation","Natural Language AI","Cloud Vision", "Text-to-Speech","Dialogflow" ],
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio":["Cloud Translation","Natural Language AI","Cloud Vision", "Text-to-Speech","Dialogflow" ],
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Cloud Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Google Identity and Access Management"
+        },
+        {
+            "Servicio":["Cloud Translation","Natural Language AI","Cloud Vision", "Text-to-Speech","Dialogflow" ],
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio":["Cloud Translation","Natural Language AI","Cloud Vision", "Text-to-Speech","Dialogflow" ],
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio":["Cloud Translation","Natural Language AI","Cloud Vision", "Text-to-Speech","Dialogflow" ],
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Cloud Functions + Puppeteer",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Cloud Functions + Puppeteer",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Cloud Key Management Service",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Google Identity and Access Management"
+        },
+        {
+            "Servicio": "Cloud Functions + Puppeteer",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Cloud Functions + Puppeteer",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Cloud Functions + Puppeteer",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "Confidential VMs",
+            "Como se cumple para datos en transito": "TLS + entorno aislado y cifrado en memoria"
+        }
+    ],
+    "Azure": [
+        {
+            "Servicio": "Blob Storage",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Blob Storage",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Azure Key Vault",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Microsoft Entra ID"
+        },
+        {
+            "Servicio": "Blob Storage",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Blob Storage",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "Azure Dedicated HSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Blob Storage",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Azure Managed Disks",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Azure Managed Disks",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Azure Key Vault",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Microsoft Entra ID"
+        },
+        {
+            "Servicio": "Azure Managed Disks",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Azure Managed Disks",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "Azure Dedicated HSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Azure Managed Disks",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Azure Files",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Azure Files",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Azure Key Vault",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Microsoft Entra ID"
+        },
+        {
+            "Servicio": "Azure Files",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Azure Files",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Azure Files",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Azure Kubernetes Service (AKS)",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Azure Kubernetes Service (AKS)",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Azure Key Vault",
+            "Como se cumple para datos en transito": "TLS 1.2 gestión de identidades con Microsoft Entra ID"
+        },
+        {
+            "Servicio": "Azure Kubernetes Service (AKS)",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Azure Kubernetes Service (AKS)",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "Azure Dedicated HSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Azure Kubernetes Service (AKS)",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "Azure Confidential Computing",
+            "Como se cumple para datos en transito": "TLS + entorno aislado y cifrado en memoria"
+        },
+        {
+            "Servicio": "Azure VM",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cada disco esta cifrado por defecto con Microsoft Managed Keys. Cifrado del lado del servidor (SSE)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Azure VM",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Cifrado en reposo con Azure Disk Encryption (ADE).Claves gestionadas por el usuario mediante Azure Key Vault",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Microsoft Entra ID"
+        },
+        {
+            "Servicio": "Azure VM",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), Control de acceso basado en roles (RBAC) y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Azure VM",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "Azure Dedicated HSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Azure VM",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "Azure Confidential Computing",
+            "Como se cumple para datos en transito": "TLS + entorno aislado y cifrado en memoria"
+        },
+        {
+            "Servicio": "Azure SQL Database",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Azure SQL Database",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Azure Key Vault",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Microsoft Entra ID"
+        },
+        {
+            "Servicio": "Azure SQL Database",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Protección de datos sensibles con Always Encrypted, claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Azure SQL Database",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "Azure Dedicated HSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Azure SQL Database",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "SQL sobre Azure Confidential Computing ",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Cosmos DB",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Cosmos DB",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Azure Key Vault",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Microsoft Entra ID"
+        },
+        {
+            "Servicio": "Cosmos DB",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Cosmos DB",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "Azure Dedicated HSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Cosmos DB",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Azure Machine Learning (IA-General)",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Azure Machine Learning (IA-General)",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Azure Key Vault",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Microsoft Entra ID"
+        },
+        {
+            "Servicio": "Azure Machine Learning (IA-General)",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Azure Machine Learning (IA-General)",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "Azure Dedicated HSM",
+            "Como se cumple para datos en transito": "TLS + hardware dedicado"
+        },
+        {
+            "Servicio": "Azure Machine Learning (IA-General)",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "Azure Confidential Computing",
+            "Como se cumple para datos en transito": "TLS + entorno aislado y cifrado en memoria"
+        },
+        {
+            "Servicio": ["Azure Speech","Azure Speech - Voz a Texto", "Custom Vision", "Text Analytics", "Azure Translator" ],
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": ["Azure Speech","Azure Speech - Voz a Texto", "Custom Vision", "Text Analytics", "Azure Translator" ],
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Azure Key Vault",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Microsoft Entra ID"
+        },
+        {
+            "Servicio": ["Azure Speech","Azure Speech - Voz a Texto", "Custom Vision", "Text Analytics", "Azure Translator" ],
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": ["Azure Speech","Azure Speech - Voz a Texto", "Custom Vision", "Text Analytics", "Azure Translator" ],
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": ["Azure Speech","Azure Speech - Voz a Texto", "Custom Vision", "Text Analytics", "Azure Translator" ],
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Azure Functions + Playwright",
+            "Nivel de confidencialidad": 1,
+            "Como se cumple para datos en reposo": "Cifrado por defecto (AES-256)",
+            "Como se cumple para datos en transito": "TLS habilitado"
+        },
+        {
+            "Servicio": "Azure Functions + Playwrightpy",
+            "Nivel de confidencialidad": 2,
+            "Como se cumple para datos en reposo": "Claves gestionadas por el usuario mediante Azure Key Vault",
+            "Como se cumple para datos en transito": "TLS 1.2 y gestión de identidades con Microsoft Entra ID"
+        },
+        {
+            "Servicio": "Azure Functions + Playwright",
+            "Nivel de confidencialidad": 3,
+            "Como se cumple para datos en reposo": "Claves proporcionadas por el usuario (BYOK), control de acceso y aislamiento en red privada",
+            "Como se cumple para datos en transito": "TLS con auditoría básica y políticas de acceso"
+        },
+        {
+            "Servicio": "Azure Functions + Playwright",
+            "Nivel de confidencialidad": 4,
+            "Como se cumple para datos en reposo": "No aplica",
+            "Como se cumple para datos en transito": "No aplica"
+        },
+        {
+            "Servicio": "Azure Functions + Playwright",
+            "Nivel de confidencialidad": 5,
+            "Como se cumple para datos en reposo": "Azure Confidential Computing",
+            "Como se cumple para datos en transito": "TLS + entorno aislado y cifrado en memoria"
+        }
+    ]
+}
