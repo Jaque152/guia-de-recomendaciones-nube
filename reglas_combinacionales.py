@@ -60,127 +60,28 @@ reglas_combinacionales = [
         "descripcion": "GCP ofrece almacenamiento local SSD con alto rendimiento para Windows, útil en cargas intensivas de lectura/escritura.",
         "puntos": 1
     },
-    {
-        "condiciones": {
-            "mv_tipo": "Optimización de almacenamiento",
-            "costo_texto": "Alto",
-            "confidencialidad_texto": "Alta"
-        },
-        "proveedor": "AWS",
-        "descripcion": "AWS ofrece instancias con discos cifrados por hardware y doble capa KMS-SSM, ideales cuando el nivel de costos permite máxima protección.",
-        "puntos": 1
-    },
-     {
-        "condiciones": {
-            "confidencialidad_texto": "Alta",
-            "mv_tipo": "Optimización de almacenamiento"
-        },
-        "proveedor": "AWS",
-        "descripcion": "Las instancias con discos NVMe en AWS cifran los datos en reposo mediante XTS-AES-256 en módulos de hardware con claves efímeras únicas que se destruyen al apagar la instancia.",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "mv_requiere": "Sí",
-            "confidencialidad_texto": [
-                "Media",
-                "Alta"
-            ]
-        },
-        "proveedor": "Azure",
-        "descripcion": "Puede habilitar el cifrado en reposo en sus máquinas virtuales Linux y Windows y discos duros virtuales (VHD) alojados en Azure mediante Azure Disk Encryption",
-        "puntos": 1
-
-    },
-    {
-        "condiciones": {
-            "confidencialidad_texto": "Alta",
-            "mv_tipo": "Optimización de memoria"
-        },
-        "proveedor": [
-            "GCP",
-            "Azure"
-        ],
-        "descripcion": "GCP ofrece Confidential VMs y Azure permite Always Encrypted en VMs optimizadas, ideales para cargas sensibles en memoria",
-        "puntos": 1
-    },
+    # {
+    #     "condiciones": {
+    #         "confidencialidad_texto": "Alta",
+    #         "mv_tipo": "Optimización de almacenamiento"
+    #     },
+    #     "proveedor": "AWS",
+    #     "descripcion": "Las instancias con discos NVMe en AWS cifran los datos en reposo mediante XTS-AES-256 en módulos de hardware con claves efímeras únicas que se destruyen al apagar la instancia.",
+    #     "puntos": 1
+    # },
+    
     ##-------------------------------------------------------------------------------------------------------
     ##----------------CONTENEDORES-------------------------------
-    {
-        "condiciones": {
-            "contenedores": "Sí", 
-            "confidencialidad_texto": ["Alta", "Media"]
-        },
-        "proveedor": "GCP",
-        "descripcion": "Google Kubernetes Engine (GKE) admite claves de cifrado administradas por el usuario, VPC Service Controls e integración con IAM para garantizar confidencialidad elevada.",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "contenedores": "Sí", 
-            "confidencialidad_texto": ["Alta", "Media"]
-        },
-        "proveedor": "Azure",
-        "descripcion": "Azure Kubernetes Service (AKS) permite proteger datos mediante Azure Key Vault, control de acceso basado en roles (RBAC) y Azure Active Directory para gestionar los usuarios y el acceso a recursos.",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "contenedores": "Sí", 
-            "confidencialidad_texto": ["Alta", "Media"]
-        },
-        "proveedor": "AWS",
-        "descripcion": "Elastic Kubernetes Service (EKS) soporta cifrado con AWS KMS e IAM Roles for Service Accounts (IRSA) para control de accesos.",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "contenedores": "Sí", 
-            "confidencialidad_texto": "Media"},
-        "proveedor": "GCP",
-        "descripcion": "Google Kubernetes Engine (GKE) cifra datos en reposo de forma predeterminada, con control de acceso mediante IAM.",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "contenedores": "Sí", 
-            "confidencialidad_texto": "Media"},
-        "proveedor": "Azure",
-        "descripcion": "Azure Kubernets Services (AKS) proporciona cifrado estándar y control de acceso basado en roles (RBAC).",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "contenedores": "Sí", 
-            "confidencialidad_texto": "Media"},
-        "proveedor": "AWS",
-        "descripcion": "Elastic Kubernetes Service (EKS) cifra recursos básicos con KMS y configura IAM sin políticas avanzadas.",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "contenedores": "Sí", 
-            "confidencialidad_texto": "Baja"},
-        "proveedor": "GCP",
-        "descripcion": "Google Kubernetes Engine (GKE) en modo estándar usa claves gestionadas por Google sin configuración personalizada",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "contenedores": "Sí", 
-            "confidencialidad_texto": "Baja"},
-        "proveedor": "Azure",
-        "descripcion": "Azure Kubernets Services (AKS) permite cifrado básico con claves gestionadas por Microsoft.",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "contenedores": "Sí", 
-            "confidencialidad_texto": "Baja"},
-        "proveedor": "AWS",
-        "descripcion": "Elastic Kubernetes Service (EKS) ofrece cifrado predeterminado sin necesidad de configurar KMS.",
-        "puntos": 1
-    },
+    
+    # {
+    #     "condiciones": {
+    #         "contenedores": "Sí", 
+    #         "confidencialidad_texto": "Media"},
+    #     "proveedor": "AWS",
+    #     "descripcion": "Elastic Kubernetes Service (EKS) cifra recursos básicos con KMS y configura IAM sin políticas avanzadas.",
+    #     "puntos": 1
+    # },
+    
    {
         "condiciones": {
             "contenedores": "Sí", 
@@ -192,15 +93,15 @@ reglas_combinacionales = [
 
     ##-----------------------------------------------------------
     ##----------------ALMACENAMIENTO-----------------------------
-    {
-        "condiciones": {
-            "confidencialidad_texto":"Alta",
-            "almacenamiento":"Objetos"
-        },
-        "proveedor": "AWS",
-        "descripcion": "AWS permite doble capa de cifrado (DSSE-KMS) con claves personalizadas",
-        "puntos": 1
-    },
+    # {
+    #     "condiciones": {
+    #         "confidencialidad_texto":"Alta",
+    #         "almacenamiento":"Objetos"
+    #     },
+    #     "proveedor": "AWS",
+    #     "descripcion": "AWS permite doble capa de cifrado (DSSE-KMS) con claves personalizadas",
+    #     "puntos": 1
+    # },
     {
         "condiciones": {
             "disponibilidad_texto":"Alta",
@@ -210,83 +111,46 @@ reglas_combinacionales = [
         "descripcion": "Azure Blob Storage soporta replicación geográfica activa (RA-GRS) y rendimiento escalable",
         "puntos": 1
     },
-    {
-        "condiciones": {
-            "confidencialidad_texto":"Alta",
-            "almacenamiento":"Archivos",
-        },
-        "proveedor": "GCP",
-        "descripcion": "Cifrado en reposo, permite integración con Cloud KMS para claves de cifrado gestionadas por el cliente",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "confidencialidad_texto":"Alta",
-            "almacenamiento":"Bloques"
-        },
-        "proveedor": "Azure",
-        "descripcion": "Cuenta con Azure Disk Encryption",
-        "puntos": 1
-    },
     ##------------------------------------------------------------------------------
     ##---------------------BASES DE DATOS ------------------------------------------
     {
         "condiciones": {
             "bd_tipo": "Relacional",
-            "bd_motor_relacional": "Oracle",
+            "bd_motor": "Oracle",
             "costo_texto": "Medio"
         },
         "proveedor": "AWS",
         "descripcion": "AWS RDS soporta más motores incluyendo Oracle ",
         "puntos": 1
     },
-    {
-        "condiciones": {
-            "confidencialidad_texto": "Alta",
-            "bd_tipo": "Relacional"
-        },
-        "proveedor": "Azure",
-        "descripcion": "Azure SQL Database implementa Always Encrypted y permite el control completo de claves mediante Key Vault.",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "confidencialidad_texto": "Media",
-            "disponibilidad_texto":"Alta",
-            "bd_tipo": "Relacional"
-        },
-        "proveedor": "Azure",
-        "descripcion": "Azure SQL Database ofrece Always Encrypted y geo-replicación",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "confidencialidad_texto": "Alta",
-            "bd_tipo": "Relacional"
-        },
-        "proveedor": "AWS",
-        "descripcion": "Amazon RDS permite cifrado en reposo mediante TDE (Transparent Data Encryption) y control de claves mediante KMS, asegurando confidencialidad avanzada.",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "confidencialidad_texto": "Media",
-            "bd_tipo": "Relacional",
-            "costo_texto": "Bajo"
-        },
-        "proveedor": "GCP",
-        "descripcion": "GCP cifra automáticamente los datos almacenados en Cloud SQL con AES-256, ideal para proyectos con un costo bajo que buscan protección estándar.",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "bd_tipo": "No relacional",
-            "confidencialidad_texto":"Alta"
-        },
-        "proveedor": "Azure",
-        "descripcion": "Cifrado transparente de datos en reposo y en tránsito; además, cuenta con Azure Private Link y VNet service endpoints",
-        "puntos": 1
-    },
+    # {
+    #     "condiciones": {
+    #         "confidencialidad_texto": "Alta",
+    #         "bd_tipo": "Relacional"
+    #     },
+    #     "proveedor": "AWS",
+    #     "descripcion": "Amazon RDS permite cifrado en reposo mediante TDE (Transparent Data Encryption) y control de claves mediante KMS, asegurando confidencialidad avanzada.",
+    #     "puntos": 1
+    # },
+    # {
+    #     "condiciones": {
+    #         "confidencialidad_texto": "Media",
+    #         "bd_tipo": "Relacional",
+    #         "costo_texto": "Bajo"
+    #     },
+    #     "proveedor": "GCP",
+    #     "descripcion": "GCP cifra automáticamente los datos almacenados en Cloud SQL con AES-256, ideal para proyectos con un costo bajo que buscan protección estándar.",
+    #     "puntos": 1
+    # },
+    # {
+    #     "condiciones": {
+    #         "bd_tipo": "No relacional",
+    #         "confidencialidad_texto":"Alta"
+    #     },
+    #     "proveedor": "Azure",
+    #     "descripcion": "Cifrado transparente de datos en reposo y en tránsito; además, cuenta con Azure Private Link y VNet service endpoints",
+    #     "puntos": 1
+    # },
     {
         "condiciones": {
             "bd_tipo": "No relacional",
@@ -299,15 +163,15 @@ reglas_combinacionales = [
     
     ##------------------------------------------------------------------
     ##-------------INTELIGENCIA ARTIFICIAL------------------------------
-    {
-        "condiciones": {
-            "confidencialidad_texto": "Alta",
-            "ia_tipo": "Uso general"
-        },
-        "proveedor": "GCP",
-        "descripcion": "Vertex AI soporta CMEK para proteger datos y modelos ML",
-        "puntos": 1
-    },
+    # {
+    #     "condiciones": {
+    #         "confidencialidad_texto": "Alta",
+    #         "ia_tipo": "Uso general"
+    #     },
+    #     "proveedor": "GCP",
+    #     "descripcion": "Vertex AI soporta CMEK para proteger datos y modelos ML",
+    #     "puntos": 1
+    # },
     {
         "condiciones": {
             "costo_texto": "Bajo",
@@ -369,35 +233,17 @@ reglas_combinacionales = [
         "descripcion": "AWS ofrece mayor disponibilidad al contar con más Zonas y Regiones",
         "puntos": 1
     },
-    {
-        "condiciones": {
-            "confidencialidad_texto": "Media",
-            "costo_texto": "Bajo"
-        },
-        "proveedor": "GCP",
-        "descripcion": "GCP cifra automáticamente todos los datos en reposo mediante AES-256 y la biblioteca criptográfica Tink con validación FIPS 140-2, sin costo adicional ni configuración extra.",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "costo_texto": "Alto",
-            "confidencialidad_texto": "Alta",
-            "disponibilidad_texto": "Alta"
-        },
-        "proveedor": "GCP",
-        "descripcion": "GCP combina Confidential VMs, escalado global y precios competitivos",
-        "puntos": 1
-    },
-    {
-        "condiciones": {
-            "costo_texto": "Medio",
-            "confidencialidad_texto": "Media",
-            "disponibilidad_texto": "Media"
-        },
-        "proveedor": "Azure",
-        "descripcion": "Azure permite claves gestionadas por el cliente, geo-replicación y modelos de precios flexibles",
-        "puntos": 1
-    },
+   
+    # {
+    #     "condiciones": {
+    #         "costo_texto": "Medio",
+    #         "confidencialidad_texto": "Media",
+    #         "disponibilidad_texto": "Media"
+    #     },
+    #     "proveedor": "Azure",
+    #     "descripcion": "Azure permite claves gestionadas por el cliente, geo-replicación y modelos de precios flexibles",
+    #     "puntos": 1
+    # },
     {
         "condiciones": {
             "costo_texto": "Bajo",
@@ -556,7 +402,7 @@ reglas_combinacionales = [
     {
         "condiciones": {
             "mv_tipo": "Aceleradas por GPU",
-            "sistema_operativo": "MacOs"
+            "mv_sistemas": "MacOs"
         },
         "proveedor":[
             "AWS",
@@ -653,7 +499,16 @@ reglas_combinacionales = [
         "descripcion": "Ha indicado un alto enfoque en confidencialidad, pero no ha seleccionado servicios clave donde esta característica es crítica.",
         "puntos": 0
 
-    }
+    },
+     {
+        "condiciones": {
+            "confidencialidad_texto": "Media",
+            "costo_texto": "Bajo"
+        },
+        "proveedor": ["AWS","GCP","Azure"],
+        "descripcion": "todos los datos en reposo son cifrados mediante AES-256, sin costo adicional ni configuración extra.",
+        "puntos": 1
+    },
     
 ]
 
