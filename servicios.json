@@ -52,7 +52,8 @@
     },
     "mv": [
       {
-        "nombre": "a1",
+        "nombre":"Amazon EC2",
+        "familia": "a1",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -62,7 +63,8 @@
         "costo_aproximado": "0.449 USD por hora (on-demand)"
       },
       {
-        "nombre": "mac2",
+        "nombre":"Amazon EC2",
+        "familia": "mac2",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -72,7 +74,8 @@
         "costo_aproximado": "0.650 USD por hora (on-demand)"
       },
       {
-        "nombre": "mac2-m2",
+        "nombre":"Amazon EC2",
+        "familia": "mac2-m2",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -82,7 +85,8 @@
         "costo_aproximado": "0.878 USD por hora (on-demand)"
       },
       {
-        "nombre": "mac1",
+        "nombre":"Amazon EC2",
+        "familia": "mac1",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -92,7 +96,8 @@
         "costo_aproximado": "1.083 USD por hora (on-demand)"
       },
       {
-        "nombre": "mac2-m2pro",
+        "nombre":"Amazon EC2",
+        "familia": "mac2-m2pro",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -102,7 +107,8 @@
         "costo_aproximado": "1.56 USD por hora (on-demand)"
       },
       {
-        "nombre": "m4",
+        "nombre":"Amazon EC2",
+        "familia": "m4",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -112,7 +118,8 @@
         "costo_aproximado": "2.42 USD por hora (on-demand)"
       },
       {
-        "nombre": "m6g",
+        "nombre":"Amazon EC2",
+        "familia": "m6g",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -122,7 +129,8 @@
         "costo_aproximado": "2.71 USD por hora (on-demand)"
       },
       {
-        "nombre": "m6gd",
+        "nombre":"Amazon EC2",
+        "familia": "m6gd",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -132,7 +140,8 @@
         "costo_aproximado": "3.182 USD por hora (on-demand)"
       },
       {
-        "nombre": "m5zn",
+        "nombre":"Amazon EC2",
+        "familia": "m5zn",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -142,7 +151,8 @@
         "costo_aproximado": "4.360 USD por hora (on-demand)"
       },
       {
-        "nombre": "m5",
+        "nombre":"Amazon EC2",
+        "familia": "m5",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -152,7 +162,8 @@
         "costo_aproximado": "5.069 USD por hora (on-demand)"
       },
       {
-        "nombre": "m5d",
+        "nombre":"Amazon EC2",
+        "familia": "m5d",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -162,7 +173,8 @@
         "costo_aproximado": "5.966 USD por hora (on-demand)"
       },
       {
-        "nombre": "m5n",
+        "nombre":"Amazon EC2",
+        "familia": "m5n",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -172,7 +184,8 @@
         "costo_aproximado": "6.283 USD por hora (on-demand)"
       },
       {
-        "nombre": "m6i",
+        "nombre":"Amazon EC2",
+        "familia": "m6i",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -182,7 +195,8 @@
         "costo_aproximado": "6.758 USD por hora (on-demand)"
       },
       {
-        "nombre": "m5dn",
+       "nombre":"Amazon EC2",
+        "familia": "m5dn",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -192,7 +206,8 @@
         "costo_aproximado": "7.181 USD por hora (on-demand)"
       },
       {
-        "nombre": "m6id",
+        "nombre":"Amazon EC2",
+        "familia": "m6id",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -202,7 +217,8 @@
         "costo_aproximado": "8.353 USD por hora (on-demand)"
       },
       {
-        "nombre": "m7g",
+        "nombre":"Amazon EC2",
+        "familia": "m7g",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -212,7 +228,8 @@
         "costo_aproximado": "8.617 USD por hora (on-demand)"
       },
       {
-        "nombre": "t3",
+        "nombre":"Amazon EC2",
+        "familia": "t3",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -222,7 +239,8 @@
         "costo_aproximado": "8.786 USD por hora (on-demand)"
       },
       {
-        "nombre": "m6a",
+        "nombre":"Amazon EC2",
+        "familia": "m6a",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -232,7 +250,8 @@
         "costo_aproximado": "9.124 USD por hora (on-demand)"
       },
       {
-        "nombre": "m8g",
+        "nombre":"Amazon EC2",
+        "familia": "m8g",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -242,7 +261,8 @@
         "costo_aproximado": "9.479 USD por hora (on-demand)"
       },
       {
-        "nombre": "m6in",
+        "nombre":"Amazon EC2",
+        "familia": "m6in",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -252,7 +272,8 @@
         "costo_aproximado": "9.802 USD por hora (on-demand)"
       },
       {
-        "nombre": "m7i",
+        "nombre":"Amazon EC2",
+        "familia": "m7i",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -262,7 +283,8 @@
         "costo_aproximado": "10.644 USD por hora (on-demand)"
       },
       {
-        "nombre": "m6idn",
+        "nombre":"Amazon EC2",
+        "familia": "m6idn",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -272,7 +294,8 @@
         "costo_aproximado": "11.202 USD por hora (on-demand)"
       },
       {
-        "nombre": "m7gd",
+        "nombre":"Amazon EC2",
+        "familia": "m7gd",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -282,7 +305,8 @@
         "costo_aproximado": "11.276 USD por hora (on-demand)"
       },
       {
-        "nombre": "m8gd",
+        "nombre":"Amazon EC2",
+        "familia": "m8gd",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -292,7 +316,8 @@
         "costo_aproximado": "12.178 USD por hora (on-demand)"
       },
       {
-        "nombre": "m7a",
+        "nombre":"Amazon EC2",
+        "familia": "m7a",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -302,7 +327,8 @@
         "costo_aproximado": "12.241 USD por hora (on-demand)"
       },
       {
-        "nombre": "c4",
+        "nombre":"Amazon EC2",
+        "familia": "c4",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -312,7 +338,8 @@
         "costo_aproximado": "1.750 USD por hora (on-demand)"
       },
       {
-        "nombre": "c6g",
+        "nombre":"Amazon EC2",
+        "familia": "c6g",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -322,7 +349,8 @@
         "costo_aproximado": "2.394 USD por hora (on-demand)"
       },
       {
-        "nombre": "c6gd",
+        "nombre":"Amazon EC2",
+        "familia": "c6gd",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -332,7 +360,8 @@
         "costo_aproximado": "2.703 USD por hora (on-demand)"
       },
       {
-        "nombre": "c6gn",
+        "nombre":"Amazon EC2",
+        "familia": "c6gn",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -342,7 +371,8 @@
         "costo_aproximado": "3.041 USD por hora (on-demand)"
       },
       {
-        "nombre": "c5",
+        "nombre":"Amazon EC2",
+        "familia": "c5",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -352,7 +382,8 @@
         "costo_aproximado": "3.366 USD por hora (on-demand)"
       },
       {
-        "nombre": "c5d",
+        "nombre":"Amazon EC2",
+        "familia": "c5d",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -362,7 +393,8 @@
         "costo_aproximado": "3.802 USD por hora (on-demand)"
       },
       {
-        "nombre": "c5n",
+        "nombre":"Amazon EC2",
+        "familia": "c5n",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -372,7 +404,8 @@
         "costo_aproximado": "4.277 USD por hora (on-demand)"
       },
       {
-        "nombre": "c6i",
+        "nombre":"Amazon EC2",
+        "familia":"c6i",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -382,7 +415,8 @@
         "costo_aproximado": "5.984 USD por hora (on-demand)"
       },
       {
-        "nombre": "c6id",
+        "nombre":"Amazon EC2",
+        "familia": "c6id",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -392,7 +426,8 @@
         "costo_aproximado": "7.096 USD por hora (on-demand)"
       },
       {
-        "nombre": "c7g",
+        "nombre":"Amazon EC2",
+        "familia": "c7g",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -402,7 +437,8 @@
         "costo_aproximado": "7.631 USD por hora (on-demand)"
       },
       {
-        "nombre": "c6in",
+        "nombre":"Amazon EC2",
+        "familia":"c6in",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -412,7 +448,8 @@
         "costo_aproximado": "7.983 USD por hora (on-demand)"
       },
       {
-        "nombre": "c6a",
+        "nombre":"Amazon EC2",
+        "familia": "c6a",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -422,7 +459,8 @@
         "costo_aproximado": "8.078 USD por hora (on-demand)"
       },
       {
-        "nombre": "c8g",
+        "nombre":"Amazon EC2",
+        "familia": "c8g",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -432,7 +470,8 @@
         "costo_aproximado": "8.393 USD por hora (on-demand)"
       },
       {
-        "nombre": "c7i",
+        "nombre":"Amazon EC2",
+        "familia": "c7i",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -442,7 +481,8 @@
         "costo_aproximado": "9.425 USD por hora (on-demand)"
       },
       {
-        "nombre": "c7gd",
+        "nombre":"Amazon EC2",
+        "familia": "c7gd",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -452,7 +492,8 @@
         "costo_aproximado": "9.580 USD por hora (on-demand)"
       },
       {
-        "nombre": "c8gd",
+        "nombre":"Amazon EC2",
+        "familia": "c8gd",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -462,7 +503,8 @@
         "costo_aproximado": "10.347 USD por hora (on-demand)"
       },
       {
-        "nombre": "c7a",
+        "nombre":"Amazon EC2",
+        "familia":"c7a",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -472,7 +514,8 @@
         "costo_aproximado": "10.839 USD por hora (on-demand)"
       },
       {
-        "nombre": "c7gn",
+        "nombre":"Amazon EC2",
+        "familia": "c7gn",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -482,7 +525,8 @@
         "costo_aproximado": "13.179 USD por hora (on-demand)"
       },
       {
-        "nombre": "g3",
+        "nombre":"Amazon EC2",
+        "familia": "g3",
         "tipo": "Aceleradas por GPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -492,7 +536,8 @@
         "costo_aproximado": "5.016 USD por hora (on-demand)"
       },
       {
-        "nombre": "g4dn",
+        "nombre":"Amazon EC2",
+        "familia": "g4dn",
         "tipo": "Aceleradas por GPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -502,7 +547,8 @@
         "costo_aproximado": "8.606 USD por hora (on-demand)"
       },
       {
-        "nombre": "g4ad",
+        "nombre":"Amazon EC2",
+        "familia": "g4ad",
         "tipo": "Aceleradas por GPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -512,7 +558,8 @@
         "costo_aproximado": "11.444 USD por hora (on-demand)"
       },
       {
-        "nombre": "g6",
+        "nombre":"Amazon EC2",
+        "familia": "g6",
         "tipo": "Aceleradas por GPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -522,7 +569,8 @@
         "costo_aproximado": "14.685 USD por hora (on-demand)"
       },
       {
-        "nombre": "p2",
+        "nombre":"Amazon EC2",
+        "familia": "p2",
         "tipo": "Aceleradas por GPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -532,7 +580,8 @@
         "costo_aproximado": "15.84 USD por hora (on-demand)"
       },
       {
-        "nombre": "g5",
+        "nombre":"Amazon EC2",
+        "familia": "g5",
         "tipo": "Aceleradas por GPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -542,7 +591,8 @@
         "costo_aproximado": "17.917 USD por hora (on-demand)"
       },
       {
-        "nombre": "p3",
+        "nombre":"Amazon EC2",
+        "familia": "p3",
         "tipo": "Aceleradas por GPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -552,7 +602,8 @@
         "costo_aproximado": "26.928 USD por hora (on-demand)"
       },
       {
-        "nombre": "g6e",
+        "nombre":"Amazon EC2",
+        "familia": "g6e",
         "tipo": "Aceleradas por GPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -562,7 +613,8 @@
         "costo_aproximado": "33.144 USD por hora (on-demand)"
       },
       {
-        "nombre": "p4d",
+        "nombre":"Amazon EC2",
+        "familia": "p4d",
         "tipo": "Aceleradas por GPU",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -572,7 +624,8 @@
         "costo_aproximado": "36.05 USD por hora (on-demand)"
       },
       {
-        "nombre": "r3",
+        "nombre":"Amazon EC2",
+        "familia": "r3",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -582,7 +635,8 @@
         "costo_aproximado": "2.922 USD por hora (on-demand)"
       },
       {
-        "nombre": "r6g",
+        "nombre":"Amazon EC2",
+        "familia": "r6g",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -592,7 +646,8 @@
         "costo_aproximado": "3.548 USD por hora (on-demand)"
       },
       {
-        "nombre": "r6gd",
+        "nombre":"Amazon EC2",
+        "familia": "r6gd",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -602,7 +657,8 @@
         "costo_aproximado": "4.055 USD por hora (on-demand)"
       },
       {
-        "nombre": "r4",
+        "nombre":"Amazon EC2",
+        "familia": "r4",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -612,7 +668,8 @@
         "costo_aproximado": "4.682 USD por hora (on-demand)"
       },
       {
-        "nombre": "z1d",
+        "nombre":"Amazon EC2",
+        "familia": "z1d",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -622,7 +679,8 @@
         "costo_aproximado": "4.910 USD por hora (on-demand)"
       },
       {
-        "nombre": "x2gd",
+        "nombre":"Amazon EC2",
+        "familia": "x2gd",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -632,7 +690,8 @@
         "costo_aproximado": "5.878 USD por hora (on-demand)"
       },
       {
-        "nombre": "r5",
+        "nombre":"Amazon EC2",
+        "familia": "r5",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -642,7 +701,8 @@
         "costo_aproximado": "6.653 USD por hora (on-demand)"
       },
       {
-        "nombre": "r5d",
+        "nombre":"Amazon EC2",
+        "familia": "r5d",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -652,7 +712,8 @@
         "costo_aproximado": "7.603 USD por hora (on-demand)"
       },
       {
-        "nombre": "r5b",
+        "nombre":"Amazon EC2",
+        "familia": "r5b",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -662,7 +723,8 @@
         "costo_aproximado": "7.867 USD por hora (on-demand)"
       },
       {
-        "nombre": "r5n",
+        "nombre":"Amazon EC2",
+        "familia": "r5n",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -672,7 +734,8 @@
         "costo_aproximado": "7.867 USD por hora (on-demand)"
       },
       {
-        "nombre": "r5dn",
+        "nombre":"Amazon EC2",
+        "familia": "r5dn",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -682,7 +745,8 @@
         "costo_aproximado": "8.818 USD por hora (on-demand)"
       },
       {
-        "nombre": "r6i",
+        "nombre":"Amazon EC2",
+        "familia": "r6i",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -692,7 +756,8 @@
         "costo_aproximado": "8.870 USD por hora (on-demand)"
       },
       {
-        "nombre": "r6id",
+        "nombre":"Amazon EC2",
+        "familia": "r6id",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -702,7 +767,8 @@
         "costo_aproximado": "10.644 USD por hora (on-demand)"
       },
       {
-        "nombre": "r7g",
+        "nombre":"Amazon EC2",
+        "familia": "r7g",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -712,7 +778,8 @@
         "costo_aproximado": "11.310 USD por hora (on-demand)"
       },
       {
-        "nombre": "r6a",
+        "nombre":"Amazon EC2",
+        "familia": "r6a",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -722,7 +789,8 @@
         "costo_aproximado": "11.975 USD por hora (on-demand)"
       },
       {
-        "nombre": "r6in",
+        "nombre":"Amazon EC2",
+        "familia": "r6in",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -732,7 +800,8 @@
         "costo_aproximado": "12.273 USD por hora (on-demand)"
       },
       {
-        "nombre": "r8g",
+        "nombre":"Amazon EC2",
+        "familia": "r8g",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -742,7 +811,8 @@
         "costo_aproximado": "12.442 USD por hora (on-demand)"
       },
       {
-        "nombre": "r7iz",
+        "nombre":"Amazon EC2",
+        "familia": "r7iz",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -752,7 +822,8 @@
         "costo_aproximado": "13.094 USD por hora (on-demand)"
       },
       {
-        "nombre": "r6idn",
+        "nombre":"Amazon EC2",
+        "familia": "r6idn",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -762,7 +833,8 @@
         "costo_aproximado": "13.755 USD por hora (on-demand)"
       },
       {
-        "nombre": "r7i",
+        "nombre":"Amazon EC2",
+        "familia": "r7i",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -772,7 +844,8 @@
         "costo_aproximado": "13.971 USD por hora (on-demand)"
       },
       {
-        "nombre": "x2idn",
+        "nombre":"Amazon EC2",
+        "familia": "x2idn",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -782,7 +855,8 @@
         "costo_aproximado": "14.672 USD por hora (on-demand)"
       },
       {
-        "nombre": "x1",
+        "nombre":"Amazon EC2",
+        "familia": "x1",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -792,8 +866,8 @@
         "costo_aproximado": "$14.672 por hora (on-demand)"
       },
       {
-        "nombre": "r8gd",
-        "tipo": "Optimización de memoria",
+        "nombre":"Amazon EC2",
+        "familia": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -802,7 +876,8 @@
         "costo_aproximado": "15.519 USD por hora (on-demand)"
       },
       {
-        "nombre": "r7a",
+        "nombre":"Amazon EC2",
+        "familia":"r7a",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -812,7 +887,8 @@
         "costo_aproximado": "16.067 USD por hora (on-demand)"
       },
       {
-        "nombre": "x2iedn",
+        "nombre":"Amazon EC2",
+        "familia": "x2iedn",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -822,7 +898,8 @@
         "costo_aproximado": "29.344 USD por hora (on-demand)"
       },
       {
-        "nombre": "x1e",
+        "nombre":"Amazon EC2",
+        "familia": "x1e",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -832,7 +909,8 @@
         "costo_aproximado": "29.357 USD  por hora (on-demand)"
       },
       {
-        "nombre": "u-6tb1",
+        "nombre":"Amazon EC2",
+        "familia": "u-6tb1",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -842,7 +920,8 @@
         "costo_aproximado": "33.652 USD  por hora (on-demand)"
       },
       {
-        "nombre": "u-18tb1",
+        "nombre":"Amazon EC2",
+        "familia": "u-18tb1",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -852,7 +931,8 @@
         "costo_aproximado": "163.8 USD por hora (on-demand)"
       },
       {
-        "nombre": "h1",
+        "nombre":"Amazon EC2",
+        "familia": "h1",
         "tipo": "Optimización de almacenamiento",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -862,7 +942,8 @@
         "costo_aproximado": "4.118 USD por hora (on-demand)"
       },
       {
-        "nombre": "i4g",
+        "nombre":"Amazon EC2",
+        "familia": "i4g",
         "tipo": "Optimización de almacenamiento",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -872,7 +953,8 @@
         "costo_aproximado": "5.436 USD  por hora (on-demand)"
       },
       {
-        "nombre": "i3",
+        "nombre":"Amazon EC2",
+        "familia": "i3",
         "tipo": "Optimización de almacenamiento",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -882,7 +964,8 @@
         "costo_aproximado": "5.491 USD por hora (on-demand)"
       },
       {
-        "nombre": "d2",
+        "nombre":"Amazon EC2",
+        "familia": "d2",
         "tipo": "Optimización de almacenamiento",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -892,7 +975,8 @@
         "costo_aproximado": "6.072 USD por hora (on-demand)"
       },
       {
-        "nombre": "im4gn",
+        "nombre":"Amazon EC2",
+        "familia": "im4gn",
         "tipo": "Optimización de almacenamiento",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -902,7 +986,8 @@
         "costo_aproximado": "6.403 USD por hora (on-demand)"
       },
       {
-        "nombre": "i2",
+        "nombre":"Amazon EC2",
+        "familia": "i2",
         "tipo": "Optimización de almacenamiento",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -912,7 +997,8 @@
         "costo_aproximado": "7.502 USD por hora (on-demand)"
       },
       {
-        "nombre": "i3en",
+        "nombre":"Amazon EC2",
+        "familia": "i3en",
         "tipo": "Optimización de almacenamiento",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -922,7 +1008,8 @@
         "costo_aproximado": "11.93 USD por hora (on-demand)"
       },
       {
-        "nombre": "i4i",
+        "nombre":"Amazon EC2",
+        "familia": "i4i",
         "tipo": "Optimización de almacenamiento",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -932,7 +1019,8 @@
         "costo_aproximado": "12.081 USD por hora (on-demand)"
       },
       {
-        "nombre": "i7i",
+        "nombre":"Amazon EC2",
+        "familia": "i7i",
         "tipo": "Optimización de almacenamiento",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -942,7 +1030,8 @@
         "costo_aproximado": "19.93 USD por hora (on-demand)"
       },
       {
-        "nombre": "I7ie",
+        "nombre":"Amazon EC2",
+        "familia": "I7ie",
         "tipo": "Optimización de almacenamiento",
         "regiones_disponibles": [
           "US East (N. Virginia)",
@@ -1103,7 +1192,8 @@
     },
     "mv": [
       {
-        "nombre": "B2ts v2",
+        "nombre": "Azure VM",
+        "familia": "B2ts v2",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
@@ -1113,7 +1203,8 @@
         "costo_aproximado": "7.5920 USD/mes"
       },
       {
-        "nombre": "F2s v2",
+        "nombre": "Azure VM",
+        "familia": "F2s v2",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
@@ -1123,7 +1214,8 @@
         "costo_aproximado": "61.758 USD/mes"
       },
       {
-        "nombre": "E2as v6",
+        "nombre": "Azure VM",
+        "familia": "E2as v6",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
@@ -1133,7 +1225,8 @@
        "costo_aproximado": " 86.87 USD/mes "
       },
       {
-        "nombre": "NC6 ",
+        "nombre": "Azure VM",
+        "familia": "NC6 ",
         "tipo": "Aceleradas por GPU",
         "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
@@ -1277,7 +1370,8 @@
     },
     "mv": [
       {
-        "nombre": "Familias: N1, N2, N2D, N4, C3, C3D, C4 y C4A",
+        "nombre":"Compute Engine",
+        "familia": "N1, N2, N2D, N4, C3, C3D, C4 y C4A",
         "tipo": "Propósito general",
         "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
@@ -1291,7 +1385,8 @@
        
       },
       {
-        "nombre": "Familias:C2, C2D y H3 ",
+        "nombre":"Compute Engine",
+        "familia": "Familias:C2, C2D y H3 ",
         "tipo": "Optimización de CPU",
         "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
@@ -1301,7 +1396,8 @@
         "costo_aproximado": "Desde 0.2088 USD/hora"
       },
       {
-        "nombre": "Familias: M1, M2 y M3",
+        "nombre":"Compute Engine",
+        "familia": "Familias: M1, M2 y M3",
         "tipo": "Optimización de memoria",
         "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
@@ -1311,7 +1407,8 @@
         "costo_aproximado": "Desde 0.02181159 USD/hora (on-demand)"
       },
       {
-        "nombre": "Familias: A2, A3 y G2",
+        "nombre":"Compute Engine",
+        "familia": "Familias: A2, A3 y G2",
         "tipo": "Aceleradas por GPU",
         "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
