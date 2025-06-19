@@ -3,35 +3,23 @@
     "contenedores":{
       "nombre": "Amazon EKS",
       "regiones_disponibles": ["Alta disponibilidad en multiples regiones de AWS:" ],
-          "costo_aproximado": "Se cobra por los recursos de AWS que utilice"
+      "costo_aproximado": "Se cobra por los recursos de AWS que utilice"
     },      
     "almacenamiento": {
       "objetos": [
         {
           "nombre": "Amazon S3",
-          "caracteristicas_confidencialidad": [
-            "Cifrado en reposo con SSE-S3, SSE-KMS o SSE-C",
-            "Control de acceso mediante políticas de IAM y ACLs",
-            "Cifrado con claves de AWS KMS (Servicio de Administración de Claves de Cifrado de AWS",
-            "Cifrado de doble capa (DSSE-KMS) "
-          ],
           "regiones_disponibles": [
             "Alta disponibilidad con replicación en multiples zonas como:"
-          
           ],
           "costo_aproximado": "En promedio los primeros 50TB/mes estan en 0.023 USD. El costo depende del tipo de almacenamiento S3", 
-          "caracteristicas_integridad": ["Verificación de integridad mediante checksums automáticos (MD5, SHA256) en objetos S3"]
-            
+          "caracteristicas_integridad": ["Verificación de integridad mediante checksums automáticos (MD5, SHA256) en objetos S3"]    
           
         }
       ],
       "bloques": [
         {
           "nombre": "Amazon EBS",
-          "caracteristicas_confidencialidad": [
-            "Cifrado en reposo por parte del servidor con opción de manejar claves gestionadas por el cliente",
-            "Integración con AWS IAM para control de acceso"
-          ],
           "regiones_disponibles": [
             "Alta disponibilidad con replicación en multiples zonas como:",
             "US East (N. Virginia)",
@@ -48,10 +36,6 @@
       "archivos": [
         {
           "nombre": "Amazon EFS",
-          "caracteristicas_confidencialidad": [
-            "Cifrado en reposo del lado del servidor",
-            "Control de acceso mediante políticas de IAM"
-          ],
           "regiones_disponibles": [
             "Alta disponibilidad con replicación en multiples zonas como:",
             "US East (N. Virginia)",
@@ -70,11 +54,6 @@
       {
         "nombre": "a1",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -85,11 +64,6 @@
       {
         "nombre": "mac2",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -100,11 +74,6 @@
       {
         "nombre": "mac2-m2",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -115,11 +84,6 @@
       {
         "nombre": "mac1",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -130,11 +94,6 @@
       {
         "nombre": "mac2-m2pro",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -145,11 +104,6 @@
       {
         "nombre": "m4",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -160,11 +114,6 @@
       {
         "nombre": "m6g",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -175,11 +124,6 @@
       {
         "nombre": "m6gd",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -190,11 +134,6 @@
       {
         "nombre": "m5zn",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -205,11 +144,6 @@
       {
         "nombre": "m5",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -220,11 +154,6 @@
       {
         "nombre": "m5d",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -235,11 +164,6 @@
       {
         "nombre": "m5n",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -250,11 +174,6 @@
       {
         "nombre": "m6i",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -265,11 +184,6 @@
       {
         "nombre": "m5dn",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -280,11 +194,6 @@
       {
         "nombre": "m6id",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -295,11 +204,6 @@
       {
         "nombre": "m7g",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -310,11 +214,6 @@
       {
         "nombre": "t3",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -325,11 +224,6 @@
       {
         "nombre": "m6a",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -340,11 +234,6 @@
       {
         "nombre": "m8g",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -355,11 +244,6 @@
       {
         "nombre": "m6in",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -370,11 +254,6 @@
       {
         "nombre": "m7i",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -385,11 +264,6 @@
       {
         "nombre": "m6idn",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -400,11 +274,6 @@
       {
         "nombre": "m7gd",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -415,11 +284,6 @@
       {
         "nombre": "m8gd",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -430,11 +294,6 @@
       {
         "nombre": "m7a",
         "tipo": "Propósito general",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -445,11 +304,6 @@
       {
         "nombre": "c4",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -460,11 +314,6 @@
       {
         "nombre": "c6g",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -475,11 +324,6 @@
       {
         "nombre": "c6gd",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -490,11 +334,6 @@
       {
         "nombre": "c6gn",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -505,11 +344,6 @@
       {
         "nombre": "c5",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -520,11 +354,6 @@
       {
         "nombre": "c5d",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -535,11 +364,6 @@
       {
         "nombre": "c5n",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -550,11 +374,6 @@
       {
         "nombre": "c6i",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -565,11 +384,6 @@
       {
         "nombre": "c6id",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -580,11 +394,6 @@
       {
         "nombre": "c7g",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -595,11 +404,6 @@
       {
         "nombre": "c6in",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -610,11 +414,6 @@
       {
         "nombre": "c6a",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -625,11 +424,6 @@
       {
         "nombre": "c8g",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -640,11 +434,6 @@
       {
         "nombre": "c7i",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -655,11 +444,6 @@
       {
         "nombre": "c7gd",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -670,11 +454,6 @@
       {
         "nombre": "c8gd",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -685,11 +464,6 @@
       {
         "nombre": "c7a",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -700,11 +474,6 @@
       {
         "nombre": "c7gn",
         "tipo": "Optimización de CPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -715,11 +484,6 @@
       {
         "nombre": "g3",
         "tipo": "Aceleradas por GPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -730,11 +494,6 @@
       {
         "nombre": "g4dn",
         "tipo": "Aceleradas por GPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -745,11 +504,6 @@
       {
         "nombre": "g4ad",
         "tipo": "Aceleradas por GPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -760,11 +514,6 @@
       {
         "nombre": "g6",
         "tipo": "Aceleradas por GPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -775,11 +524,6 @@
       {
         "nombre": "p2",
         "tipo": "Aceleradas por GPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -790,11 +534,6 @@
       {
         "nombre": "g5",
         "tipo": "Aceleradas por GPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -805,11 +544,6 @@
       {
         "nombre": "p3",
         "tipo": "Aceleradas por GPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -820,11 +554,6 @@
       {
         "nombre": "g6e",
         "tipo": "Aceleradas por GPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -835,11 +564,6 @@
       {
         "nombre": "p4d",
         "tipo": "Aceleradas por GPU",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -850,11 +574,6 @@
       {
         "nombre": "r3",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -865,11 +584,6 @@
       {
         "nombre": "r6g",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -880,11 +594,6 @@
       {
         "nombre": "r6gd",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -895,11 +604,6 @@
       {
         "nombre": "r4",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -910,11 +614,6 @@
       {
         "nombre": "z1d",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -925,11 +624,6 @@
       {
         "nombre": "x2gd",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -940,11 +634,6 @@
       {
         "nombre": "r5",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -955,11 +644,6 @@
       {
         "nombre": "r5d",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -970,11 +654,6 @@
       {
         "nombre": "r5b",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -985,11 +664,6 @@
       {
         "nombre": "r5n",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1000,11 +674,6 @@
       {
         "nombre": "r5dn",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1015,11 +684,6 @@
       {
         "nombre": "r6i",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1030,11 +694,6 @@
       {
         "nombre": "r6id",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1045,11 +704,6 @@
       {
         "nombre": "r7g",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1060,11 +714,6 @@
       {
         "nombre": "r6a",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1075,11 +724,6 @@
       {
         "nombre": "r6in",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1090,11 +734,6 @@
       {
         "nombre": "r8g",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1105,11 +744,6 @@
       {
         "nombre": "r7iz",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1120,11 +754,6 @@
       {
         "nombre": "r6idn",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1135,11 +764,6 @@
       {
         "nombre": "r7i",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1150,11 +774,6 @@
       {
         "nombre": "x2idn",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1165,11 +784,6 @@
       {
         "nombre": "x1",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1180,11 +794,6 @@
       {
         "nombre": "r8gd",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1195,11 +804,6 @@
       {
         "nombre": "r7a",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1210,11 +814,6 @@
       {
         "nombre": "x2iedn",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1225,11 +824,6 @@
       {
         "nombre": "x1e",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1240,11 +834,6 @@
       {
         "nombre": "u-6tb1",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1255,11 +844,6 @@
       {
         "nombre": "u-18tb1",
         "tipo": "Optimización de memoria",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1270,11 +854,6 @@
       {
         "nombre": "h1",
         "tipo": "Optimización de almacenamiento",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1285,11 +864,6 @@
       {
         "nombre": "i4g",
         "tipo": "Optimización de almacenamiento",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1300,11 +874,6 @@
       {
         "nombre": "i3",
         "tipo": "Optimización de almacenamiento",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1315,11 +884,6 @@
       {
         "nombre": "d2",
         "tipo": "Optimización de almacenamiento",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1330,11 +894,6 @@
       {
         "nombre": "im4gn",
         "tipo": "Optimización de almacenamiento",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1345,11 +904,6 @@
       {
         "nombre": "i2",
         "tipo": "Optimización de almacenamiento",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1360,11 +914,6 @@
       {
         "nombre": "i3en",
         "tipo": "Optimización de almacenamiento",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1375,11 +924,6 @@
       {
         "nombre": "i4i",
         "tipo": "Optimización de almacenamiento",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1390,11 +934,6 @@
       {
         "nombre": "i7i",
         "tipo": "Optimización de almacenamiento",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1405,11 +944,6 @@
       {
         "nombre": "I7ie",
         "tipo": "Optimización de almacenamiento",
-        "caracteristicas_confidencialidad": [
-          "Cifrado en reposo mediante EBS con KMS",
-          "Acceso mediante políticas IAM y redes privadas (VPC)",
-          "Aislamiento lógico y soporte para monitoreo con CloudTrail"
-        ],
         "regiones_disponibles": [
           "US East (N. Virginia)",
           "EU (Frankfurt)",
@@ -1422,11 +956,6 @@
       "relacional": [
         {
           "nombre": "Amazon RDS",
-          "caracteristicas_confidencialidad": [
-            "Habilitar el cifrado con claves gestionadas por AWS Key Management Service (KMS) al momento de crear la BD",
-            "IAM para control de acceso",
-            "Red privada VPC"
-          ],
           "regiones_disponibles": [
             "Global"
           ],
@@ -1444,11 +973,6 @@
       "no_relacional": [
         {
           "nombre": "DynamoDB",
-          "caracteristicas_confidencialidad": [
-            "Cifrado AES-256 por defecto ",
-            "Nube Privada Virtual integrada",
-            "IAM para control de accesos"
-          ],
           "regiones_disponibles": [
             "Global"
           ],
@@ -1468,10 +992,6 @@
       "general": [
         {
           "nombre": "Amazon SageMaker",
-          "caracteristicas_confidencialidad": [
-            "Cifrado con KMS",
-            "IAM, VPC y cifrado de modelos"
-          ],
           "regiones_disponibles": [
             "Global"
           ],
@@ -1527,10 +1047,6 @@
     "scraping": [
       {
         "nombre": "AWS Lambda + Scrapy",
-        "caracteristicas_confidencialidad": [
-          "Control de ejecución mediante IAM y CloudWatch Events",
-          "Despliegue en entornos aislados con políticas personalizadas"
-        ],
         "regiones_disponibles": [
           "Global"
         ],
@@ -1548,10 +1064,6 @@
       "objetos": [
         {
           "nombre": "Blob Storage",
-          "caracteristicas_confidencialidad": [
-            "Cifrado en reposo por parte del servidor con opción de manejar claves gestionadas por el cliente",
-            "Integración con Azure Active Directory para control de acceso"
-          ],
           "regiones_disponibles": [
             "Alta disponibilidad con replicación en multiples zonas"
           ],
@@ -1561,10 +1073,6 @@
       "bloques": [
         {
           "nombre": "Azure Managed Disks",
-          "caracteristicas_confidencialidad": [
-            "Cifrado por defecto con opción de claves de cifrado gestionadas por el cliente",
-            "Soporte para discos administrados con control de acceso basado en roles"
-          ],
           "regiones_disponibles": [
             "Alta disponibilidad con replicación en multiples zonas como:",
             "East US",
@@ -1577,10 +1085,6 @@
       "archivos": [
         {
           "nombre": "Azure Files",
-          "caracteristicas_confidencialidad": [
-            "Cifrado en tránsito y en reposo",
-            "Integración con Active Directory para autenticación"
-          ],
           "regiones_disponibles": [
             "Alta disponibilidad con replicación en multiples zonas como:",
             "East US",
@@ -1599,83 +1103,50 @@
     },
     "mv": [
       {
-        "Nombre": "B2ts v2",
-        "Tipo": "Propósito general",
-        "Confidencialidad": [
-          "Cada disco esta cifrado por defecto con Microsoft Managed Keys. Cifrado del lado del servidor (SSE)",
-          "Cifrado en reposo con  Azure Disk Encryption (ADE)",
-          "Control de acceso basado en roles (RBAC)",
-          "Integración con Key Vault  para almacenar y gestionar claves criptográficas."
-        ],
-        "Regiones": [
+        "nombre": "B2ts v2",
+        "tipo": "Propósito general",
+        "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
           "East US",
           "Uk South"
         ],
-        "Costo": "7.5920 USD/mes",
-        "proveedor": "Azure"
+        "costo_aproximado": "7.5920 USD/mes"
       },
       {
-        "Nombre": "F2s v2",
-        "Tipo": "Optimización de CPU",
-        "Confidencialidad": [
-          "Cada disco esta cifrado por defecto con Microsoft Managed Keys. Cifrado del lado del servidor (SSE)",
-          "Cifrado en reposo con  Azure Disk Encryption (ADE)",
-          "Control de acceso basado en roles (RBAC)",
-          "Integración con Key Vault  para almacenar y gestionar claves criptográficas."
-        ],
-        "Regiones": [
+        "nombre": "F2s v2",
+        "tipo": "Optimización de CPU",
+        "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
           "East US",
           "North Europe"
         ],
-        "Costo": "61.758 USD/mes",
-        "proveedor": "Azure"
+        "costo_aproximado": "61.758 USD/mes"
       },
       {
-        "Nombre": "E2as v6",
-        "Tipo": "Optimización de memoria",
-        "Confidencialidad": [
-          "Cada disco esta cifrado por defecto con Microsoft Managed Keys. Cifrado del lado del servidor (SSE)",
-          "Cifrado en reposo con  Azure Disk Encryption (ADE)",
-          "Control de acceso basado en roles (RBAC)",
-          "Integración con Key Vault  para almacenar y gestionar claves criptográficas."
-        ],
-        "Regiones": [
+        "nombre": "E2as v6",
+        "tipo": "Optimización de memoria",
+        "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
           "East US",
           "Southeast Asia"
         ],
-       "Costo": " 86.87 USD/mes ",
-        "proveedor": "Azure"
+       "costo_aproximado": " 86.87 USD/mes "
       },
       {
-        "Nombre": "NC6 ",
-        "Tipo": "Aceleradas por GPU",
-        "Confidencialidad": [
-          "Cada disco esta cifrado por defecto con Microsoft Managed Keys. Cifrado del lado del servidor (SSE)",
-          "Cifrado en reposo con  Azure Disk Encryption (ADE)",
-          "Control de acceso basado en roles (RBAC)",
-          "Integración con Key Vault  para almacenar y gestionar claves criptográficas."
-        ],
-        "Regiones": [
+        "nombre": "NC6 ",
+        "tipo": "Aceleradas por GPU",
+        "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
           "West US",
           "East Asia"
         ],
-        "Costo": "657.00 USD/mes",
-        "proveedor": "Azure"
+        "costo_aproximado": "657.00 USD/mes"
       }
     ],
     "bd": {
       "relacional": [
         {
           "nombre": "Azure SQL Database",
-          "caracteristicas_confidencialidad": [
-            "Cifrado AES-256 por defecto ",
-            "Cifrado Transparente de Datos (TDE) habilitado por defecto; es decir, las bases de datos comienzan a cifrar automáticamente los datos almacenados en disco desde el momento de su creación",
-            "Protección de datos sensibles con Always Encrypted"
-          ],
           "regiones_disponibles": [
             "Global"
           ],
@@ -1685,10 +1156,6 @@
       "no_relacional": [
         {
           "nombre": "Cosmos DB",
-          "caracteristicas_confidencialidad": [
-            "Cifrado en reposo con claves gestionadas por el cliente con Key Vault"
-            
-          ],
           "regiones_disponibles": [
             "Global"
           ],
@@ -1700,10 +1167,6 @@
       "general": [
         {
           "nombre": "Azure Machine Learning (IA-General)",
-          "caracteristicas_confidencialidad": [
-            "Cifrado en reposo y tránsito",
-            "Red privada"
-          ],
           "regiones_disponibles": [
             "Global"
           ],
@@ -1750,7 +1213,6 @@
     "scraping": [
       {
         "nombre": "Azure Functions + Playwright",
-        "caracteristicas_confidencialidad": ["Integración con Azure Key Vault para credenciales"],
         "regiones_disponibles": [
           "Alta disponibilidad con replicación en multiples zonas como:",
           "East US",
@@ -1773,11 +1235,6 @@
       "objetos": [
         {
           "nombre": "Cloud Storage",
-          "caracteristicas_confidencialidad": [
-            "Cifrado en reposo por defecto ",
-            "Cifrado en reposo con claves gestionadas por el cliente con Google Cloud KMS",
-            "Control de acceso mediante IAM y listas de control de acceso"
-          ],
           "regiones_disponibles": [
             "Alta disponibilidad con replicación en multiples zonas como:",
             "us-central1",
@@ -1794,11 +1251,6 @@
       "bloques": [
         {
           "nombre": "Persistent Disk",
-          "caracteristicas_confidencialidad": [
-            "Cifrado en reposo por defecto ",
-            "Cifrado en reposo con claves gestionadas por el cliente con Google Cloud KMS",
-            "Integración con Cloud IAM para control de acceso"
-          ],
           "regiones_disponibles": [
             "Alta disponibilidad con replicación en multiples zonas como:",
             "us-central1",
@@ -1814,10 +1266,6 @@
       "archivos": [
         {
           "nombre": "Filestore",
-          "caracteristicas_confidencialidad": [
-            "Cifrado en reposo",
-            "Control de acceso mediante políticas de IAM"
-          ],
           "regiones_disponibles": [
             "us-central1",
             "europe-west1",
@@ -1829,77 +1277,54 @@
     },
     "mv": [
       {
-        "Nombre": "Familias: N1, N2, N2D, N4, C3, C3D, C4 y C4A",
-        "Tipo": "Propósito general",
-        "Confidencialidad": [
-          "Cada disco tiene una clave de cifrado única generada por Google.",
-          "Cifrado por defecto con claves gestionadas por el cliente (CMEK)"
-
-        ],
-        "Regiones": [
+        "nombre": "Familias: N1, N2, N2D, N4, C3, C3D, C4 y C4A",
+        "tipo": "Propósito general",
+        "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
           "us-central1",
           "europe-west1"
         ],
-        "Costo": [
+        "costo_aproximado": [
           "no ofrecen descuentos por uso continuo, pero proporcionan mayores ahorros directamente con los precios por compromiso de uso y según demanda",
           "Desde 0.067 USD/hora"
-        ],
-        "proveedor": "GCP"
+        ]
+       
       },
       {
-        "Nombre": "Familias:C2, C2D y H3 ",
-        "Tipo": "Optimización de CPU",
-        "Confidencialidad": [
-          "Cada disco tiene una clave de cifrado única generada por Google.",
-          "Cifrado por defecto con claves gestionadas por el cliente (CMEK)"
-        ],
-        "Regiones": [
+        "nombre": "Familias:C2, C2D y H3 ",
+        "tipo": "Optimización de CPU",
+        "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
           "us-central1",
           "asia-east1"
         ],
-        "Costo": "Desde 0.2088 USD/hora",
-        "proveedor": "GCP"
+        "costo_aproximado": "Desde 0.2088 USD/hora"
       },
       {
-        "Nombre": "Familias: M1, M2 y M3",
-        "Tipo": "Optimización de memoria",
-        "Confidencialidad": [
-          "Cada disco tiene una clave de cifrado única generada por Google.",
-          "Cifrado por defecto con claves gestionadas por el cliente (CMEK)"
-        ],
-        "Regiones": [
+        "nombre": "Familias: M1, M2 y M3",
+        "tipo": "Optimización de memoria",
+        "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
           "us-central1",
           "europe-west1"
         ],
-        "Costo": "Desde 0.02181159 USD/hora (on-demand)",
-        "proveedor": "GCP"
+        "costo_aproximado": "Desde 0.02181159 USD/hora (on-demand)"
       },
       {
-        "Nombre": "Familias: A2, A3 y G2",
-        "Tipo": "Aceleradas por GPU",
-        "Confidencialidad": [
-          "Cada disco tiene una clave de cifrado única generada por Google.",
-          "Cifrado por defecto con claves gestionadas por el cliente (CMEK)"
-        ],
-        "Regiones": [
+        "nombre": "Familias: A2, A3 y G2",
+        "tipo": "Aceleradas por GPU",
+        "regiones_disponibles": [
           "Disponibilidad en multiples regiones como:",
           "us-west4",
           "asia-east1"
         ],
-        "Costo": "Desde 11.06125002 USD/hora (on-demand)",
-        "proveedor": "GCP"
+        "costo_aproximado": "Desde 11.06125002 USD/hora (on-demand)"
       }
     ],
     "bd": {
       "relacional": [
         {
           "nombre": "Cloud SQL",
-          "caracteristicas_confidencialidad": [
-            "Cifrado con claves por Google KMS (Servicio de Administración de Claves de Cifrado de GCP"
-          ],
           "regiones_disponibles": [
             "Alta disponibilidad con replicación en multiples zonas como:",
             "Taiwán (asia-east1)",
@@ -1921,10 +1346,6 @@
       "no_relacional": [
         {
           "nombre": "Firestore",
-          "caracteristicas_confidencialidad": [
-            "Cifrado por defecto con con claves de cifrado gestionadas por el cliente con Google Cloud KMS",
-            "IAM granular y VPC Service Controls"
-          ],
           "regiones_disponibles": [
             "Alta disponibilidad con replicación en multiples zonas como:",
             "us-central",
@@ -1950,10 +1371,6 @@
       "general": [
         {
           "nombre": "Vertex AI",
-          "caracteristicas_confidencialidad": [
-            "Cifrado por defecto",
-            "Claves de cifrado gestionadas por el cliente, IAM y VPC"
-          ],
           "regiones_disponibles": [
             "Alta disponibilidad en zonas como:",
             "us-central1",
