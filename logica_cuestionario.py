@@ -1,4 +1,4 @@
-#logica_cuestionario.py
+# logica_cuestionario.py
 import json
 import os
 from reglas_combinacionales import reglas_combinacionales, cumple_condicion_struct
@@ -27,8 +27,8 @@ with open(os.path.join(_BASE, "servicios.json"), encoding="utf-8") as f:
 def obtener_nivel_confidencialidad(servicio, proveedor, nivel_req):
     cumplidos, max_n = [], 0
     for e in MATRIZ_CONF.get(proveedor, []):
-        servicios = e["Servicio"] if isinstance(e["Servicio"], list) else [e["Servicio"]]
-        if servicio.lower() in [s.lower() for s in servicios]:
+        servicios_en_matriz = e["Servicio"] if isinstance(e["Servicio"], list) else [e["Servicio"]]
+        if servicio.lower() in [s.lower() for s in servicios_en_matriz]:
             nivel = e["Nivel de confidencialidad"]
             if nivel <= nivel_req:
                 cumplidos.append({
@@ -43,9 +43,38 @@ def obtener_nivel_confidencialidad(servicio, proveedor, nivel_req):
 
 def obtener_servicios_relevantes(res, proveedor):
     rel = []
-    # Máquinas virtuales
+    # Máquinas virtuales - Lógica mejorada para seleccionar la VM correcta por tipo
     if res.get("mv_requiere") == "Sí":
-        rel.append({"nombre": "Maquinas Virtuales"})
+        mv_services = SERVICIOS[proveedor].get("mv")
+        if mv_services:
+            # Asegurarse de que mv_services es siempre una lista para iterar consistentemente
+            if not isinstance(mv_services, list):
+                mv_services = [mv_services]
+            
+            found_mv = None
+            selected_mv_type = res.get("mv_tipo")
+            
+            # Buscar una VM que coincida exactamente con el tipo seleccionado por el usuario
+            if selected_mv_type and selected_mv_type != "Seleccionar...":
+                for mv_svc in mv_services:
+                    if mv_svc.get("tipo") == selected_mv_type:
+                        found_mv = mv_svc
+                        break
+            
+            # Si no se encontró una VM por tipo específico, o si el tipo era "Propósito general"
+            # intentar encontrar una de "Propósito general" o simplemente la primera disponible
+            if not found_mv and mv_services:
+                # Priorizar "Propósito general" si existe y no se encontró otra coincidencia
+                for mv_svc in mv_services:
+                    if mv_svc.get("tipo") == "Propósito general":
+                        found_mv = mv_svc
+                        break
+                if not found_mv: # Si aún no se encontró, tomar la primera de la lista
+                    found_mv = mv_services[0]
+
+            if found_mv:
+                rel.append(found_mv)
+
     # Contenedores
     cont = SERVICIOS[proveedor].get("contenedores")
     if cont:
@@ -105,29 +134,38 @@ def evaluar_funcional(res):
     Aplica únicamente las reglas especificadas para puntaje funcional.
     """
     scores = {p: 0 for p in PROVEEDORES}
+    razones = {p: set() for p in PROVEEDORES} # Inicializar razones aquí también
 
     # 1. MV Optimización de CPU
     if res.get("mv_requiere") == "Sí" and res.get("mv_tipo") == "Optimización de CPU":
         scores["Azure"] += 1
+        razones["Azure"].add("Funcional MV: Optimización de CPU (+1)")
 
     # 2. MV optimización memoria o GPU
     if res.get("mv_requiere") == "Sí" and res.get("mv_tipo") in ["Optimización de memoria", "Aceleradas por GPU"]:
         scores["AWS"] += 1
         scores["Azure"] += 1
+        razones["AWS"].add("Funcional MV: Optimización de memoria/GPU (+1)")
+        razones["Azure"].add("Funcional MV: Optimización de memoria/GPU (+1)")
 
     # 3. MV optimizadas para almacenamiento
     if res.get("mv_requiere") == "Sí" and res.get("mv_tipo") == "Optimización de almacenamiento":
         scores["AWS"] += 1
         scores["Azure"] += 1
+        razones["AWS"].add("Funcional MV: Optimización de almacenamiento (+1)")
+        razones["Azure"].add("Funcional MV: Optimización de almacenamiento (+1)")
 
     # 4. MacOs
     if "MacOs" in res.get("mv_sistemas", []):
         scores["AWS"] += 1
+        razones["AWS"].add("Funcional MV: Soporte MacOs (+1)")
 
     # 5. Escalamiento predictivo
     if res.get("mv_escalamiento_predictivo") == "Sí":
         scores["AWS"] += 1
         scores["GCP"] += 1
+        razones["AWS"].add("Funcional MV: Escalamiento predictivo (+1)")
+        razones["GCP"].add("Funcional MV: Escalamiento predictivo (+1)")
 
     # 6. Auto-escalamiento (nadie suma puntos)
     # no action
@@ -136,10 +174,13 @@ def evaluar_funcional(res):
     if res.get("mv_hibernacion") == "Sí":
         scores["AWS"] += 1
         scores["GCP"] += 1
+        razones["AWS"].add("Funcional MV: Hibernación (+1)")
+        razones["GCP"].add("Funcional MV: Hibernación (+1)")
 
     # 8. Contenedores (Kubernetes)
     if res.get("contenedores") == "Sí":
         scores["GCP"] += 1
+        razones["GCP"].add("Funcional Contenedores: Kubernetes (+1)")
 
     # Almacenamiento: "Ninguno" no suma puntos
 
@@ -148,17 +189,23 @@ def evaluar_funcional(res):
         # 1. Cualquier motor: AWS
         if res.get("bd_motor"):
             scores["AWS"] += 1
+            razones["AWS"].add("Funcional BD: Soporte cualquier motor (+1)")
         # 2. GCP y Azure solo para SQL Server, MySQL, PostgreSQL
         if res.get("bd_motor") in ["SQL Server", "MySQL", "PostgreSQL"]:
             scores["GCP"] += 1
             scores["Azure"] += 1
+            razones["GCP"].add("Funcional BD: Soporte SQL Server/MySQL/PostgreSQL (+1)")
+            razones["Azure"].add("Funcional BD: Soporte SQL Server/MySQL/PostgreSQL (+1)")
         # 3. No relacional con réplicas de lectura
         if res.get("bd_tipo") == "No relacional" and res.get("bd_escalabilidad_no_rel") == "Automática réplicas":
             scores["AWS"] += 1
+            razones["AWS"].add("Funcional BD: NoSQL con réplicas automáticas (+1)")
         # 4. No relacional con fragmentación automática
         if res.get("bd_tipo") == "No relacional" and res.get("bd_escalabilidad_no_rel") == "Horizontal automática":
             scores["AWS"] += 1
             scores["GCP"] += 1
+            razones["AWS"].add("Funcional BD: NoSQL con fragmentación automática (+1)")
+            razones["GCP"].add("Funcional BD: NoSQL con fragmentación automática (+1)")
 
     # IA / ML
     ia_servs = res.get("ia_servicios_especializados", [])
@@ -166,35 +213,45 @@ def evaluar_funcional(res):
     if "Reconocimiento de voz" in ia_servs and res.get("voz_idiomas") == "Sí":
         scores["Azure"] += 1
         scores["GCP"] += 1
+        razones["Azure"].add("Funcional IA: Reconocimiento voz + idiomas (+1)")
+        razones["GCP"].add("Funcional IA: Reconocimiento voz + idiomas (+1)")
     # 2. Texto a voz + clonación
     if "Convertir Texto a Voz" in ia_servs and res.get("voz_clonacion") == "Sí":
         scores["Azure"] += 1
         scores["GCP"] += 1
+        razones["Azure"].add("Funcional IA: Texto a voz + clonación (+1)")
+        razones["GCP"].add("Funcional IA: Texto a voz + clonación (+1)")
     # 4. Voz muy natural
     if "Convertir Texto a Voz" in ia_servs and res.get("voz_naturalidad") == "Muy natural":
         scores["Azure"] += 1
+        razones["Azure"].add("Funcional IA: Voz muy natural (+1)")
     # 5. Voz medianamente natural
     if "Convertir Texto a Voz" in ia_servs and res.get("voz_naturalidad") == "Mediana":
         scores["GCP"] += 1
+        razones["GCP"].add("Funcional IA: Voz medianamente natural (+1)")
     # 6. Voz poco natural
     if "Convertir Texto a Voz" in ia_servs and res.get("voz_naturalidad") == "Poca":
         scores["AWS"] += 1
+        razones["AWS"].add("Funcional IA: Voz poco natural (+1)")
     # 7. Visión + reconocimiento de lugares
     if "Visión" in ia_servs and res.get("vision_lugares") == "Sí":
         scores["GCP"] += 1
+        razones["GCP"].add("Funcional IA: Visión + reconocimiento lugares (+1)")
     # 8. Visión + reconocimiento de celebridades
     if "Visión" in ia_servs and res.get("vision_celebridades") == "Sí":
         scores["AWS"] += 1
+        razones["AWS"].add("Funcional IA: Visión + reconocimiento celebridades (+1)")
     # 9. PLN + análisis avanzado
     if "Procesamiento de lenguaje natural" in ia_servs and res.get("pln_analisis") == "Sí":
         scores["GCP"] += 1
+        razones["GCP"].add("Funcional IA: PLN + análisis avanzado (+1)")
     # 10. Traducción + modelos personalizados
     if "Traducción" in ia_servs and res.get("traduccion_personalizada") == "Sí":
         scores["Azure"] += 1
         scores["GCP"] += 1
+        razones["Azure"].add("Funcional IA: Traducción + modelos personalizados (+1)")
+        razones["GCP"].add("Funcional IA: Traducción + modelos personalizados (+1)")
 
-    # Retornar sin razones en esta capa funcional
-    razones = {p: set() for p in PROVEEDORES}
     return scores, razones
 
 def evaluar_adecuacion(res):
@@ -251,17 +308,20 @@ def evaluar_respuestas(res):
     f_scores, f_reasons = evaluar_funcional(res)
     a_scores, a_reasons = evaluar_adecuacion(res)
     final_scores = {p: f_scores[p] + a_scores[p] for p in PROVEEDORES}
-    final_reasons = {p: f_reReasons | a_reasons[p] for p, f_reReasons in f_reasons.items()}
+    final_reasons = {p: f_reasons[p] | a_reasons[p] for p in PROVEEDORES} # Correctly merge sets
     aplicar_reglas_combinacionales(res, final_scores, final_reasons)
     # Advertencias confidencialidad
     if res.get("enfoque_seguridad") in ["Confidencialidad","Ambos"]:
         nivel_req = res.get("confidencialidad", 0)
         for p in PROVEEDORES:
-            for svc in obtener_servicios_relevantes(res, p):
-                niveles, max_n = obtener_nivel_confidencialidad(svc.get("nombre",""), p, nivel_req)
+            # Obtener solo los servicios relevantes que realmente se van a usar, incluyendo las VMs
+            relevant_services_for_provider = obtener_servicios_relevantes(res, p)
+            for svc_data in relevant_services_for_provider:
+                svc_name = svc_data.get("nombre", "")
+                niveles, max_n = obtener_nivel_confidencialidad(svc_name, p, nivel_req)
                 if max_n < nivel_req:
                     final_reasons[p].add(
-                        f"¡Advertencia! '{svc.get('nombre')}' no alcanza nivel {nivel_req} (máx {max_n})"
+                        f"¡Advertencia! '{svc_name}' no alcanza el nivel de confidencialidad {nivel_req} (máx {max_n})"
                     )
     return final_scores, {p: list(final_reasons[p]) for p in PROVEEDORES}
 

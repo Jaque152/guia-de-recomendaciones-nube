@@ -44,16 +44,18 @@ if not st.session_state.cuestionario_iniciado:
     )
     st.stop()
 
-# --- Carga definiciones de confidencialidad ---
+# --- Carga de datos externos (para app.py) ---
 _BASE = os.path.dirname(__file__)
 try:
     with open(os.path.join(_BASE, "confidencialidad_niveles.json"), encoding="utf-8") as f:
         MATRIZ_CONF = json.load(f)
+    with open(os.path.join(_BASE, "servicios.json"), encoding="utf-8") as f:
+        SERVICIOS = json.load(f)
 except FileNotFoundError:
-    st.error("Error: El archivo 'confidencialidad_niveles.json' no se encontró. Asegúrate de que está en el mismo directorio que app.py.")
+    st.error("Error: Archivo de configuración no encontrado. Asegúrate de que 'confidencialidad_niveles.json' y 'servicios.json' estén en el mismo directorio.")
     st.stop()
 except json.JSONDecodeError:
-    st.error("Error: El archivo 'confidencialidad_niveles.json' no es un JSON válido.")
+    st.error("Error: Archivo de configuración inválido. Asegúrate de que 'confidencialidad_niveles.json' y 'servicios.json' sean JSON válidos.")
     st.stop()
 
 defs = {}
@@ -97,22 +99,14 @@ with st.expander("Máquinas Virtuales"):
               "Optimización de CPU","Aceleradas por GPU","Optimización de almacenamiento"],
             key="mv_tipo"
         )
-        res["mv_so_multiple"] = st.radio(
-            "¿Soporte para múltiples Sistemas Operativos?",
-            ["Seleccionar...","Sí","No"], key="mv_so_multiple"
+        # MODIFICACIÓN: Eliminada la pregunta de SO múltiple, ahora solo multiselect
+        res["mv_sistemas"] = st.multiselect(
+            "Seleccione los sistemas operativos", 
+            ["Linux","Windows","MacOs"], 
+            key="mv_sistemas", placeholder="Seleccione una o más opciones"
         )
-        if res["mv_so_multiple"] == "Sí":
-            res["mv_sistemas"] = st.multiselect(
-                "Seleccione los sistemas operativos", 
-                ["Linux","Windows","MacOs"], 
-                key="mv_sistemas", placeholder="Seleccione una o más opciones"
-            )
-        else:
-            so = st.selectbox(
-                "Seleccione Sistema", ["Seleccionar...","Linux","Windows","MacOs"], key="mv_sistemas_single"
-            )
-            res["mv_sistemas"] = [so] if so != "Seleccionar..." else []
-        if res["mv_sistemas"]:
+        # Las siguientes preguntas dependen solo de que se hayan seleccionado SOs, no del tipo de selección
+        if res["mv_sistemas"]: # Si se ha seleccionado al menos un SO
             res["mv_escalamiento_predictivo"] = st.radio(
                 "¿Escalamiento predictivo?", ["Sí","No"], key="mv_escalamiento_predictivo"
             )
@@ -180,6 +174,7 @@ with st.expander("Inteligencia Artificial"):
                     res["voz_naturalidad"] = st.radio("Nivel de naturalidad de voz", ["Muy natural","Mediana","Poca"], key="voz_naturalidad")
             if "Visión" in servicios_ia:
                 res["vision_lugares"] = st.radio("¿Reconocimiento de lugares?", ["Sí","No"], key="vision_lugares")
+            if "Visión" in servicios_ia: # Mantener esta para la pregunta
                 res["vision_celebridades"] = st.radio("¿Reconocimiento de celebridades?", ["Sí","No"], key="vision_celebridades")
             if "Procesamiento de lenguaje natural" in servicios_ia:
                 res["pln_analisis"] = st.radio("¿Análisis de texto?", ["Sí","No"], key="pln_analisis")
@@ -232,18 +227,16 @@ with st.expander("Seguridad"):
         nivel = st.slider("Nivel de confidencialidad (1-5)", 1, 5, 3, key="slider_conf")
         res["confidencialidad"] = nivel
         res["confidencialidad_texto"] = {1:"Muy baja",2:"Baja",3:"Media",4:"Alta",5:"Muy alta"}[nivel]
-        # Mostrar descripción del nivel de confidencialidad directamente debajo del slider
+        
         selected_conf_desc = conf_descriptions.get(nivel, "Descripción no disponible para este nivel.")
         st.info(f"**Nivel {nivel} de Confidencialidad:** {selected_conf_desc}")
+        
     else:
         res["confidencialidad"], res["confidencialidad_texto"] = 0, "No aplica"
 
     if res["enfoque_seguridad"] in ["Integridad","Ambos"]:
         nivel_i = st.slider("Nivel de integridad (1-5)", 1, 5, 3, key="slider_int")
         res["integridad"] = nivel_i
-        # res["integridad_texto"] = "Bajo" if nivel_i<3 else ("Medio" if nivel_i==3 else "Alto")
-        # st.warning(f"Nivel de integridad seleccionado: {res['integridad_texto']} ({nivel_i})")
-        # Mostrar descripción del nivel de integridad directamente debajo del slider
         selected_int_desc = int_descriptions.get(nivel_i, "Descripción no disponible para este nivel.")
         st.warning(f"**Nivel {nivel_i} de Integridad:** {selected_int_desc}")
     else:
@@ -254,14 +247,12 @@ with st.expander("Prioridades del Proyecto"):
     nivel_c = st.slider("Nivel de costo (1-5)", 1, 5, 3, key="slider_cost")
     res["costo"] = nivel_c
     res["costo_texto"] = "Bajo" if nivel_c<3 else ("Medio" if nivel_c==3 else "Alto")
-    # Mostrar descripción del nivel de costo directamente debajo del slider
     selected_cost_desc = cost_descriptions.get(nivel_c, "Descripción no disponible para este nivel.")
     st.info(f"**Nivel {nivel_c} de Costo:** {selected_cost_desc}")
 
     nivel_d = st.slider("Nivel de disponibilidad (1-5)", 1, 5, 3, key="slider_disp")
     res["disponibilidad"] = nivel_d
     res["disponibilidad_texto"] = "Baja" if nivel_d<3 else ("Medio" if nivel_d==3 else "Alta")
-    # Mostrar descripción del nivel de disponibilidad directamente debajo del slider
     selected_disp_desc = disp_descriptions.get(nivel_d, "Descripción no disponible para este nivel.")
     st.info(f"**Nivel {nivel_d} de Disponibilidad:** {selected_disp_desc}")
 
@@ -286,12 +277,10 @@ if st.button("Ver recomendaciones"):
         # 2) Cálculo de adecuación (solo back-end)
         f_scores, f_reasons = evaluar_funcional(res)
         a_scores, a_reasons = evaluar_adecuacion(res)
-        # st.subheader("Cálculo de adecuación (back-end)")
-        # st.json({prov: a_reasons[prov] for prov in PROVEEDORES})
 
         # 3) Evaluación final y UI en columnas
         scores, razones = evaluar_respuestas(res)
-        f_scores, _ = evaluar_funcional(res) # <--- OBTENER PUNTOS FUNCIONALES
+        f_scores, _ = evaluar_funcional(res)
         orden = sorted(scores.items(), key=lambda x: x[1], reverse=True)
         max_p = orden[0][1]
         ganadores = [p for p, pts in orden if pts == max_p]
@@ -299,7 +288,6 @@ if st.button("Ver recomendaciones"):
         if len(ganadores) == 1:
             st.success(f"Proveedor recomendado: {ganadores[0]} ({max_p:.1f} pts)")
         else:
-            # Mensaje de empate mejorado
             st.warning(f"Empate detectado entre: {', '.join(ganadores)} ({max_p:.1f} pts)")
             st.info("💡 **Sugerencia:** Se recomienda reevaluar las prioridades en la sección 'Prioridades del Proyecto' o considerar otros factores cualitativos no medidos por la herramienta (como la experiencia previa del equipo o relaciones comerciales existentes) para tomar una decisión final.")
 
@@ -308,7 +296,6 @@ if st.button("Ver recomendaciones"):
             with cols[i]:
                 st.markdown(f"### {prov}")
                 st.metric("Puntos totales", f"{scores[prov]:.1f}")
-                # Métrica de puntos funcionales añadida
                 st.metric("Puntos por funcionalidad", f"{f_scores[prov]}")
                 st.markdown("**Razones:**")
                 for r in razones[prov]:
@@ -318,27 +305,76 @@ if st.button("Ver recomendaciones"):
                 if warns:
                     st.markdown("**Advertencias:**")
                     for w in warns: st.error(w)
+                
                 if prov in ganadores:
+                    st.markdown("#### Detalles de Servicios Clave:")
                     # MV mapping
                     if res["mv_requiere"] == "Sí":
-                        svc_vm = {"AWS":"Amazon EC2","GCP":"Compute Engine","Azure":"Azure VM"}[prov]
-                        niveles_vm, _ = obtener_nivel_confidencialidad(svc_vm, prov, res["confidencialidad"] )
-                        for lvl in niveles_vm:
-                            st.write(f"- {svc_vm} nivel {lvl['Nivel de confidencialidad']} (reposo: {lvl['Como se cumple para datos en reposo']}; tránsito: {lvl['Como se cumple para datos en transito']})")
+                        vm_data_list = SERVICIOS[prov].get("mv", [])
+                        if not isinstance(vm_data_list, list):
+                            vm_data_list = [vm_data_list]
+                        
+                        selected_vm_name = None
+                        selected_vm_family = None 
+                        selected_mv_type = res.get("mv_tipo")
+
+                        if selected_mv_type and selected_mv_type != "Seleccionar...":
+                            for vm_item in vm_data_list:
+                                if vm_item.get("tipo") == selected_mv_type:
+                                    selected_vm_name = vm_item.get("nombre")
+                                    selected_vm_family = vm_item.get("familia")
+                                    break
+                        
+                        if not selected_vm_name and vm_data_list:
+                            for vm_item in vm_data_list:
+                                if vm_item.get("tipo") == "Propósito general":
+                                    selected_vm_name = vm_item.get("nombre")
+                                    selected_vm_family = vm_item.get("familia")
+                                    break
+                            if not selected_vm_name and vm_data_list:
+                                selected_vm_name = vm_data_list[0].get("nombre")
+                                selected_vm_family = vm_data_list[0].get("familia")
+
+
+                        if selected_vm_name:
+                            vm_display_text = f"- **{selected_vm_name}**"
+                            if selected_vm_family:
+                                vm_display_text += f" (Familia: {selected_vm_family})"
+                            st.write(vm_display_text)
+
+                            niveles_vm_cumplidos, max_n_vm_disponible = obtener_nivel_confidencialidad(selected_vm_name, prov, res["confidencialidad"] )
+                            if niveles_vm_cumplidos:
+                                for lvl in niveles_vm_cumplidos:
+                                    if lvl['Nivel de confidencialidad'] == 5 and lvl.get('Como se cumple para datos en transito'):
+                                        st.write(f"    Nivel {lvl['Nivel de confidencialidad']}: Reposo: {lvl['Como se cumple para datos en reposo']}; Tránsito: {lvl['Como se cumple para datos en transito']}")
+                                    else:
+                                        st.write(f"    Nivel {lvl['Nivel de confidencialidad']}: Reposo: {lvl['Como se cumple para datos en reposo']}")
+                            else:
+                                st.info(f"    No se encontraron niveles de confidencialidad para **{selected_vm_name}** que cumplan con el nivel {res['confidencialidad']} (Máx disponible: {max_n_vm_disponible}).")
+                        else:
+                            st.info(f"    No se pudo determinar el servicio de VM para {prov} basado en el tipo seleccionado.")
+                    
                     # Almacenamiento mapping
                     tipo = res.get("almacenamiento")
                     mapping = {}
-                    if tipo == "Objetos": mapping = {"AWS":"Amazon S3","GCP":"Cloud Storage","Azure":"Azure Blob Storage"}
-                    elif tipo == "Bloques": mapping = {"AWS":"Amazon EBS","GCP":"Persistent Disk","Azure":"Azure Disk Storage"}
+                    if tipo == "Objetos": mapping = {"AWS":"Amazon S3","GCP":"Cloud Storage","Azure":"Blob Storage"}
+                    elif tipo == "Bloques": mapping = {"AWS":"Amazon EBS","GCP":"Persistent Disk","Azure":"Azure Managed Disks"}
                     elif tipo == "Archivos": mapping = {"AWS":"Amazon EFS","GCP":"Filestore","Azure":"Azure Files"}
                     if mapping:
-                        svc_st = mapping[prov]
-                        niveles_st, _ = obtener_nivel_confidencialidad(svc_st, prov, res["confidencialidad"] )
-                        for lvl in niveles_st:
-                            st.write(f"- {svc_st} nivel {lvl['Nivel de confidencialidad']} (reposo: {lvl['Como se cumple para datos en reposo']}; tránsito: {lvl['Como se cumple para datos en transito']})")
+                        svc_st_name = mapping[prov]
+                        niveles_st_cumplidos, max_n_st_disponible = obtener_nivel_confidencialidad(svc_st_name, prov, res["confidencialidad"] )
+                        if niveles_st_cumplidos:
+                            for lvl in niveles_st_cumplidos:
+                                if lvl['Nivel de confidencialidad'] == 5 and lvl.get('Como se cumple para datos en transito'):
+                                    st.write(f"- **{svc_st_name}** Nivel {lvl['Nivel de confidencialidad']}: Reposo: {lvl['Como se cumple para datos en reposo']}; Tránsito: {lvl['Como se cumple para datos en transito']}")
+                                else:
+                                    st.write(f"- **{svc_st_name}** Nivel {lvl['Nivel de confidencialidad']}: Reposo: {lvl['Como se cumple para datos en reposo']}")
+                        else:
+                            st.info(f"    No se encontraron niveles de confidencialidad para **{svc_st_name}** que cumplan con el nivel {res['confidencialidad']} (Máx disponible: {max_n_st_disponible}).")
                 
 
-            # Generación de PDF
+            # Generación de PDF (La lógica del PDF no ha cambiado drásticamente para las descripciones de nivel,
+            # ya que solo afectan la UI interactiva)
         pdf = FPDF()
         pdf.add_page()
         pdf.set_font("Arial", "B", 14)
@@ -352,9 +388,40 @@ if st.button("Ver recomendaciones"):
         pdf.multi_cell(0, 6, f"- Nivel de Confidencialidad: {res.get('confidencialidad_texto','No especificado')}")
         pdf.multi_cell(0, 6, f"- Nivel de Integridad: {res.get('integridad_texto','No especificado')}")
         pdf.multi_cell(0, 6, f"- Máquinas Virtuales: {res.get('mv_requiere','No especificado')}")
-        if res.get('mv_requiere') == 'Sí':
+        if res.get('mv_requiere') == "Sí":
             pdf.multi_cell(0, 6, f"    - Tipo: {res.get('mv_tipo','-')}")
             pdf.multi_cell(0, 6, f"    - SO: {', '.join(res.get('mv_sistemas',[]))}")
+            # Intenta obtener la familia de la VM para el PDF también
+            for prov in ganadores: # Asumimos que los ganadores son los que se mostrarán en PDF
+                vm_data_list_pdf = SERVICIOS[prov].get("mv", [])
+                if not isinstance(vm_data_list_pdf, list):
+                    vm_data_list_pdf = [vm_data_list_pdf]
+
+                selected_vm_name_pdf = None
+                selected_vm_family_pdf = None
+                
+                selected_mv_type_pdf = res.get("mv_tipo")
+                if selected_mv_type_pdf and selected_mv_type_pdf != "Seleccionar...":
+                    for vm_item_pdf in vm_data_list_pdf:
+                        if vm_item_pdf.get("tipo") == selected_mv_type_pdf:
+                            selected_vm_name_pdf = vm_item_pdf.get("nombre")
+                            selected_vm_family_pdf = vm_item_pdf.get("familia")
+                            break
+                
+                if not selected_vm_name_pdf and vm_data_list_pdf:
+                    for vm_item_pdf in vm_data_list_pdf:
+                        if vm_item_pdf.get("tipo") == "Propósito general":
+                            selected_vm_name_pdf = vm_item_pdf.get("nombre")
+                            selected_vm_family_pdf = vm_item_pdf.get("familia")
+                            break
+                    if not selected_vm_name_pdf and vm_data_list_pdf:
+                        selected_vm_name_pdf = vm_data_list_pdf[0].get("nombre")
+                        selected_vm_family_pdf = vm_data_list_pdf[0].get("familia")
+
+                if selected_vm_name_pdf:
+                    pdf.multi_cell(0, 6, f"    - VM seleccionada: {selected_vm_name_pdf}" + (f" (Familia: {selected_vm_family_pdf})" if selected_vm_family_pdf else ""))
+                    break # Salir después de encontrar la VM del primer ganador
+        
         pdf.multi_cell(0, 6, f"- Contenedores: {res.get('contenedores','No especificado')}")
         pdf.multi_cell(0, 6, f"- Almacenamiento: {res.get('almacenamiento','No especificado')}")
         pdf.multi_cell(0, 6, f"- Bases de Datos: {res.get('bd_requiere','No especificado')}")
@@ -397,12 +464,17 @@ if st.button("Ver recomendaciones"):
                     nombre = s.get('nombre')
                     if nombre in vistos: continue
                     vistos.add(nombre)
-                    pdf.multi_cell(0, 6, f"Servicio: {nombre}")
+                    
+                    # Incluir la familia en el PDF para VMs
+                    display_name_pdf = nombre
+                    if nombre in ["Amazon EC2", "Compute Engine", "Azure VM"] and s.get("familia"):
+                        display_name_pdf += f" (Familia: {s['familia']})"
+
+                    pdf.multi_cell(0, 6, f"Servicio: {display_name_pdf}")
                     if res['enfoque_seguridad'] in ['Confidencialidad','Ambos']:
                         niveles, _ = obtener_nivel_confidencialidad(nombre, proveedor, res['confidencialidad'])
                         for lvl in niveles:
-                            # Aquí también aplicarías la lógica de tránsito si es relevante para el PDF
-                            if res['confidencialidad'] == 5:
+                            if res['confidencialidad'] == 5 and lvl.get('Como se cumple para datos en transito'):
                                 pdf.multi_cell(0, 6, f"  Nivel {lvl['Nivel de confidencialidad']}: Reposo: {lvl['Como se cumple para datos en reposo']}; Tránsito: {lvl['Como se cumple para datos en transito']}")
                             else:
                                 pdf.multi_cell(0, 6, f"  Nivel {lvl['Nivel de confidencialidad']}: Reposo: {lvl['Como se cumple para datos en reposo']}")
@@ -411,7 +483,10 @@ if st.button("Ver recomendaciones"):
                         for c in s['caracteristicas_integridad']:
                             pdf.multi_cell(0, 6, f"    - {c}")
                     if s.get('costo_aproximado'):
-                        pdf.multi_cell(0, 6, f"  Costo estimado: {s['costo_aproximado']}")
+                        costo_str = s['costo_aproximado']
+                        if isinstance(costo_str, list):
+                            costo_str = ", ".join(costo_str)
+                        pdf.multi_cell(0, 6, f"  Costo estimado: {costo_str}")
                     pdf.ln(1)
                 pdf.ln(3)
 
