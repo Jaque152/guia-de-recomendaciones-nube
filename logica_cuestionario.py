@@ -28,6 +28,7 @@ def obtener_nivel_confidencialidad(servicio, proveedor, nivel_req):
     cumplidos, max_n = [], 0
     for e in MATRIZ_CONF.get(proveedor, []):
         servicios_en_matriz = e["Servicio"] if isinstance(e["Servicio"], list) else [e["Servicio"]]
+        # Comparamos el servicio de entrada (ej. "Amazon EC2") con los servicios en la matriz de confidencialidad
         if servicio.lower() in [s.lower() for s in servicios_en_matriz]:
             nivel = e["Nivel de confidencialidad"]
             if nivel <= nivel_req:
@@ -52,12 +53,12 @@ def obtener_servicios_relevantes(res, proveedor):
                 mv_services = [mv_services]
             
             found_mv = None
-            selected_mv_type = res.get("mv_tipo")
+            selected_mv_type = res.get("mv_tipo") # e.g., "Propósito general"
             
             # Buscar una VM que coincida exactamente con el tipo seleccionado por el usuario
             if selected_mv_type and selected_mv_type != "Seleccionar...":
                 for mv_svc in mv_services:
-                    if mv_svc.get("tipo") == selected_mv_type:
+                    if mv_svc.get("tipo") == selected_mv_type: # Checks if 'tipo' in JSON matches selected_mv_type
                         found_mv = mv_svc
                         break
             
@@ -109,12 +110,27 @@ def obtener_servicios_relevantes(res, proveedor):
     if scrap:
         if isinstance(scrap, dict): rel.append(scrap)
         else: rel.extend(scrap)
+    
     # Normalizar y deduplicar
     unique = {}
     for s in rel:
-        if isinstance(s, dict): name = s.get("nombre")
-        else: name = str(s); s = {"nombre":name}
-        if name and name not in unique: unique[name] = s
+        name = None
+        if isinstance(s, dict):
+            name_raw = s.get("nombre")
+            # Asegurarse de que 'name' sea siempre una cadena de texto
+            if isinstance(name_raw, list):
+                name = ", ".join(map(str, name_raw)) # Unir elementos de la lista en una cadena
+            elif name_raw is not None:
+                name = str(name_raw)
+        else:
+            # Esto maneja casos donde 's' no es un diccionario (estructura inesperada)
+            # Convierte 's' a una cadena para usarla como nombre.
+            name = str(s)
+            s = {"nombre": name, "_original_data": s} # Se puede añadir para depuración
+
+        if name: # Solo añadir si se obtuvo un nombre válido
+            if name not in unique:
+                unique[name] = s
     return list(unique.values())
 
 
@@ -318,6 +334,12 @@ def evaluar_respuestas(res):
             relevant_services_for_provider = obtener_servicios_relevantes(res, p)
             for svc_data in relevant_services_for_provider:
                 svc_name = svc_data.get("nombre", "")
+                # Asegurar que svc_name sea una cadena antes de pasarla
+                if isinstance(svc_name, list):
+                    svc_name = ", ".join(map(str, svc_name))
+                elif svc_name is None:
+                    continue # O manejar este caso como un error
+                    
                 niveles, max_n = obtener_nivel_confidencialidad(svc_name, p, nivel_req)
                 if max_n < nivel_req:
                     final_reasons[p].add(
