@@ -108,13 +108,16 @@ with st.expander("Máquinas Virtuales"):
         # Las siguientes preguntas dependen solo de que se hayan seleccionado SOs, no del tipo de selección
         if res["mv_sistemas"]: # Si se ha seleccionado al menos un SO
             res["mv_escalamiento_predictivo"] = st.radio(
-                "¿Escalamiento predictivo?", ["Sí","No"], key="mv_escalamiento_predictivo"
+                "¿Escalamiento predictivo?", ["Sí","No"], key="mv_escalamiento_predictivo", 
+                help= "El sistema anticipa patrones de uso mediante aprendizaje automático o análisis histórico y ajusta los recursos antes de que se necesiten, evitando latencia o caídas por picos de carga"
             )
             res["mv_autoescalamiento"] = st.radio(
-                "¿Auto-escalamiento?", ["Sí","No"], key="mv_autoescalamiento"
+                "¿Requiere auto-escalamiento?", ["Sí","No"], key="mv_autoescalamiento",
+                help="Permite que el sistema agregue o elimine recursos automáticamente según la carga real."
             )
             res["mv_hibernacion"] = st.radio(
-                "¿Hibernación?", ["Sí","No"], key="mv_hibernacion"
+                "¿Requiere hibernación o suspensión de MV?", ["Sí","No"], key="mv_hibernacion",
+                help="Permite pausar temporalmente una máquina virtual (MV) conservando su estado en disco (RAM, procesos), para poder reanudarla más tarde exactamente donde se detuvo."
             )
 
 with st.expander("Contenedores"):
@@ -145,8 +148,19 @@ with st.expander("Bases de Datos"):
             )
         else:
             res["bd_escalabilidad_no_rel"] = st.radio(
-                "Escalabilidad NoSQL", ["Automática ajuste","Automática réplicas",
-                                         "Horizontal automática","Ninguna"], key="bd_escalabilidad_no_rel"
+                "Escalabilidad NoSQL", ["Seleccionar...","Escalabilidad automática con ajuste de capacidad",Add commentMore actions
+                "Escalabilidad automática con réplicas de lectura",
+                "Escalabilidad horizontal con fragmentación automática",
+                "Ninguna"], key="bd_escalabilidad_no_rel",
+                help=(
+                    "#Escalabilidad automática con ajuste de capacidad: "Add commentMore actions
+                    "El sistema ajusta dinámicamente la capacidad según la carga, sin necesidad de reinicio.\n"
+                    "#Escalabilidad automática con réplicas de lectura: "
+                    "Se crean réplicas distribuidas que solo procesan lecturas, para mejorar el rendimiento en escenarios con muchas consultas.\n"
+                    "#Escalabilidad horizontal con fragmentación automática: "
+                    "El sistema divide los datos en fragmentos y los distribuye entre múltiples nodos. "
+                    "Esto permite escalar horizontalmente sin intervención."
+                )
             )
 
 with st.expander("Inteligencia Artificial"):
