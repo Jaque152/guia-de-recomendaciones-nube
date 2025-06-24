@@ -44,7 +44,7 @@ if not st.session_state.cuestionario_iniciado:
     )
     st.stop()
 
-# --- Carga de datos externos (para app.py) ---
+# --- Carga de datos externos ---
 _BASE = os.path.dirname(__file__)
 try:
     with open(os.path.join(_BASE, "confidencialidad_niveles.json"), encoding="utf-8") as f:
@@ -67,6 +67,18 @@ for prov in MATRIZ_CONF:
         defs.setdefault(lvl, set()).update({f"Reposo: {reposo}", f"Tránsito: {trans}"})
 defs = {lvl: list(desc) for lvl, desc in defs.items()}
 
+# --- Funciones auxiliares ---
+def validar_servicios_seleccionados(res):
+    servicios = [
+        res.get("mv_requiere") == "Sí",
+        res.get("contenedores") == "Sí",
+        res.get("almacenamiento") not in ["Ninguno", "Seleccionar..."],
+        res.get("bd_requiere") == "Sí",
+        res.get("ia_requiere") == "Sí",
+        res.get("scraping") == "Sí"
+    ]
+    return any(servicios)
+
 # --- Inicializar respuestas ---
 res = {
     "mv_requiere": "Seleccionar...", "mv_tipo": "Seleccionar...", "mv_so_multiple": "Seleccionar...", "mv_sistemas": [],
@@ -84,6 +96,7 @@ res = {
     "integridad": 3, "integridad_texto": "Medio", "costo": 3, "costo_texto": "Medio", "disponibilidad": 3, "disponibilidad_texto": "Media"
 }
 
+# --- Interfaz ---
 st.title("Guía de recomendaciones para la selección de proveedor de servicios en la nube")
 st.markdown("Por favor, complete el siguiente cuestionario para recibir una recomendación personalizada.")
 
@@ -278,6 +291,11 @@ if st.button("Ver recomendaciones"):
         errores = [campo_nombres[c] for c in campo_nombres if res[c] == "Seleccionar..."]
         if errores:
             st.error(f"Debe completar: {', '.join(errores)}")
+            st.stop()
+
+        # 1.2 Validar que al menos un servicio esté seleccionado
+        if not validar_servicios_seleccionados(res):
+            st.error("No ha seleccionado ningún servicio. ")
             st.stop()
 
         # 2) Cálculo de adecuación (solo back-end)
