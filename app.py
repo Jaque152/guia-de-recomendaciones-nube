@@ -148,7 +148,7 @@ with st.expander("Bases de Datos"):
             )
         else:
             res["bd_escalabilidad_no_rel"] = st.radio(
-                "Escalabilidad NoSQL", ["Seleccionar...","Escalabilidad automática con ajuste de capacidad",Add commentMore actions
+                "Escalabilidad NoSQL", ["Seleccionar...","Escalabilidad automática con ajuste de capacidad",
                 "Escalabilidad automática con réplicas de lectura",
                 "Escalabilidad horizontal con fragmentación automática",
                 "Ninguna"], key="bd_escalabilidad_no_rel",
