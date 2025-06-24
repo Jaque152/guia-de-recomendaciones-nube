@@ -77,10 +77,11 @@ def obtener_servicios_relevantes(res, proveedor):
                 rel.append(found_mv)
 
     # Contenedores
-    cont = SERVICIOS[proveedor].get("contenedores")
-    if cont:
-        if isinstance(cont, dict): rel.append(cont)
-        else: rel.extend(cont)
+    if res.get("contenedores") == "Sí":
+        cont = SERVICIOS[proveedor].get("contenedores")
+        if cont:
+            if isinstance(cont, dict): rel.append(cont)
+            else: rel.extend(cont)
     # Almacenamiento
     tipo = res.get("almacenamiento")
     if tipo in ["Objetos","Bloques","Archivos"]:
@@ -106,10 +107,11 @@ def obtener_servicios_relevantes(res, proveedor):
             if isinstance(sec, dict): rel.append(sec)
             else: rel.extend(sec)
     # Scraping
-    scrap = SERVICIOS[proveedor].get("scraping")
-    if scrap:
-        if isinstance(scrap, dict): rel.append(scrap)
-        else: rel.extend(scrap)
+    if res.get("scraping") == "Sí": 
+        scrap = SERVICIOS[proveedor].get("scraping")
+        if scrap:
+            if isinstance(scrap, dict): rel.append(scrap)
+            else: rel.extend(scrap)
     
     # Normalizar y deduplicar
     unique = {}
