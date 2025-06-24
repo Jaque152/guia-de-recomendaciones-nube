@@ -152,7 +152,7 @@ with st.expander("Bases de Datos"):
                 "Escalabilidad automática con réplicas de lectura",
                 "Escalabilidad horizontal con fragmentación automática",
                 "Ninguna"], key="bd_escalabilidad_no_rel",
-                help="#Escalabilidad automática con ajuste de capacidad:El sistema ajusta dinámicamente la capacidad según la carga, sin necesidad de reinicio.#Escalabilidad automática con réplicas de lectura:Se crean réplicas distribuidas que solo procesan lecturas, para mejorar el rendimiento en escenarios con muchas consultas.
+                help="Escalabilidad automática con ajuste de capacidad:El sistema ajusta dinámicamente la capacidad según la carga, sin necesidad de reinicio.#Escalabilidad automática con réplicas de lectura:Se crean réplicas distribuidas que solo procesan lecturas, para mejorar el rendimiento en escenarios con muchas consultas.
                     #Escalabilidad horizontal con fragmentación automática:El sistema divide los datos en fragmentos y los distribuye entre múltiples nodos.Esto permite escalar horizontalmente sin intervención."
             )
 
